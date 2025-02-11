@@ -112,6 +112,33 @@ public class Vista extends JFrame {
 		    PanelPlantilla = new JPanel();
 		    PanelPlantilla.setBounds(0, 0, 1329, 742);
 		    PanelPlantilla.setVisible(false);
+		    
+		     panelInicio = new JPanel();
+		     panelInicio.setBounds(0, 0, 1329, 742);
+		     
+		      contentPane.add(panelInicio);
+		      panelInicio.setLayout(null);
+		      
+		      lblTexto = new JLabel("Comienza");
+		      lblTexto.setFont(new Font("Consolas", Font.BOLD, 45));
+		      lblTexto.setBounds(470, 547, 281, 78);
+		      panelInicio.add(lblTexto);
+		      
+		      btnEmpezar = new JButton("");
+		      btnEmpezar.setBounds(741, 530, 193, 106);
+		      btnEmpezar.setContentAreaFilled(false); 
+		      btnEmpezar.setBorderPainted(false); 
+		      btnEmpezar.setFocusPainted(false);
+		      btnEmpezar.setOpaque(false); 
+		      panelInicio.add(btnEmpezar);
+		      
+		       lblLogo = new JLabel("");
+		       lblLogo.setBounds(450, 98, 500, 338);
+		       panelInicio.add(lblLogo);
+		       
+		        lblFondo = new JLabel("");
+		        lblFondo.setBounds(0, 0, 1329, 825);
+		        panelInicio.add(lblFondo);
 		    contentPane.add(PanelPlantilla);
 		    PanelPlantilla.setLayout(null);
 		    
@@ -303,33 +330,6 @@ public class Vista extends JFrame {
 		   lblFondoMenu = new JLabel("");
 		   lblFondoMenu.setBounds(0, 0, 1339, 742);
 		   panelMenu.add(lblFondoMenu);
-		 
-		  panelInicio = new JPanel();
-		  panelInicio.setBounds(0, 0, 1329, 742);
-		 
-		  contentPane.add(panelInicio);
-		  panelInicio.setLayout(null);
-		  
-		  lblTexto = new JLabel("Comienza");
-		  lblTexto.setFont(new Font("Consolas", Font.BOLD, 45));
-		  lblTexto.setBounds(470, 547, 281, 78);
-		  panelInicio.add(lblTexto);
-		  
-		  btnEmpezar = new JButton("");
-		  btnEmpezar.setBounds(741, 530, 193, 106);
-		  btnEmpezar.setContentAreaFilled(false); 
-		  btnEmpezar.setBorderPainted(false); 
-		  btnEmpezar.setFocusPainted(false);
-		  btnEmpezar.setOpaque(false); 
-		  panelInicio.add(btnEmpezar);
-		  
-		   lblLogo = new JLabel("");
-		   lblLogo.setBounds(450, 98, 500, 338);
-		   panelInicio.add(lblLogo);
-		   
-		    lblFondo = new JLabel("");
-		    lblFondo.setBounds(0, 0, 1329, 825);
-		    panelInicio.add(lblFondo);
 	}
 	
 	public static ImageIcon ajustarTamañoImg(String ruta, int ancho, int alto) {
