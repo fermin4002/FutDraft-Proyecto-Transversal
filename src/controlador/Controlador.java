@@ -259,9 +259,7 @@ public class Controlador implements ActionListener,MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		 if (e.getSource() == this.vista.btnSimularPartida) {
-		        
 		        vista.btnSimularPartida.setIcon(fotoEscalarButton(vista.btnSimularPartida, "imagenes/enfentramiento_hover.png"));
-		       
 		        vista.btnSimularPartida.setBounds(vista.btnSimularPartida.getX(), vista.btnSimularPartida.getY(), 250, 60);
 		    }
 	}
@@ -269,9 +267,7 @@ public class Controlador implements ActionListener,MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		if (e.getSource() == this.vista.btnSimularPartida) {
-	       
-	        vista.btnSimularPartida.setIcon(fotoEscalarButton(vista.btnSimularPartida, "imagenes/enfentramiento.png"));
-	       
+	        vista.btnSimularPartida.setIcon(fotoEscalarButton(vista.btnSimularPartida, "imagenes/enfentramiento_hover.png"));
 	        vista.btnSimularPartida.setBounds(vista.btnSimularPartida.getX(), vista.btnSimularPartida.getY(), 200, 50);
 	    }
 		
