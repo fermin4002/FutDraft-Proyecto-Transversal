@@ -80,7 +80,8 @@ public class Vista extends JFrame {
 	public JLabel lblFtotoVersus;
 	public JLabel lblEmpezarSimulacion;
 	public JLabel lblFondoPantalla_2;
-	public JPanel panelSimulacion;
+	public JLabel lblFondeSimulacion;
+	public JLabel lblVolverPlantilla_2;
 	/**
 	 * Launch the application.
 	 */
@@ -129,6 +130,20 @@ public class Vista extends JFrame {
 		        panelVistaEquipo = new JPanel();
 		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		        panelVistaEquipo.setVisible(false);
+		        
+		        JPanel panelSimulacion = new JPanel();
+		        panelSimulacion.setBounds(0, 0, 1347, 736);
+		        panelSimulacion.setVisible(false);
+		        contentPane.add(panelSimulacion);
+		        panelSimulacion.setLayout(null);
+		        
+		        lblVolverPlantilla_2 = new JLabel("");
+		        lblVolverPlantilla_2.setBounds(0, 0, 82, 79);
+		        panelSimulacion.add(lblVolverPlantilla_2);
+		        
+		        lblFondeSimulacion = new JLabel("New label");
+		        lblFondeSimulacion.setBounds(-17, 5, 45, 13);
+		        panelSimulacion.add(lblFondeSimulacion);
 		        contentPane.add(panelVistaEquipo);
 		        panelVistaEquipo.setLayout(null);
 		        
@@ -383,11 +398,6 @@ public class Vista extends JFrame {
 		   lblFondoMenu = new JLabel("");
 		   lblFondoMenu.setBounds(0, 0, 1339, 742);
 		   panelMenu.add(lblFondoMenu);
-		   
-		   panelSimulacion = new JPanel();
-		   panelSimulacion.setBounds(0, 0, 10, 10);
-		   panelSimulacion.setVisible(false);
-		   contentPane.add(panelSimulacion);
 	}
 	
 	public static ImageIcon ajustarTamañoImg(String ruta, int ancho, int alto) {
