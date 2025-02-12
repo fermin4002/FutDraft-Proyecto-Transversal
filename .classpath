@@ -6,28 +6,28 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/byte-buddy-1.12.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/classmate-1.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/FastInfoset-1.2.15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/hibernate-commons-annotations-5.1.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/hibernate-core-5.6.5.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/hibernate-jpamodelgen-5.6.5.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/istack-commons-runtime-3.0.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/jandex-2.4.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/javax.activation-api-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/javax.persistence-api-2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/jaxb-api-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/jaxb-runtime-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/jboss-logging-3.4.3.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/mysql-connector-java-8.0.18.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/stax-ex-1.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/hibernate/txw2-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/csv/commons-beanutils-1.9.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/csv/commons-collections4-4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/csv/commons-lang3-3.12.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/csv/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fermi/Desktop/TransversalDefinitivoPosiblemente/Transversal/lib/csv/opencsv-5.6.jar"/>
+	<classpathentry kind="lib" path="lib/csv/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="lib/csv/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/csv/commons-lang3-3.12.0.jar"/>
+	<classpathentry kind="lib" path="lib/csv/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/csv/opencsv-5.6.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/byte-buddy-1.12.7.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/FastInfoset-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/hibernate-core-5.6.5.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/hibernate-jpamodelgen-5.6.5.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/istack-commons-runtime-3.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/jandex-2.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/jaxb-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/jboss-logging-3.4.3.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/mysql-connector-java-8.0.18.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/stax-ex-1.8.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate/txw2-2.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
