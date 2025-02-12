@@ -137,13 +137,66 @@ public class Vista extends JFrame {
 		         panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		         panelVistaEquipo.setVisible(false);
 		         
-		         panelSimulacion = new JPanel();
-		         panelSimulacion.setBounds(0, 0, 1347, 736);
-		         panelSimulacion.setVisible(false);
-		         
 		          PanelPlantilla = new JPanel();
 		          PanelPlantilla.setBounds(0, 0, 1329, 742);
 		          PanelPlantilla.setVisible(false);
+		          
+		          panelSimulacion = new JPanel();
+		          panelSimulacion.setBounds(0, 0, 1347, 736);
+		          panelSimulacion.setVisible(false);
+		          contentPane.add(panelSimulacion);
+		          panelSimulacion.setLayout(null);
+		          
+		          lblVolverPlantilla_3 = new JLabel("");
+		          lblVolverPlantilla_3.setBounds(1244, 0, 82, 79);
+		          panelSimulacion.add(lblVolverPlantilla_3);
+		          
+		          lblMarcador = new JLabel("");
+		          lblMarcador.setBackground(new Color(255, 255, 255));
+		          lblMarcador.setBounds(601, 485, 671, 241);
+		          panelSimulacion.add(lblMarcador);
+		          
+		          lblFondo_Marcador = new JLabel("");
+		          lblFondo_Marcador.setBounds(601, 485, 671, 241);
+		          panelSimulacion.add(lblFondo_Marcador);
+		          
+		          btnIniciarSimulacion = new JButton("");
+		          btnIniciarSimulacion.setContentAreaFilled(false); // Quita el fondo
+		          btnIniciarSimulacion.setBorderPainted(false); // Quita el borde
+		          btnIniciarSimulacion.setFocusPainted(false); //
+		          btnIniciarSimulacion.setBounds(791, 307, 298, 168);
+		          panelSimulacion.add(btnIniciarSimulacion);
+		          
+		          lblFtotoVersus_1 = new JLabel("");
+		          lblFtotoVersus_1.setBounds(870, 169, 106, 90);
+		          panelSimulacion.add(lblFtotoVersus_1);
+		          
+		          lblNewLabel_EscudoEquipoVisitante_Simulacion = new JLabel("");
+		          lblNewLabel_EscudoEquipoVisitante_Simulacion.setBounds(1024, 106, 283, 226);
+		          panelSimulacion.add(lblNewLabel_EscudoEquipoVisitante_Simulacion);
+		          
+		          lblNewLabel_EscudoEquipoLocal_Simulacion = new JLabel("");
+		          lblNewLabel_EscudoEquipoLocal_Simulacion.setBounds(556, 106, 283, 226);
+		          panelSimulacion.add(lblNewLabel_EscudoEquipoLocal_Simulacion);
+		          
+		          lblNewLabel_1 = new JLabel("Situacion del partitido");
+		          lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		          lblNewLabel_1.setFont(new Font("Consolas", Font.BOLD, 17));
+		          lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		          lblNewLabel_1.setBounds(135, 87, 291, 74);
+		          panelSimulacion.add(lblNewLabel_1);
+		          
+		          listSimulacion = new JList();
+		          listSimulacion.setBounds(135, 169, 290, 557);
+		          panelSimulacion.add(listSimulacion);
+		          
+		          lblVolverPlantilla_Simulacion = new JLabel("");
+		          lblVolverPlantilla_Simulacion.setBounds(10, 0, 82, 79);
+		          panelSimulacion.add(lblVolverPlantilla_Simulacion);
+		          
+		          lblFondeSimulacion = new JLabel("");
+		          lblFondeSimulacion.setBounds(0, 0, 1326, 736);
+		          panelSimulacion.add(lblFondeSimulacion);
 		          contentPane.add(PanelPlantilla);
 		          PanelPlantilla.setLayout(null);
 		          
@@ -281,59 +334,6 @@ public class Vista extends JFrame {
 		                  lblFondoPlantilla = new JLabel("");
 		                  lblFondoPlantilla.setBounds(0, 0, 1329, 764);
 		                  PanelPlantilla.add(lblFondoPlantilla);
-		         contentPane.add(panelSimulacion);
-		         panelSimulacion.setLayout(null);
-		         
-		         lblVolverPlantilla_3 = new JLabel("");
-		         lblVolverPlantilla_3.setBounds(1244, 0, 82, 79);
-		         panelSimulacion.add(lblVolverPlantilla_3);
-		         
-		         lblMarcador = new JLabel("");
-		         lblMarcador.setBackground(new Color(255, 255, 255));
-		         lblMarcador.setBounds(601, 485, 671, 241);
-		         panelSimulacion.add(lblMarcador);
-		         
-		         lblFondo_Marcador = new JLabel("");
-		         lblFondo_Marcador.setBounds(601, 485, 671, 241);
-		         panelSimulacion.add(lblFondo_Marcador);
-		         
-		         btnIniciarSimulacion = new JButton("");
-		         btnIniciarSimulacion.setContentAreaFilled(false); // Quita el fondo
-		         btnIniciarSimulacion.setBorderPainted(false); // Quita el borde
-		         btnIniciarSimulacion.setFocusPainted(false); //
-		         btnIniciarSimulacion.setBounds(791, 307, 298, 168);
-		         panelSimulacion.add(btnIniciarSimulacion);
-		         
-		         lblFtotoVersus_1 = new JLabel("");
-		         lblFtotoVersus_1.setBounds(870, 169, 106, 90);
-		         panelSimulacion.add(lblFtotoVersus_1);
-		         
-		         lblNewLabel_EscudoEquipoVisitante_Simulacion = new JLabel("");
-		         lblNewLabel_EscudoEquipoVisitante_Simulacion.setBounds(1024, 106, 283, 226);
-		         panelSimulacion.add(lblNewLabel_EscudoEquipoVisitante_Simulacion);
-		         
-		         lblNewLabel_EscudoEquipoLocal_Simulacion = new JLabel("");
-		         lblNewLabel_EscudoEquipoLocal_Simulacion.setBounds(556, 106, 283, 226);
-		         panelSimulacion.add(lblNewLabel_EscudoEquipoLocal_Simulacion);
-		         
-		         lblNewLabel_1 = new JLabel("Situacion del partitido");
-		         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		         lblNewLabel_1.setFont(new Font("Consolas", Font.BOLD, 17));
-		         lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		         lblNewLabel_1.setBounds(135, 87, 291, 74);
-		         panelSimulacion.add(lblNewLabel_1);
-		         
-		         listSimulacion = new JList();
-		         listSimulacion.setBounds(135, 169, 290, 557);
-		         panelSimulacion.add(listSimulacion);
-		         
-		         lblVolverPlantilla_Simulacion = new JLabel("");
-		         lblVolverPlantilla_Simulacion.setBounds(10, 0, 82, 79);
-		         panelSimulacion.add(lblVolverPlantilla_Simulacion);
-		         
-		         lblFondeSimulacion = new JLabel("");
-		         lblFondeSimulacion.setBounds(0, 0, 1326, 736);
-		         panelSimulacion.add(lblFondeSimulacion);
 		         contentPane.add(panelVistaEquipo);
 		         panelVistaEquipo.setLayout(null);
 		         
