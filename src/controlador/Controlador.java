@@ -59,7 +59,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblVolverJugadores.addMouseListener(this);
         this.vista.lblVolverPlantilla.addMouseListener(this);
         //Clasificacion
-        this.vista.btnVolverClasificacion.addActionListener(this);
+        this.vista.lblVolverClasificacion.addMouseListener(this);
         
         //MOdelos
         modeloTJugadores= new DefaultTableModel();
@@ -88,6 +88,8 @@ public class Controlador implements ActionListener,MouseListener {
         
         
         vista.tablaJugadores.setModel(modeloTJugadores);
+        vista.tablaClasificacion.setModel(modeloTCLasidicacion);
+        vista.tablaJornadas.setModel(modeloTJornadas);
         try { 
 			hibernate.cargarJugadores();
 		} catch (Exception e) {
@@ -100,7 +102,7 @@ public class Controlador implements ActionListener,MouseListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        cargarTabla();
+        cargarTabla(modeloTJugadores);
         imagenes();
     }
 
@@ -147,9 +149,6 @@ public class Controlador implements ActionListener,MouseListener {
         else if(e.getSource()==this.vista.btnJugadores) {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.panelJugadores.setVisible(true);
-        }else if(e.getSource()==this.vista.btnVolverClasificacion) {
-        	this.vista.panelClasificacion.setVisible(false);
-        	this.vista.panelMenu.setVisible(true);
         }
         
     }
@@ -207,8 +206,16 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFondoMenu.setIcon(fotoEscalarLabel(this.vista.lblFondoMenu, "imagenes/fondo-principal.jpg"));
         this.vista.lblLogo.setIcon(fotoEscalarLabel(this.vista.lblLogo, "imagenes/logo.png"));
         this.vista.lblLogoMenu.setIcon(fotoEscalarLabel(this.vista.lblLogoMenu, "imagenes/logo.png"));
-        this.vista.lblFondoPlantilla.setIcon(fotoEscalarLabel(this.vista.lblFondoPlantilla, "imagenes/cesped.png"));
+       
+        //inicio
         this.vista.btnEmpezar.setIcon(fotoEscalarButton(this.vista.btnEmpezar, "imagenes/boton-inicio.png"));
+        //menu
+        this.vista.btnJugar.setIcon(fotoEscalarButton(this.vista.btnJugar, "imagenes/boton-jugar.png"));
+        this.vista.btnJugadores.setIcon(fotoEscalarButton(this.vista.btnJugadores, "imagenes/sobrenosotros.jpg"));
+        this.vista.btnClasificaion.setIcon(fotoEscalarButton(this.vista.btnClasificaion, "imagenes/boton-salir.png"));
+        //jugador
+        this.vista.lblVolverJugadores.setIcon(fotoEscalarLabel(this.vista.lblVolverJugadores, "imagenes/volver.png"));
+        //Selecion plantilla
         this.vista.btnPortero.setIcon(fotoEscalarButton(this.vista.btnPortero, "imagenes/camiseta-de-futbol.png"));
         this.vista.btnDefensaIzquierda.setIcon(fotoEscalarButton(this.vista.btnDefensaIzquierda, "imagenes/camiseta-de-futbol.png"));
         this.vista.btnCentroCampistaIzquierdoCentro.setIcon(fotoEscalarButton(this.vista.btnCentroCampistaIzquierdoCentro, "imagenes/camiseta-de-futbol.png"));
@@ -220,14 +227,14 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnCentroCampistaDerecho.setIcon(fotoEscalarButton(this.vista.btnCentroCampistaDerecho, "imagenes/camiseta-de-futbol.png"));
         this.vista.btnDelanteroDerecho.setIcon(fotoEscalarButton(this.vista.btnDelanteroDerecho, "imagenes/camiseta-de-futbol.png"));
         this.vista.btnDelanteroIzquierda.setIcon(fotoEscalarButton(this.vista.btnDelanteroIzquierda, "imagenes/camiseta-de-futbol.png"));
+        this.vista.lblFondoPlantilla.setIcon(fotoEscalarLabel(this.vista.lblFondoPlantilla, "imagenes/cesped.png"));
         this.vista.btnSimularPartida.setIcon(fotoEscalarButton(this.vista.btnSimularPartida,"imagenes/enfentramiento.png"));
-        this.vista.btnJugar.setIcon(fotoEscalarButton(this.vista.btnJugar, "imagenes/boton-jugar.png"));
-        this.vista.btnJugadores.setIcon(fotoEscalarButton(this.vista.btnJugadores, "imagenes/sobrenosotros.jpg"));
-        //Cambiar imagen
-        this.vista.btnClasificaion.setIcon(fotoEscalarButton(this.vista.btnClasificaion, "imagenes/boton-salir.png"));
         this.vista.lblFondoDraft.setIcon(fotoEscalarLabel(this.vista.lblFondoDraft, "imagenes/fondo_futDraft.jpg"));
-        this.vista.lblVolverJugadores.setIcon(fotoEscalarLabel(this.vista.lblVolverJugadores, "imagenes/volver.png"));
         this.vista.lblVolverPlantilla.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla, "imagenes/volver.png"));
+        //Clasificacion Cambiar imagen
+        this.vista.lblVolverClasificacion.setIcon(fotoEscalarLabel(this.vista.lblVolverClasificacion,"imagenes/volver.png"));
+        
+        
         this.vista.lblLogJugadores.setIcon(fotoEscalarLabel(this.vista.lblLogJugadores, "imagenes/logo.png"));
         this.vista.lblFondo_Pantalla_Jugadores.setIcon(fotoEscalarLabel(this.vista.lblFondo_Pantalla_Jugadores, "imagenes/fondo-principal.jpg"));
         this.vista.lblSalir.setIcon(fotoEscalarLabel(this.vista.lblSalir,"imagenes/salir.png"));
@@ -259,8 +266,12 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelJugadores.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
         }
-        if(e.getSource()==this.vista.lblVolverPlantilla) {
+        else if(e.getSource()==this.vista.lblVolverPlantilla) {
         	this.vista.PanelPlantilla.setVisible(false);
+        	this.vista.panelMenu.setVisible(true);
+        }
+        else if(e.getSource()==this.vista.lblVolverClasificacion) {
+        	this.vista.panelClasificacion.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
         }
     }
@@ -299,10 +310,10 @@ public class Controlador implements ActionListener,MouseListener {
 	}
 	
 	//Tabla Jugadores
-	public void cargarTabla() {
+	public void cargarTabla(DefaultTableModel modelo) {
 		List<Jugador> entrada=hibernate.extraerJugadores();
 		
-		modeloTJugadores.setRowCount(0);
+		modelo.setRowCount(0);
 		for(Jugador clave:entrada) {
 			String[] row= {
 					clave.getNombre(),
@@ -314,7 +325,7 @@ public class Controlador implements ActionListener,MouseListener {
 					String.valueOf(clave.getFuerzaTecnica())
 			};
 			
-			modeloTJugadores.addRow(row);
+			modelo.addRow(row);
 		}
 	}
 }

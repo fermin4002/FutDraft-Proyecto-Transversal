@@ -71,12 +71,12 @@ public class Vista extends JFrame {
 	public JLabel lblVolverPlantilla;
 	public JScrollPane scrollPane;
 	public JPanel panelClasificacion;
-	public JButton btnVolverClasificacion;
 	public JLabel lblFondo_1;
 	public JTable tablaClasificacion;
 	public JTable tablaJornadas;
 	public JComboBox comboBoxJornada;
 	public JPanel panelResultados;
+	public JLabel lblVolverClasificacion;
 	/**
 	 * Launch the application.
 	 */
@@ -121,6 +121,44 @@ public class Vista extends JFrame {
 		    PanelPlantilla = new JPanel();
 		    PanelPlantilla.setBounds(0, 0, 1329, 742);
 		    PanelPlantilla.setVisible(false);
+		      
+		      panelClasificacion = new JPanel();
+		      panelClasificacion.setLayout(null);
+		      panelClasificacion.setVisible(false);
+		      panelClasificacion.setBounds(0, 0, 1329, 742);
+		      contentPane.add(panelClasificacion);
+		      
+		      lblVolverClasificacion = new JLabel("");
+		      lblVolverClasificacion.setBounds(0, 0, 82, 79);
+		      panelClasificacion.add(lblVolverClasificacion);
+		      
+		      panelResultados = new JPanel();
+		      panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		      panelResultados.setBounds(463, 84, 443, 346);
+		      panelClasificacion.add(panelResultados);
+		      panelResultados.setLayout(null);
+		      
+		      tablaJornadas = new JTable();
+		      tablaJornadas.setBounds(10, 61, 423, 275);
+		      panelResultados.add(tablaJornadas);
+		      
+		      comboBoxJornada = new JComboBox();
+		      comboBoxJornada.setBounds(226, 11, 207, 47);
+		      panelResultados.add(comboBoxJornada);
+		      
+		      JPanel panel = new JPanel();
+		      panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		      panel.setBounds(10, 84, 443, 587);
+		      panelClasificacion.add(panel);
+		      panel.setLayout(null);
+		      
+		      tablaClasificacion = new JTable();
+		      tablaClasificacion.setBounds(10, 63, 423, 513);
+		      panel.add(tablaClasificacion);
+		      
+		      lblFondo_1 = new JLabel("");
+		      lblFondo_1.setBounds(0, 0, 1329, 742);
+		      panelClasificacion.add(lblFondo_1);
 		      
 		      panelMenu = new JPanel();
 		      panelMenu.setBounds(0, 0, 1329, 742);
@@ -174,49 +212,6 @@ public class Vista extends JFrame {
 		         lblFondo = new JLabel("");
 		         lblFondo.setBounds(0, 0, 1329, 825);
 		         panelInicio.add(lblFondo);
-		     
-		     panelClasificacion = new JPanel();
-		     panelClasificacion.setLayout(null);
-		     panelClasificacion.setVisible(false);
-		     panelClasificacion.setBounds(0, 0, 1329, 742);
-		     contentPane.add(panelClasificacion);
-		     
-		     panelResultados = new JPanel();
-		     panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		     panelResultados.setBounds(463, 42, 443, 346);
-		     panelClasificacion.add(panelResultados);
-		     panelResultados.setLayout(null);
-		     
-		     tablaJornadas = new JTable();
-		     tablaJornadas.setBounds(10, 61, 423, 275);
-		     panelResultados.add(tablaJornadas);
-		     
-		     comboBoxJornada = new JComboBox();
-		     comboBoxJornada.setBounds(226, 11, 207, 47);
-		     panelResultados.add(comboBoxJornada);
-		     
-		     btnVolverClasificacion = new JButton("");
-		     btnVolverClasificacion.setBackground(new Color(192, 192, 192));
-		     btnVolverClasificacion.setOpaque(false);
-		     btnVolverClasificacion.setFocusPainted(false);
-		     btnVolverClasificacion.setContentAreaFilled(false);
-		     btnVolverClasificacion.setBorderPainted(false);
-		     btnVolverClasificacion.setBounds(1127, 655, 180, 65);
-		     panelClasificacion.add(btnVolverClasificacion);
-		     
-		     JPanel panel = new JPanel();
-		     panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		     panel.setBounds(10, 42, 443, 678);
-		     panelClasificacion.add(panel);
-		     panel.setLayout(null);
-		     
-		     tablaClasificacion = new JTable();
-		     tablaClasificacion.setBounds(10, 63, 423, 604);
-		     panel.add(tablaClasificacion);
-		     
-		     lblFondo_1 = new JLabel("");
-		     lblFondo_1.setBounds(0, 0, 1329, 742);
-		     panelClasificacion.add(lblFondo_1);
 		    contentPane.add(PanelPlantilla);
 		    PanelPlantilla.setLayout(null);
 		    
