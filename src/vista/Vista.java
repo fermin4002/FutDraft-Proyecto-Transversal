@@ -24,6 +24,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JSeparator;
+import javax.swing.JToggleButton;
 
 public class Vista extends JFrame {
 
@@ -61,7 +65,7 @@ public class Vista extends JFrame {
 	public JLabel lblLogoMenu;
 	public JButton btnJugar;
 	public JButton btnJugadores;
-	public JButton btnSalir;
+	public JButton btnClasificaciones;
 	public JPanel panelMenu;
 	public JLabel lblLogJugadores;
 	public JTable tablaJugadores;
@@ -92,6 +96,23 @@ public class Vista extends JFrame {
 	public JLabel lblFondo_Marcador;
 	public JLabel lblMarcador;
 	public JLabel lblSiguiente_Ronda;
+	public JLabel lblSalirPrincipal;
+	public JLabel lblInformacion;
+	public JPanel panelMostrarInformacion;
+	public JLabel lblTextoSobreNosotros;
+	public JLabel lblDescripcionSobreNosotros;
+	public JLabel lblFondoInformacion;
+	public JLabel lblSalirMenu;
+	public JPanel panelInformacion;
+	public JLabel lblSalirMenu_Informacion;
+	public JPanel panelMostrarInformacionDedicamos;
+	public JLabel lblTextoTituloDedicamos;
+	public JLabel lblDescripcionDedicamos;
+	public JSeparator separator_1;
+	public JPanel panelMostrarInformacionDedicamos_1;
+	public JLabel lblTextoComoJugar;
+	public JLabel lblDescripcionComoJugar;
+	public JSeparator separator_2;
 	/**
 	 * Launch the application.
 	 */
@@ -144,6 +165,129 @@ public class Vista extends JFrame {
 		          panelSimulacion = new JPanel();
 		          panelSimulacion.setBounds(0, 0, 1347, 736);
 		          panelSimulacion.setVisible(false);
+		          
+		          panelMenu = new JPanel();
+		          panelMenu.setBounds(0, 0, 1329, 742);
+		          contentPane.add(panelMenu);
+		          panelMenu.setVisible(false);
+		          panelMenu.setLayout(null);
+		          
+		          lblInformacion = new JLabel("");
+		          lblInformacion.setBounds(1243, 0, 76, 71);
+		          panelMenu.add(lblInformacion);
+		          
+		          lblSalirPrincipal = new JLabel("");
+		          lblSalirPrincipal.setBounds(0, 0, 76, 71);
+		          panelMenu.add(lblSalirPrincipal);
+		          
+		          btnClasificaciones = new JButton("");
+		          btnClasificaciones.setBounds(459, 597, 500, 113);
+		          panelMenu.add(btnClasificaciones);
+		          
+		          btnJugadores = new JButton("");
+		          btnJugadores.setBounds(459, 474, 500, 113);
+		          panelMenu.add(btnJugadores);
+		          
+		          btnJugar = new JButton("");
+		          btnJugar.setBounds(459, 351, 500, 113);
+		          panelMenu.add(btnJugar);
+		          
+		          lblLogoMenu = new JLabel("");
+		          lblLogoMenu.setBounds(459, 0, 500, 338);
+		          panelMenu.add(lblLogoMenu);
+		          
+		          lblFondoMenu = new JLabel("");
+		          lblFondoMenu.setBounds(0, 0, 1339, 742);
+		          panelMenu.add(lblFondoMenu);
+		          
+		          panelInformacion = new JPanel();
+		          panelInformacion.setBounds(0, 0, 1321, 734);
+		          contentPane.add(panelInformacion);
+		          panelInformacion.setVisible(false);
+		          panelInformacion.setLayout(null);
+		          
+		          panelMostrarInformacionDedicamos_1 = new JPanel();
+		          panelMostrarInformacionDedicamos_1.setLayout(null);
+		          panelMostrarInformacionDedicamos_1.setBounds(890, 131, 386, 480);
+		          panelMostrarInformacionDedicamos_1.setVisible(false);
+		          panelInformacion.add(panelMostrarInformacionDedicamos_1);
+		          
+		          lblTextoComoJugar = new JLabel("¿Como jugar?");
+		          lblTextoComoJugar.setHorizontalAlignment(SwingConstants.CENTER);
+		          lblTextoComoJugar.setForeground(Color.BLACK);
+		          lblTextoComoJugar.setFont(new Font("Consolas", Font.BOLD, 30));
+		          lblTextoComoJugar.setBounds(10, 11, 366, 61);
+		          panelMostrarInformacionDedicamos_1.add(lblTextoComoJugar);
+		          
+		          lblDescripcionComoJugar = new JLabel("");
+		          lblDescripcionComoJugar.setForeground(Color.BLACK);
+		          lblDescripcionComoJugar.setFont(new Font("Consolas", Font.BOLD, 15));
+		          lblDescripcionComoJugar.setBounds(10, 83, 366, 375);
+		          panelMostrarInformacionDedicamos_1.add(lblDescripcionComoJugar);
+		          
+		          separator_2 = new JSeparator();
+		          separator_2.setForeground(Color.BLACK);
+		          separator_2.setBackground(Color.BLACK);
+		          separator_2.setBounds(0, 83, 386, 18);
+		          panelMostrarInformacionDedicamos_1.add(separator_2);
+		          
+		          panelMostrarInformacionDedicamos = new JPanel();
+		          panelMostrarInformacionDedicamos.setLayout(null);
+		          panelMostrarInformacionDedicamos.setBounds(473, 131, 386, 480);
+		          panelMostrarInformacionDedicamos.setVisible(false);
+		          panelInformacion.add(panelMostrarInformacionDedicamos);
+		          
+		          lblTextoTituloDedicamos = new JLabel("¿A que nos dedicamos?");
+		          lblTextoTituloDedicamos.setHorizontalAlignment(SwingConstants.CENTER);
+		          lblTextoTituloDedicamos.setForeground(Color.BLACK);
+		          lblTextoTituloDedicamos.setFont(new Font("Consolas", Font.BOLD, 30));
+		          lblTextoTituloDedicamos.setBounds(10, 11, 366, 61);
+		          panelMostrarInformacionDedicamos.add(lblTextoTituloDedicamos);
+		          
+		          lblDescripcionDedicamos = new JLabel("");
+		          lblDescripcionDedicamos.setForeground(Color.BLACK);
+		          lblDescripcionDedicamos.setFont(new Font("Consolas", Font.BOLD, 15));
+		          lblDescripcionDedicamos.setBounds(10, 83, 366, 375);
+		          panelMostrarInformacionDedicamos.add(lblDescripcionDedicamos);
+		          
+		          separator_1 = new JSeparator();
+		          separator_1.setForeground(Color.BLACK);
+		          separator_1.setBackground(Color.BLACK);
+		          separator_1.setBounds(0, 83, 386, 18);
+		          panelMostrarInformacionDedicamos.add(separator_1);
+		          
+		          panelMostrarInformacion = new JPanel();
+		          panelMostrarInformacion.setBounds(56, 131, 386, 480);
+		          panelInformacion.add(panelMostrarInformacion);
+		          panelMostrarInformacion.setVisible(false);
+		          panelMostrarInformacion.setLayout(null);
+		          
+		          lblTextoSobreNosotros = new JLabel("Sobre Nosotros");
+		          lblTextoSobreNosotros.setForeground(new Color(0, 0, 0));
+		          lblTextoSobreNosotros.setHorizontalAlignment(SwingConstants.CENTER);
+		          lblTextoSobreNosotros.setFont(new Font("Consolas", Font.BOLD, 30));
+		          lblTextoSobreNosotros.setBounds(10, 11, 366, 61);
+		          panelMostrarInformacion.add(lblTextoSobreNosotros);
+		          
+		           lblDescripcionSobreNosotros = new JLabel("");
+		           lblDescripcionSobreNosotros.setForeground(new Color(0, 0, 0));
+		           lblDescripcionSobreNosotros.setFont(new Font("Consolas", Font.BOLD, 15));
+		           lblDescripcionSobreNosotros.setBounds(10, 94, 366, 375);
+		           panelMostrarInformacion.add(lblDescripcionSobreNosotros);
+		           
+		           JSeparator separator = new JSeparator();
+		           separator.setBackground(new Color(0, 0, 0));
+		           separator.setForeground(new Color(0, 0, 0));
+		           separator.setBounds(0, 83, 386, 18);
+		           panelMostrarInformacion.add(separator);
+		           
+		           lblSalirMenu_Informacion = new JLabel("");
+		           lblSalirMenu_Informacion.setBounds(0, 0, 76, 71);
+		           panelInformacion.add(lblSalirMenu_Informacion);
+		           
+		            lblFondoInformacion = new JLabel("");
+		            lblFondoInformacion.setBounds(0, 0, 1331, 745);
+		            panelInformacion.add(lblFondoInformacion);
 		          contentPane.add(panelSimulacion);
 		          panelSimulacion.setLayout(null);
 		          
@@ -425,32 +569,6 @@ public class Vista extends JFrame {
 		   lblFondo_Pantalla_Jugadores = new JLabel("");
 		   lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
 		   panelJugadores.add(lblFondo_Pantalla_Jugadores);
-		   
-		   panelMenu = new JPanel();
-		   panelMenu.setBounds(0, 0, 1329, 742);
-		   contentPane.add(panelMenu);
-		   panelMenu.setVisible(false);
-		   panelMenu.setLayout(null);
-		   
-		   btnSalir = new JButton("");
-		   btnSalir.setBounds(459, 597, 500, 113);
-		   panelMenu.add(btnSalir);
-		   
-		   btnJugadores = new JButton("");
-		   btnJugadores.setBounds(459, 474, 500, 113);
-		   panelMenu.add(btnJugadores);
-		   
-		   btnJugar = new JButton("");
-		   btnJugar.setBounds(459, 351, 500, 113);
-		   panelMenu.add(btnJugar);
-		   
-		   lblLogoMenu = new JLabel("");
-		   lblLogoMenu.setBounds(459, 0, 500, 338);
-		   panelMenu.add(lblLogoMenu);
-		   
-		   lblFondoMenu = new JLabel("");
-		   lblFondoMenu.setBounds(0, 0, 1339, 742);
-		   panelMenu.add(lblFondoMenu);
 	}
 	
 	public static ImageIcon ajustarTamañoImg(String ruta, int ancho, int alto) {

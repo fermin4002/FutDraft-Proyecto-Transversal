@@ -34,7 +34,6 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnPortero.addActionListener(this);
         //Delanteros
         this.vista.btnDelanteroDerecho.addActionListener(this);
-        
         this.vista.btnDelanteroIzquierda.addActionListener(this);
         //CentroCampistas
         this.vista.btnCentroCampistaDerecho.addActionListener(this);
@@ -52,17 +51,22 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnEleccionTres.addActionListener(this);
         this.vista.btnEleccionCuatro.addActionListener(this);
         this.vista.btnJugar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
+        this.vista.btnClasificaciones.addActionListener(this);
         this.vista.lblSalir.addMouseListener(this);
         this.vista.btnSimularPartida.addActionListener(this);
         this.vista.btnJugadores.addActionListener(this);
         this.vista.lblVolverJugadores.addMouseListener(this);
         this.vista.lblVolverPlantilla.addMouseListener(this);
+        this.vista.lblSalirPrincipal.addMouseListener(this);
        //Ver equipos
         this.vista.lblVolverPlantilla_1.addMouseListener(this);
         //Ver simulacion
         this.vista.lblEmpezarSimulacion.addMouseListener(this);
         this.vista.lblVolverPlantilla_Simulacion.addMouseListener(this);
+        //Ver infromacion
+        this.vista.lblInformacion.addMouseListener(this);
+        //Informacion
+        this.vista.lblSalirMenu_Informacion.addMouseListener(this);
         //MOdelos
         modeloTJugadores= new DefaultTableModel();
         modeloTJugadores.addColumn("Nombre");
@@ -118,7 +122,6 @@ public class Controlador implements ActionListener,MouseListener {
             vista.panelElecion.setVisible(false);
             enableButtons(botonesDeshabilitar);
         }
-        
         if(e.getSource()==this.vista.lblFondoDraft) {
         	vista.panelElecion.setVisible(false);
         }
@@ -126,9 +129,8 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.PanelPlantilla.setVisible(true);
         }
-        if(e.getSource()==this.vista.btnSalir) {
-        	this.vista.panelMenu.setVisible(false);
-        	this.vista.panelInicio.setVisible(true);
+        if(e.getSource()==this.vista.btnClasificaciones) {
+        
         }
         if(e.getSource()==this.vista.btnJugadores) {
         	this.vista.panelMenu.setVisible(false);
@@ -190,11 +192,14 @@ public class Controlador implements ActionListener,MouseListener {
     }
 
     public void imagenes() {
-        this.vista.lblFondo.setIcon(fotoEscalarLabel(this.vista.lblFondo, "imagenes/fondo-principal.jpg"));
+       //panel Menu 
+    	this.vista.lblFondo.setIcon(fotoEscalarLabel(this.vista.lblFondo, "imagenes/fondo-principal.jpg"));
         this.vista.lblFondoMenu.setIcon(fotoEscalarLabel(this.vista.lblFondoMenu, "imagenes/fondo-principal.jpg"));
         this.vista.lblLogo.setIcon(fotoEscalarLabel(this.vista.lblLogo, "imagenes/logo.png"));
         this.vista.lblLogoMenu.setIcon(fotoEscalarLabel(this.vista.lblLogoMenu, "imagenes/logo.png"));
         this.vista.lblFondoPlantilla.setIcon(fotoEscalarLabel(this.vista.lblFondoPlantilla, "imagenes/cesped.png"));
+        this.vista.lblSalirPrincipal.setIcon(fotoEscalarLabel(this.vista.lblSalirPrincipal, "imagenes/salir-principal.png"));
+        this.vista.lblInformacion.setIcon(fotoEscalarLabel(this.vista.lblInformacion, "imagenes/informacion.png"));
         this.vista.btnEmpezar.setIcon(fotoEscalarButton(this.vista.btnEmpezar, "imagenes/boton-inicio.png"));
         this.vista.btnPortero.setIcon(fotoEscalarButton(this.vista.btnPortero, "imagenes/camiseta-de-futbol.png"));
         this.vista.btnDefensaIzquierda.setIcon(fotoEscalarButton(this.vista.btnDefensaIzquierda, "imagenes/camiseta-de-futbol.png"));
@@ -210,7 +215,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnSimularPartida.setIcon(fotoEscalarButton(this.vista.btnSimularPartida,"imagenes/enfentramiento.png"));
         this.vista.btnJugar.setIcon(fotoEscalarButton(this.vista.btnJugar, "imagenes/boton-jugar.png"));
         this.vista.btnJugadores.setIcon(fotoEscalarButton(this.vista.btnJugadores, "imagenes/sobrenosotros.jpg"));
-        this.vista.btnSalir.setIcon(fotoEscalarButton(this.vista.btnSalir, "imagenes/boton-salir.png"));
+        this.vista.btnClasificaciones.setIcon(fotoEscalarButton(this.vista.btnClasificaciones, "imagenes/boton-clasificaciones.jpg"));
         this.vista.lblFondoDraft.setIcon(fotoEscalarLabel(this.vista.lblFondoDraft, "imagenes/fondo_futDraft.jpg"));
         this.vista.lblVolverJugadores.setIcon(fotoEscalarLabel(this.vista.lblVolverJugadores, "imagenes/volver.png"));
         this.vista.lblVolverPlantilla.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla, "imagenes/volver.png"));
@@ -233,6 +238,9 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnIniciarSimulacion.setIcon(fotoEscalarButton(this.vista.btnIniciarSimulacion, "imagenes/boton_simular.png"));
         this.vista.lblFondo_Marcador.setIcon(fotoEscalarLabel(this.vista.lblFondo_Marcador,"imagenes/marcador.png"));
         this.vista.lblSiguiente_Ronda.setIcon(fotoEscalarLabel(this.vista.lblSiguiente_Ronda,"imagenes/siguiete_jornada.png"));
+        //panelInformacion
+        this.vista.lblFondoInformacion.setIcon(fotoEscalarLabel(this.vista.lblFondoInformacion,"imagenes/fondo-principal.jpg"));
+        this.vista.lblSalirMenu_Informacion.setIcon(fotoEscalarLabel(this.vista.lblSalirMenu_Informacion,"imagenes/volver.png"));
     }
 
     @Override
@@ -272,6 +280,52 @@ public class Controlador implements ActionListener,MouseListener {
         }else if(e.getSource()==this.vista.lblVolverPlantilla_Simulacion) {
         	this.vista.PanelPlantilla.setVisible(true);
         	this.vista.panelSimulacion.setVisible(false);
+        //Panel informacion
+        }else if(e.getSource()==this.vista.lblInformacion) {
+        	this.vista.panelMenu.setVisible(false);
+        	this.vista.panelInformacion.setVisible(true);
+        	this.vista.panelMostrarInformacion.setVisible(true);
+        	this.vista.panelMostrarInformacionDedicamos_1.setVisible(true);
+        	this.vista.panelMostrarInformacionDedicamos.setVisible(true);
+        	String mensaje= "En FutDraft, somos apasionados del fútbol y la tecnología.<br>" +
+                    "Nuestra misión es revolucionar la forma en que los fanáticos<br>" +
+                    "del fútbol interactúan con su deporte favorito. Con FutDraft,<br>" +
+                    "ofrecemos una experiencia única donde los usuarios pueden<br>" +
+                    "crear, gestionar y competir con sus propios equipos de ensueño,<br>" +
+                    "utilizando estadísticas en tiempo real y datos actualizados<br>" +
+                    "de jugadores de todo el mundo. Nuestro equipo está formado por<br>" +
+                    "desarrolladores, diseñadores y amantes del fútbol que comparten<br>" +
+                    "una visión común: llevar la emoción del fútbol a un nivel superior.<br>";
+        	setLabelText(vista.lblDescripcionSobreNosotros,mensaje);
+        	String mensaje2= "Un FutDraft es una plataforma o aplicación que se dedica a la creación y gestión de equipos de fútbol virtuales,<br>" +
+                    "donde los usuarios pueden actuar como 'mánagers' y armar sus propios equipos de ensueño.<br>" +
+                    "<br>" +
+                    "*Creación de equipos virtuales<br>" +
+                    "*Competiciones y ligas<br>" +
+                    "*Gestión de plantillas<br>" +
+                    "*Estadísticas en tiempo real<br>" +
+                    "*Experiencia interactiva<br>" +
+                    "*Educación y estrategia<br>";
+        	setLabelText(vista.lblDescripcionDedicamos,mensaje2);
+        	String mensaje3= "FutDraft es una emocionante plataforma que te permite convertirte en el mánager de tu propio equipo de fútbol virtual.<br>" +
+                    "<br>" +
+                    "1. Regístrate y crea tu equipo:<br>" +
+                    "   - Regístrate y elige un nombre para tu equipo.<br>" +
+                    "   - Selecciona jugadores de diferentes ligas y posiciones.<br>" +
+                    "<br>" +
+                    "2. Armar tu alineación:<br>" +
+                    "   - Organiza a tus jugadores en la formación que prefieras.<br>" +
+                    "   - Equilibra tu equipo con defensores, mediocampistas y delanteros.<br>";
+        	setLabelText(vista.lblDescripcionComoJugar,mensaje3);
+        }else if(e.getSource()==this.vista.lblSalirMenu_Informacion) {
+        	this.vista.panelMenu.setVisible(true);
+        	this.vista.panelInformacion.setVisible(false);
+        	this.vista.panelMostrarInformacion.setVisible(false);
+        	this.vista.panelMostrarInformacionDedicamos_1.setVisible(false);
+        	this.vista.panelMostrarInformacionDedicamos.setVisible(false);
+        }else if(e.getSource()== this.vista.lblSalirPrincipal) {
+        	this.vista.panelMenu.setVisible(false);
+        	this.vista.panelInicio.setVisible(true);
         }
                 	
     }
@@ -324,4 +378,8 @@ public class Controlador implements ActionListener,MouseListener {
 			modeloTJugadores.addRow(row);
 		}
 	}
+	public  void setLabelText(JLabel label, String text) {
+        String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
+        label.setText(htmlText);
+    }
 }
