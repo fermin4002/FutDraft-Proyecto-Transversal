@@ -62,6 +62,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblVolverPlantilla_1.addMouseListener(this);
         //Ver simulacion
         this.vista.lblEmpezarSimulacion.addMouseListener(this);
+        this.vista.lblVolverPlantilla_Simulacion.addMouseListener(this);
         //MOdelos
         modeloTJugadores= new DefaultTableModel();
         modeloTJugadores.addColumn("Nombre");
@@ -225,8 +226,14 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblEmpezarSimulacion.setIcon(fotoEscalarLabel(this.vista.lblEmpezarSimulacion,"imagenes/fotoSilvato.png"));
         //panelSimulacion
         this.vista.lblFondeSimulacion.setIcon(fotoEscalarLabel(this.vista.lblFondeSimulacion,"imagenes/fondo-principal.jpg"));
-        this.vista.lblVolverPlantilla_2.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_2,"imagenes/volver.png"));
-    	}
+        this.vista.lblVolverPlantilla_Simulacion.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_Simulacion,"imagenes/volver.png"));
+        this.vista.lblNewLabel_EscudoEquipoLocal_Simulacion.setIcon(fotoEscalarLabel(this.vista.lblNewLabel_EscudoEquipoLocal_Simulacion,"imagenes/fotoLogoLocal.png"));
+        this.vista.lblNewLabel_EscudoEquipoVisitante_Simulacion.setIcon(fotoEscalarLabel(this.vista.lblNewLabel_EscudoEquipoVisitante_Simulacion,"imagenes/fotoLogoVisitante.png"));
+        this.vista.lblFtotoVersus_1.setIcon(fotoEscalarLabel(this.vista.lblFtotoVersus_1,"imagenes/versus.png"));
+        this.vista.btnIniciarSimulacion.setIcon(fotoEscalarButton(this.vista.btnIniciarSimulacion, "imagenes/boton_simular.png"));
+        this.vista.lblFondo_Marcador.setIcon(fotoEscalarLabel(this.vista.lblFondo_Marcador,"imagenes/marcador.png"));
+        this.vista.lblVolverPlantilla_3.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_3,"imagenes/siguiete_jornada.png"));
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -253,16 +260,18 @@ public class Controlador implements ActionListener,MouseListener {
         if(e.getSource()==this.vista.lblVolverJugadores) {
         	this.vista.panelJugadores.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
-        }
-        if(e.getSource()==this.vista.lblVolverPlantilla) {
+        }else if(e.getSource()==this.vista.lblVolverPlantilla) {
         	this.vista.PanelPlantilla.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
-        }if(e.getSource()==this.vista.lblVolverPlantilla_1) {
+        }else if(e.getSource()==this.vista.lblVolverPlantilla_1) {
         	this.vista.panelVistaEquipo.setVisible(false);
         	this.vista.PanelPlantilla.setVisible(true);
-        }if(e.getSource()==this.vista.lblEmpezarSimulacion) {
+        }else if(e.getSource()==this.vista.lblEmpezarSimulacion) {
         	this.vista.PanelPlantilla.setVisible(false);
         	this.vista.panelSimulacion.setVisible(true);
+        }else if(e.getSource()==this.vista.lblVolverPlantilla_Simulacion) {
+        	this.vista.PanelPlantilla.setVisible(true);
+        	this.vista.panelSimulacion.setVisible(false);
         }
                 	
     }

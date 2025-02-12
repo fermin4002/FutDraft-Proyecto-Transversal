@@ -81,7 +81,7 @@ public class Vista extends JFrame {
 	public JLabel lblEmpezarSimulacion;
 	public JLabel lblFondoPantalla_2;
 	public JLabel lblFondeSimulacion;
-	public JLabel lblVolverPlantilla_2;
+	public JLabel lblVolverPlantilla_Simulacion;
 	public JPanel panelSimulacion;
 	public JList listSimulacion;
 	public JLabel lblNewLabel_1;
@@ -90,6 +90,8 @@ public class Vista extends JFrame {
 	public JLabel lblFtotoVersus_1;
 	public JButton btnIniciarSimulacion;
 	public JLabel lblFondo_Marcador;
+	public JLabel lblMarcador;
+	public JLabel lblVolverPlantilla_3;
 	/**
 	 * Launch the application.
 	 */
@@ -130,232 +132,244 @@ public class Vista extends JFrame {
 		   panelJugadores = new JPanel();
 		   panelJugadores.setBounds(0, 0, 1329, 761);
 		   panelJugadores.setVisible(false);
-		       
-		        PanelPlantilla = new JPanel();
-		        PanelPlantilla.setBounds(0, 0, 1329, 742);
-		        PanelPlantilla.setVisible(false);
-		        
-		        panelVistaEquipo = new JPanel();
-		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
-		        panelVistaEquipo.setVisible(false);
-		        
-		        panelSimulacion = new JPanel();
-		        panelSimulacion.setBounds(0, 0, 1347, 736);
-		        panelSimulacion.setVisible(false);
-		        contentPane.add(panelSimulacion);
-		        panelSimulacion.setLayout(null);
-		        
-		        lblFondo_Marcador = new JLabel("");
-		        lblFondo_Marcador.setBounds(601, 503, 671, 125);
-		        panelSimulacion.add(lblFondo_Marcador);
-		        
-		        btnIniciarSimulacion = new JButton("");
-		        btnIniciarSimulacion.setBounds(548, 350, 759, 59);
-		        panelSimulacion.add(btnIniciarSimulacion);
-		        
-		        lblFtotoVersus_1 = new JLabel("");
-		        lblFtotoVersus_1.setBounds(870, 169, 106, 90);
-		        panelSimulacion.add(lblFtotoVersus_1);
-		        
-		        lblNewLabel_EscudoEquipoVisitante_Simulacion = new JLabel("");
-		        lblNewLabel_EscudoEquipoVisitante_Simulacion.setBounds(1024, 106, 283, 226);
-		        panelSimulacion.add(lblNewLabel_EscudoEquipoVisitante_Simulacion);
-		        
-		        lblNewLabel_EscudoEquipoLocal_Simulacion = new JLabel("");
-		        lblNewLabel_EscudoEquipoLocal_Simulacion.setBounds(556, 106, 283, 226);
-		        panelSimulacion.add(lblNewLabel_EscudoEquipoLocal_Simulacion);
-		        
-		        lblNewLabel_1 = new JLabel("Situacion del partitido");
-		        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		        lblNewLabel_1.setFont(new Font("Consolas", Font.BOLD, 17));
-		        lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		        lblNewLabel_1.setBounds(135, 87, 291, 74);
-		        panelSimulacion.add(lblNewLabel_1);
-		        
-		        listSimulacion = new JList();
-		        listSimulacion.setBounds(135, 169, 290, 557);
-		        panelSimulacion.add(listSimulacion);
-		        
-		        lblVolverPlantilla_2 = new JLabel("");
-		        lblVolverPlantilla_2.setBounds(10, 0, 82, 79);
-		        panelSimulacion.add(lblVolverPlantilla_2);
-		        
-		        lblFondeSimulacion = new JLabel("");
-		        lblFondeSimulacion.setBounds(0, 0, 1326, 736);
-		        panelSimulacion.add(lblFondeSimulacion);
-		        contentPane.add(panelVistaEquipo);
-		        panelVistaEquipo.setLayout(null);
-		        
-		        lblEmpezarSimulacion = new JLabel("");
-		        lblEmpezarSimulacion.setBounds(598, 499, 106, 90);
-		        panelVistaEquipo.add(lblEmpezarSimulacion);
-		        
-		        lblNewLabel_EscudoEquipoLocal = new JLabel("");
-		        lblNewLabel_EscudoEquipoLocal.setBounds(273, 93, 283, 226);
-		        panelVistaEquipo.add(lblNewLabel_EscudoEquipoLocal);
-		        
-		        lblNewLabel_EquipoVisitante = new JLabel("");
-		        lblNewLabel_EquipoVisitante.setBounds(749, 93, 283, 226);
-		        panelVistaEquipo.add(lblNewLabel_EquipoVisitante);
-		        
-		        listEquipoVisitante = new JList();
-		        listEquipoVisitante.setBorder(new CompoundBorder());
-		        listEquipoVisitante.setBounds(749, 354, 283, 374);
-		        panelVistaEquipo.add(listEquipoVisitante);
-		        
-		        listEquipoLocal = new JList();
-		        listEquipoLocal.setBorder(new CompoundBorder());
-		        listEquipoLocal.setBounds(273, 354, 283, 374);
-		        panelVistaEquipo.add(listEquipoLocal);
-		        
-		        lblVolverPlantilla_1 = new JLabel("");
-		        lblVolverPlantilla_1.setBounds(0, 0, 82, 79);
-		        panelVistaEquipo.add(lblVolverPlantilla_1);
-		        
-		        lblFtotoVersus = new JLabel("");
-		        lblFtotoVersus.setBounds(598, 190, 106, 90);
-		        panelVistaEquipo.add(lblFtotoVersus);
-		        
-		        lblFondoPantalla_2 = new JLabel("");
-		        lblFondoPantalla_2.setBounds(0, 0, 1352, 736);
-		        panelVistaEquipo.add(lblFondoPantalla_2);
-		        contentPane.add(PanelPlantilla);
-		        PanelPlantilla.setLayout(null);
-		        
-		         panelElecion = new JPanel();
-		         panelElecion.setBounds(249, 148, 844, 324);
-		         panelElecion.setVisible(false);
 		         
-		         lblVolverPlantilla = new JLabel("");
-		         lblVolverPlantilla.setBounds(0, 0, 82, 79);
-		         PanelPlantilla.add(lblVolverPlantilla);
+		         panelVistaEquipo = new JPanel();
+		         panelVistaEquipo.setBounds(0, 0, 1329, 736);
+		         panelVistaEquipo.setVisible(false);
 		         
-		          btnSimularPartida = new JButton("");
+		         panelSimulacion = new JPanel();
+		         panelSimulacion.setBounds(0, 0, 1347, 736);
+		         panelSimulacion.setVisible(false);
+		         
+		          PanelPlantilla = new JPanel();
+		          PanelPlantilla.setBounds(0, 0, 1329, 742);
+		          PanelPlantilla.setVisible(false);
+		          contentPane.add(PanelPlantilla);
+		          PanelPlantilla.setLayout(null);
 		          
-		          btnSimularPartida.setBounds(1029, 622, 213, 91);
-		          btnSimularPartida.setContentAreaFilled(false); 
-		          btnSimularPartida.setBorderPainted(false); 
-		          btnSimularPartida.setFocusPainted(false);
-		          PanelPlantilla.add(btnSimularPartida);
-		          PanelPlantilla.add(panelElecion);
-		          panelElecion.setLayout(null);
-		          
-		          btnEleccionCinco = new JButton("");
-		          btnEleccionCinco.setBounds(359, 29, 118, 285);
-		          panelElecion.add(btnEleccionCinco);
-		          
-		          lblSalir = new JLabel("");
-		          lblSalir.setBounds(799, 0, 45, 31);
-		          panelElecion.add(lblSalir);
-		          
-		           btnEleccionUno = new JButton("");
-		           btnEleccionUno.addActionListener(new ActionListener() {
-		           	public void actionPerformed(ActionEvent e) {
-		           	}
-		           });
-		           btnEleccionUno.setBounds(41, 29, 116, 285);
-		           panelElecion.add(btnEleccionUno);
+		           panelElecion = new JPanel();
+		           panelElecion.setBounds(249, 148, 844, 324);
+		           panelElecion.setVisible(false);
 		           
-		            btnEleccionDos = new JButton("");
-		            btnEleccionDos.addActionListener(new ActionListener() {
-		            	public void actionPerformed(ActionEvent e) {
-		            	}
-		            });
-		            btnEleccionDos.setBounds(196, 29, 117, 285);
-		            panelElecion.add(btnEleccionDos);
+		           lblVolverPlantilla = new JLabel("");
+		           lblVolverPlantilla.setBounds(0, 0, 82, 79);
+		           PanelPlantilla.add(lblVolverPlantilla);
+		           
+		            btnSimularPartida = new JButton("");
 		            
-		             btnEleccionTres = new JButton("");
-		             btnEleccionTres.setBounds(525, 29, 118, 285);
-		             panelElecion.add(btnEleccionTres);
+		            btnSimularPartida.setBounds(1029, 622, 213, 91);
+		            btnSimularPartida.setContentAreaFilled(false); 
+		            btnSimularPartida.setBorderPainted(false); 
+		            btnSimularPartida.setFocusPainted(false);
+		            PanelPlantilla.add(btnSimularPartida);
+		            PanelPlantilla.add(panelElecion);
+		            panelElecion.setLayout(null);
+		            
+		            btnEleccionCinco = new JButton("");
+		            btnEleccionCinco.setBounds(359, 29, 118, 285);
+		            panelElecion.add(btnEleccionCinco);
+		            
+		            lblSalir = new JLabel("");
+		            lblSalir.setBounds(799, 0, 45, 31);
+		            panelElecion.add(lblSalir);
+		            
+		             btnEleccionUno = new JButton("");
+		             btnEleccionUno.addActionListener(new ActionListener() {
+		             	public void actionPerformed(ActionEvent e) {
+		             	}
+		             });
+		             btnEleccionUno.setBounds(41, 29, 116, 285);
+		             panelElecion.add(btnEleccionUno);
 		             
-		              btnEleccionCuatro = new JButton("");
-		              btnEleccionCuatro.setBounds(684, 29, 116, 285);
-		              panelElecion.add(btnEleccionCuatro);
+		              btnEleccionDos = new JButton("");
+		              btnEleccionDos.addActionListener(new ActionListener() {
+		              	public void actionPerformed(ActionEvent e) {
+		              	}
+		              });
+		              btnEleccionDos.setBounds(196, 29, 117, 285);
+		              panelElecion.add(btnEleccionDos);
 		              
-		              lblFondoDraft = new JLabel("");
-		              lblFondoDraft.setBounds(0, 0, 844, 324);
-		              panelElecion.add(lblFondoDraft);
-		              
-		              btnPortero = new JButton("");
-		              btnPortero.setBounds(626, 622, 85, 91);
-		              btnPortero.setContentAreaFilled(false); 
-		              btnPortero.setBorderPainted(false); 
-		              btnPortero.setFocusPainted(false);
-		              PanelPlantilla.add(btnPortero);
-		              
-		              btnDefensaIzquierda = new JButton("");
-		              btnDefensaIzquierda.setBounds(870, 482, 85, 91);
-		              btnDefensaIzquierda.setContentAreaFilled(false); 
-		              btnDefensaIzquierda.setBorderPainted(false); 
-		              btnDefensaIzquierda.setFocusPainted(false);
-		              PanelPlantilla.add(btnDefensaIzquierda);
-		              
-		              btnCentroCampistaIzquierdoCentro = new JButton("");
-		              btnCentroCampistaIzquierdoCentro.setBounds(747, 343, 85, 91);
-		              btnCentroCampistaIzquierdoCentro.setContentAreaFilled(false); 
-		              btnCentroCampistaIzquierdoCentro.setBorderPainted(false); 
-		              btnCentroCampistaIzquierdoCentro.setFocusPainted(false);
-		              PanelPlantilla.add(btnCentroCampistaIzquierdoCentro);
-		              
-		              btnDefensaIzquierdaCentro = new JButton("");
-		              btnDefensaIzquierdaCentro.setBounds(747, 482, 85, 91);
-		              btnDefensaIzquierdaCentro.setContentAreaFilled(false); 
-		              btnDefensaIzquierdaCentro.setBorderPainted(false); 
-		              btnDefensaIzquierdaCentro.setFocusPainted(false);
-		              PanelPlantilla.add(btnDefensaIzquierdaCentro);
-		              
-		              btnDefensaDerechaCentro = new JButton("");
-		              btnDefensaDerechaCentro.setBounds(525, 482, 85, 91);
-		              btnDefensaDerechaCentro.setContentAreaFilled(false); 
-		              btnDefensaDerechaCentro.setBorderPainted(false); 
-		              btnDefensaDerechaCentro.setFocusPainted(false);
-		              PanelPlantilla.add(btnDefensaDerechaCentro);
-		              
-		              btnDefensaDerecha = new JButton("");
-		              btnDefensaDerecha.setBounds(403, 482, 85, 91);
-		              btnDefensaDerecha.setContentAreaFilled(false); 
-		              btnDefensaDerecha.setBorderPainted(false); 
-		              btnDefensaDerecha.setFocusPainted(false);
-		              PanelPlantilla.add(btnDefensaDerecha);
-		              
-		              btnCentroCampistaIzquierdo = new JButton("");
-		              btnCentroCampistaIzquierdo.setBounds(870, 343, 85, 91);
-		              btnCentroCampistaIzquierdo.setContentAreaFilled(false); 
-		              btnCentroCampistaIzquierdo.setBorderPainted(false); 
-		              btnCentroCampistaIzquierdo.setFocusPainted(false);
-		              PanelPlantilla.add(btnCentroCampistaIzquierdo);
-		              
-		              btnCentroCampistaDerechoCentro = new JButton("");
-		              btnCentroCampistaDerechoCentro.setBounds(525, 343, 85, 91);
-		              btnCentroCampistaDerechoCentro.setContentAreaFilled(false); 
-		              btnCentroCampistaDerechoCentro.setBorderPainted(false); 
-		              btnCentroCampistaDerechoCentro.setFocusPainted(false);
-		              PanelPlantilla.add(btnCentroCampistaDerechoCentro);
-		              
-		              btnCentroCampistaDerecho = new JButton("");
-		              btnCentroCampistaDerecho.setBounds(403, 343, 85, 91);
-		              btnCentroCampistaDerecho.setContentAreaFilled(false); 
-		              btnCentroCampistaDerecho.setBorderPainted(false); 
-		              btnCentroCampistaDerecho.setFocusPainted(false);
-		              PanelPlantilla.add(btnCentroCampistaDerecho);
-		              
-		              btnDelanteroDerecho = new JButton("");
-		              btnDelanteroDerecho.setBounds(735, 148, 85, 91);
-		              btnDelanteroDerecho.setContentAreaFilled(false); 
-		              btnDelanteroDerecho.setBorderPainted(false); 
-		              btnDelanteroDerecho.setFocusPainted(false);
-		              PanelPlantilla.add(btnDelanteroDerecho);
-		              
-		               btnDelanteroIzquierda = new JButton("");
-		               btnDelanteroIzquierda.setBounds(525, 148, 85, 91);
-		               btnDelanteroIzquierda.setContentAreaFilled(false); 
-		               btnDelanteroIzquierda.setBorderPainted(false); 
-		               btnDelanteroIzquierda.setFocusPainted(false);
-		               PanelPlantilla.add(btnDelanteroIzquierda);
+		               btnEleccionTres = new JButton("");
+		               btnEleccionTres.setBounds(525, 29, 118, 285);
+		               panelElecion.add(btnEleccionTres);
 		               
-		                lblFondoPlantilla = new JLabel("");
-		                lblFondoPlantilla.setBounds(0, 0, 1329, 764);
-		                PanelPlantilla.add(lblFondoPlantilla);
+		                btnEleccionCuatro = new JButton("");
+		                btnEleccionCuatro.setBounds(684, 29, 116, 285);
+		                panelElecion.add(btnEleccionCuatro);
+		                
+		                lblFondoDraft = new JLabel("");
+		                lblFondoDraft.setBounds(0, 0, 844, 324);
+		                panelElecion.add(lblFondoDraft);
+		                
+		                btnPortero = new JButton("");
+		                btnPortero.setBounds(626, 622, 85, 91);
+		                btnPortero.setContentAreaFilled(false); 
+		                btnPortero.setBorderPainted(false); 
+		                btnPortero.setFocusPainted(false);
+		                PanelPlantilla.add(btnPortero);
+		                
+		                btnDefensaIzquierda = new JButton("");
+		                btnDefensaIzquierda.setBounds(870, 482, 85, 91);
+		                btnDefensaIzquierda.setContentAreaFilled(false); 
+		                btnDefensaIzquierda.setBorderPainted(false); 
+		                btnDefensaIzquierda.setFocusPainted(false);
+		                PanelPlantilla.add(btnDefensaIzquierda);
+		                
+		                btnCentroCampistaIzquierdoCentro = new JButton("");
+		                btnCentroCampistaIzquierdoCentro.setBounds(747, 343, 85, 91);
+		                btnCentroCampistaIzquierdoCentro.setContentAreaFilled(false); 
+		                btnCentroCampistaIzquierdoCentro.setBorderPainted(false); 
+		                btnCentroCampistaIzquierdoCentro.setFocusPainted(false);
+		                PanelPlantilla.add(btnCentroCampistaIzquierdoCentro);
+		                
+		                btnDefensaIzquierdaCentro = new JButton("");
+		                btnDefensaIzquierdaCentro.setBounds(747, 482, 85, 91);
+		                btnDefensaIzquierdaCentro.setContentAreaFilled(false); 
+		                btnDefensaIzquierdaCentro.setBorderPainted(false); 
+		                btnDefensaIzquierdaCentro.setFocusPainted(false);
+		                PanelPlantilla.add(btnDefensaIzquierdaCentro);
+		                
+		                btnDefensaDerechaCentro = new JButton("");
+		                btnDefensaDerechaCentro.setBounds(525, 482, 85, 91);
+		                btnDefensaDerechaCentro.setContentAreaFilled(false); 
+		                btnDefensaDerechaCentro.setBorderPainted(false); 
+		                btnDefensaDerechaCentro.setFocusPainted(false);
+		                PanelPlantilla.add(btnDefensaDerechaCentro);
+		                
+		                btnDefensaDerecha = new JButton("");
+		                btnDefensaDerecha.setBounds(403, 482, 85, 91);
+		                btnDefensaDerecha.setContentAreaFilled(false); 
+		                btnDefensaDerecha.setBorderPainted(false); 
+		                btnDefensaDerecha.setFocusPainted(false);
+		                PanelPlantilla.add(btnDefensaDerecha);
+		                
+		                btnCentroCampistaIzquierdo = new JButton("");
+		                btnCentroCampistaIzquierdo.setBounds(870, 343, 85, 91);
+		                btnCentroCampistaIzquierdo.setContentAreaFilled(false); 
+		                btnCentroCampistaIzquierdo.setBorderPainted(false); 
+		                btnCentroCampistaIzquierdo.setFocusPainted(false);
+		                PanelPlantilla.add(btnCentroCampistaIzquierdo);
+		                
+		                btnCentroCampistaDerechoCentro = new JButton("");
+		                btnCentroCampistaDerechoCentro.setBounds(525, 343, 85, 91);
+		                btnCentroCampistaDerechoCentro.setContentAreaFilled(false); 
+		                btnCentroCampistaDerechoCentro.setBorderPainted(false); 
+		                btnCentroCampistaDerechoCentro.setFocusPainted(false);
+		                PanelPlantilla.add(btnCentroCampistaDerechoCentro);
+		                
+		                btnCentroCampistaDerecho = new JButton("");
+		                btnCentroCampistaDerecho.setBounds(403, 343, 85, 91);
+		                btnCentroCampistaDerecho.setContentAreaFilled(false); 
+		                btnCentroCampistaDerecho.setBorderPainted(false); 
+		                btnCentroCampistaDerecho.setFocusPainted(false);
+		                PanelPlantilla.add(btnCentroCampistaDerecho);
+		                
+		                btnDelanteroDerecho = new JButton("");
+		                btnDelanteroDerecho.setBounds(735, 148, 85, 91);
+		                btnDelanteroDerecho.setContentAreaFilled(false); 
+		                btnDelanteroDerecho.setBorderPainted(false); 
+		                btnDelanteroDerecho.setFocusPainted(false);
+		                PanelPlantilla.add(btnDelanteroDerecho);
+		                
+		                 btnDelanteroIzquierda = new JButton("");
+		                 btnDelanteroIzquierda.setBounds(525, 148, 85, 91);
+		                 btnDelanteroIzquierda.setContentAreaFilled(false); 
+		                 btnDelanteroIzquierda.setBorderPainted(false); 
+		                 btnDelanteroIzquierda.setFocusPainted(false);
+		                 PanelPlantilla.add(btnDelanteroIzquierda);
+		                 
+		                  lblFondoPlantilla = new JLabel("");
+		                  lblFondoPlantilla.setBounds(0, 0, 1329, 764);
+		                  PanelPlantilla.add(lblFondoPlantilla);
+		         contentPane.add(panelSimulacion);
+		         panelSimulacion.setLayout(null);
+		         
+		         lblVolverPlantilla_3 = new JLabel("");
+		         lblVolverPlantilla_3.setBounds(1244, 0, 82, 79);
+		         panelSimulacion.add(lblVolverPlantilla_3);
+		         
+		         lblMarcador = new JLabel("");
+		         lblMarcador.setBackground(new Color(255, 255, 255));
+		         lblMarcador.setBounds(601, 485, 671, 241);
+		         panelSimulacion.add(lblMarcador);
+		         
+		         lblFondo_Marcador = new JLabel("");
+		         lblFondo_Marcador.setBounds(601, 485, 671, 241);
+		         panelSimulacion.add(lblFondo_Marcador);
+		         
+		         btnIniciarSimulacion = new JButton("");
+		         btnIniciarSimulacion.setContentAreaFilled(false); // Quita el fondo
+		         btnIniciarSimulacion.setBorderPainted(false); // Quita el borde
+		         btnIniciarSimulacion.setFocusPainted(false); //
+		         btnIniciarSimulacion.setBounds(791, 307, 298, 168);
+		         panelSimulacion.add(btnIniciarSimulacion);
+		         
+		         lblFtotoVersus_1 = new JLabel("");
+		         lblFtotoVersus_1.setBounds(870, 169, 106, 90);
+		         panelSimulacion.add(lblFtotoVersus_1);
+		         
+		         lblNewLabel_EscudoEquipoVisitante_Simulacion = new JLabel("");
+		         lblNewLabel_EscudoEquipoVisitante_Simulacion.setBounds(1024, 106, 283, 226);
+		         panelSimulacion.add(lblNewLabel_EscudoEquipoVisitante_Simulacion);
+		         
+		         lblNewLabel_EscudoEquipoLocal_Simulacion = new JLabel("");
+		         lblNewLabel_EscudoEquipoLocal_Simulacion.setBounds(556, 106, 283, 226);
+		         panelSimulacion.add(lblNewLabel_EscudoEquipoLocal_Simulacion);
+		         
+		         lblNewLabel_1 = new JLabel("Situacion del partitido");
+		         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		         lblNewLabel_1.setFont(new Font("Consolas", Font.BOLD, 17));
+		         lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		         lblNewLabel_1.setBounds(135, 87, 291, 74);
+		         panelSimulacion.add(lblNewLabel_1);
+		         
+		         listSimulacion = new JList();
+		         listSimulacion.setBounds(135, 169, 290, 557);
+		         panelSimulacion.add(listSimulacion);
+		         
+		         lblVolverPlantilla_Simulacion = new JLabel("");
+		         lblVolverPlantilla_Simulacion.setBounds(10, 0, 82, 79);
+		         panelSimulacion.add(lblVolverPlantilla_Simulacion);
+		         
+		         lblFondeSimulacion = new JLabel("");
+		         lblFondeSimulacion.setBounds(0, 0, 1326, 736);
+		         panelSimulacion.add(lblFondeSimulacion);
+		         contentPane.add(panelVistaEquipo);
+		         panelVistaEquipo.setLayout(null);
+		         
+		         lblEmpezarSimulacion = new JLabel("");
+		         lblEmpezarSimulacion.setBounds(598, 499, 106, 90);
+		         panelVistaEquipo.add(lblEmpezarSimulacion);
+		         
+		         lblNewLabel_EscudoEquipoLocal = new JLabel("");
+		         lblNewLabel_EscudoEquipoLocal.setBounds(273, 93, 283, 226);
+		         panelVistaEquipo.add(lblNewLabel_EscudoEquipoLocal);
+		         
+		         lblNewLabel_EquipoVisitante = new JLabel("");
+		         lblNewLabel_EquipoVisitante.setBounds(749, 93, 283, 226);
+		         panelVistaEquipo.add(lblNewLabel_EquipoVisitante);
+		         
+		         listEquipoVisitante = new JList();
+		         listEquipoVisitante.setBorder(new CompoundBorder());
+		         listEquipoVisitante.setBounds(749, 354, 283, 374);
+		         panelVistaEquipo.add(listEquipoVisitante);
+		         
+		         listEquipoLocal = new JList();
+		         listEquipoLocal.setBorder(new CompoundBorder());
+		         listEquipoLocal.setBounds(273, 354, 283, 374);
+		         panelVistaEquipo.add(listEquipoLocal);
+		         
+		         lblVolverPlantilla_1 = new JLabel("");
+		         lblVolverPlantilla_1.setBounds(0, 0, 82, 79);
+		         panelVistaEquipo.add(lblVolverPlantilla_1);
+		         
+		         lblFtotoVersus = new JLabel("");
+		         lblFtotoVersus.setBounds(598, 190, 106, 90);
+		         panelVistaEquipo.add(lblFtotoVersus);
+		         
+		         lblFondoPantalla_2 = new JLabel("");
+		         lblFondoPantalla_2.setBounds(0, 0, 1352, 736);
+		         panelVistaEquipo.add(lblFondoPantalla_2);
 		      
 		       panelInicio = new JPanel();
 		       panelInicio.setBounds(0, 0, 1329, 742);
