@@ -82,6 +82,14 @@ public class Vista extends JFrame {
 	public JLabel lblFondoPantalla_2;
 	public JLabel lblFondeSimulacion;
 	public JLabel lblVolverPlantilla_2;
+	public JPanel panelSimulacion;
+	public JList listSimulacion;
+	public JLabel lblNewLabel_1;
+	public JLabel lblNewLabel_EscudoEquipoLocal_Simulacion;
+	public JLabel lblNewLabel_EscudoEquipoVisitante_Simulacion;
+	public JLabel lblFtotoVersus_1;
+	public JButton btnIniciarSimulacion;
+	public JLabel lblFondo_Marcador;
 	/**
 	 * Launch the application.
 	 */
@@ -131,18 +139,49 @@ public class Vista extends JFrame {
 		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		        panelVistaEquipo.setVisible(false);
 		        
-		        JPanel panelSimulacion = new JPanel();
+		        panelSimulacion = new JPanel();
 		        panelSimulacion.setBounds(0, 0, 1347, 736);
 		        panelSimulacion.setVisible(false);
 		        contentPane.add(panelSimulacion);
 		        panelSimulacion.setLayout(null);
 		        
+		        lblFondo_Marcador = new JLabel("");
+		        lblFondo_Marcador.setBounds(601, 503, 671, 125);
+		        panelSimulacion.add(lblFondo_Marcador);
+		        
+		        btnIniciarSimulacion = new JButton("");
+		        btnIniciarSimulacion.setBounds(548, 350, 759, 59);
+		        panelSimulacion.add(btnIniciarSimulacion);
+		        
+		        lblFtotoVersus_1 = new JLabel("");
+		        lblFtotoVersus_1.setBounds(870, 169, 106, 90);
+		        panelSimulacion.add(lblFtotoVersus_1);
+		        
+		        lblNewLabel_EscudoEquipoVisitante_Simulacion = new JLabel("");
+		        lblNewLabel_EscudoEquipoVisitante_Simulacion.setBounds(1024, 106, 283, 226);
+		        panelSimulacion.add(lblNewLabel_EscudoEquipoVisitante_Simulacion);
+		        
+		        lblNewLabel_EscudoEquipoLocal_Simulacion = new JLabel("");
+		        lblNewLabel_EscudoEquipoLocal_Simulacion.setBounds(556, 106, 283, 226);
+		        panelSimulacion.add(lblNewLabel_EscudoEquipoLocal_Simulacion);
+		        
+		        lblNewLabel_1 = new JLabel("Situacion del partitido");
+		        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		        lblNewLabel_1.setFont(new Font("Consolas", Font.BOLD, 17));
+		        lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		        lblNewLabel_1.setBounds(135, 87, 291, 74);
+		        panelSimulacion.add(lblNewLabel_1);
+		        
+		        listSimulacion = new JList();
+		        listSimulacion.setBounds(135, 169, 290, 557);
+		        panelSimulacion.add(listSimulacion);
+		        
 		        lblVolverPlantilla_2 = new JLabel("");
-		        lblVolverPlantilla_2.setBounds(0, 0, 82, 79);
+		        lblVolverPlantilla_2.setBounds(10, 0, 82, 79);
 		        panelSimulacion.add(lblVolverPlantilla_2);
 		        
-		        lblFondeSimulacion = new JLabel("New label");
-		        lblFondeSimulacion.setBounds(-17, 5, 45, 13);
+		        lblFondeSimulacion = new JLabel("");
+		        lblFondeSimulacion.setBounds(0, 0, 1326, 736);
 		        panelSimulacion.add(lblFondeSimulacion);
 		        contentPane.add(panelVistaEquipo);
 		        panelVistaEquipo.setLayout(null);

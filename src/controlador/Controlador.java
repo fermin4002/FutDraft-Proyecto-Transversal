@@ -60,7 +60,8 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblVolverPlantilla.addMouseListener(this);
        //Ver equipos
         this.vista.lblVolverPlantilla_1.addMouseListener(this);
-        
+        //Ver simulacion
+        this.vista.lblEmpezarSimulacion.addMouseListener(this);
         //MOdelos
         modeloTJugadores= new DefaultTableModel();
         modeloTJugadores.addColumn("Nombre");
@@ -222,7 +223,10 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFtotoVersus.setIcon(fotoEscalarLabel(this.vista.lblFtotoVersus,"imagenes/versus.png"));
         this.vista.lblFondoPantalla_2.setIcon(fotoEscalarLabel(this.vista.lblFondoPantalla_2,"imagenes/fondo-principal.jpg"));
         this.vista.lblEmpezarSimulacion.setIcon(fotoEscalarLabel(this.vista.lblEmpezarSimulacion,"imagenes/fotoSilvato.png"));
- }
+        //panelSimulacion
+        this.vista.lblFondeSimulacion.setIcon(fotoEscalarLabel(this.vista.lblFondeSimulacion,"imagenes/fondo-principal.jpg"));
+        this.vista.lblVolverPlantilla_2.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_2,"imagenes/volver.png"));
+    	}
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -256,6 +260,9 @@ public class Controlador implements ActionListener,MouseListener {
         }if(e.getSource()==this.vista.lblVolverPlantilla_1) {
         	this.vista.panelVistaEquipo.setVisible(false);
         	this.vista.PanelPlantilla.setVisible(true);
+        }if(e.getSource()==this.vista.lblEmpezarSimulacion) {
+        	this.vista.PanelPlantilla.setVisible(false);
+        	this.vista.panelSimulacion.setVisible(true);
         }
                 	
     }
