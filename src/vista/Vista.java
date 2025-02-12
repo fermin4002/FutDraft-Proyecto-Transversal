@@ -21,10 +21,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
+import javax.swing.JComboBox;
 
 public class Vista extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	public  JPanel contentPane;
 	public JPanel panelInicio;
 	public JLabel lblLogo;
@@ -58,7 +60,7 @@ public class Vista extends JFrame {
 	public JLabel lblLogoMenu;
 	public JButton btnJugar;
 	public JButton btnJugadores;
-	public JButton btnSalir;
+	public JButton btnClasificaion;
 	public JPanel panelMenu;
 	public JLabel lblLogJugadores;
 	public JTable tablaJugadores;
@@ -68,6 +70,13 @@ public class Vista extends JFrame {
 	public JLabel lblFondo_Pantalla_Jugadores;
 	public JLabel lblVolverPlantilla;
 	public JScrollPane scrollPane;
+	public JPanel panelClasificacion;
+	public JButton btnVolverClasificacion;
+	public JLabel lblFondo_1;
+	public JTable tablaClasificacion;
+	public JTable tablaJornadas;
+	public JComboBox comboBoxJornada;
+	public JPanel panelResultados;
 	/**
 	 * Launch the application.
 	 */
@@ -112,33 +121,102 @@ public class Vista extends JFrame {
 		    PanelPlantilla = new JPanel();
 		    PanelPlantilla.setBounds(0, 0, 1329, 742);
 		    PanelPlantilla.setVisible(false);
-		    
-		     panelInicio = new JPanel();
-		     panelInicio.setBounds(0, 0, 1329, 742);
+		      
+		      panelMenu = new JPanel();
+		      panelMenu.setBounds(0, 0, 1329, 742);
+		      contentPane.add(panelMenu);
+		      panelMenu.setVisible(false);
+		      panelMenu.setLayout(null);
+		      
+		      btnClasificaion = new JButton("");
+		      btnClasificaion.setBounds(459, 597, 500, 113);
+		      panelMenu.add(btnClasificaion);
+		      
+		      btnJugadores = new JButton("");
+		      btnJugadores.setBounds(459, 474, 500, 113);
+		      panelMenu.add(btnJugadores);
+		      
+		      btnJugar = new JButton("");
+		      btnJugar.setBounds(459, 351, 500, 113);
+		      panelMenu.add(btnJugar);
+		      
+		      lblLogoMenu = new JLabel("");
+		      lblLogoMenu.setBounds(459, 0, 500, 338);
+		      panelMenu.add(lblLogoMenu);
+		      
+		      lblFondoMenu = new JLabel("");
+		      lblFondoMenu.setBounds(0, 0, 1339, 742);
+		      panelMenu.add(lblFondoMenu);
 		     
-		      contentPane.add(panelInicio);
-		      panelInicio.setLayout(null);
+		      panelInicio = new JPanel();
+		      panelInicio.setBounds(0, 0, 1329, 742);
 		      
-		      lblTexto = new JLabel("Comienza");
-		      lblTexto.setFont(new Font("Consolas", Font.BOLD, 45));
-		      lblTexto.setBounds(470, 547, 281, 78);
-		      panelInicio.add(lblTexto);
-		      
-		      btnEmpezar = new JButton("");
-		      btnEmpezar.setBounds(741, 530, 193, 106);
-		      btnEmpezar.setContentAreaFilled(false); 
-		      btnEmpezar.setBorderPainted(false); 
-		      btnEmpezar.setFocusPainted(false);
-		      btnEmpezar.setOpaque(false); 
-		      panelInicio.add(btnEmpezar);
-		      
-		       lblLogo = new JLabel("");
-		       lblLogo.setBounds(450, 98, 500, 338);
-		       panelInicio.add(lblLogo);
+		       contentPane.add(panelInicio);
+		       panelInicio.setLayout(null);
 		       
-		        lblFondo = new JLabel("");
-		        lblFondo.setBounds(0, 0, 1329, 825);
-		        panelInicio.add(lblFondo);
+		       lblTexto = new JLabel("Comienza");
+		       lblTexto.setFont(new Font("Consolas", Font.BOLD, 45));
+		       lblTexto.setBounds(470, 547, 281, 78);
+		       panelInicio.add(lblTexto);
+		       
+		       btnEmpezar = new JButton("");
+		       btnEmpezar.setBounds(741, 530, 193, 106);
+		       btnEmpezar.setContentAreaFilled(false); 
+		       btnEmpezar.setBorderPainted(false); 
+		       btnEmpezar.setFocusPainted(false);
+		       btnEmpezar.setOpaque(false); 
+		       panelInicio.add(btnEmpezar);
+		       
+		        lblLogo = new JLabel("");
+		        lblLogo.setBounds(450, 98, 500, 338);
+		        panelInicio.add(lblLogo);
+		        
+		         lblFondo = new JLabel("");
+		         lblFondo.setBounds(0, 0, 1329, 825);
+		         panelInicio.add(lblFondo);
+		     
+		     panelClasificacion = new JPanel();
+		     panelClasificacion.setLayout(null);
+		     panelClasificacion.setVisible(false);
+		     panelClasificacion.setBounds(0, 0, 1329, 742);
+		     contentPane.add(panelClasificacion);
+		     
+		     panelResultados = new JPanel();
+		     panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		     panelResultados.setBounds(463, 42, 443, 346);
+		     panelClasificacion.add(panelResultados);
+		     panelResultados.setLayout(null);
+		     
+		     tablaJornadas = new JTable();
+		     tablaJornadas.setBounds(10, 61, 423, 275);
+		     panelResultados.add(tablaJornadas);
+		     
+		     comboBoxJornada = new JComboBox();
+		     comboBoxJornada.setBounds(226, 11, 207, 47);
+		     panelResultados.add(comboBoxJornada);
+		     
+		     btnVolverClasificacion = new JButton("");
+		     btnVolverClasificacion.setBackground(new Color(192, 192, 192));
+		     btnVolverClasificacion.setOpaque(false);
+		     btnVolverClasificacion.setFocusPainted(false);
+		     btnVolverClasificacion.setContentAreaFilled(false);
+		     btnVolverClasificacion.setBorderPainted(false);
+		     btnVolverClasificacion.setBounds(1127, 655, 180, 65);
+		     panelClasificacion.add(btnVolverClasificacion);
+		     
+		     JPanel panel = new JPanel();
+		     panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		     panel.setBounds(10, 42, 443, 678);
+		     panelClasificacion.add(panel);
+		     panel.setLayout(null);
+		     
+		     tablaClasificacion = new JTable();
+		     tablaClasificacion.setBounds(10, 63, 423, 604);
+		     panel.add(tablaClasificacion);
+		     
+		     lblFondo_1 = new JLabel("");
+		     lblFondo_1.setBounds(0, 0, 1329, 742);
+		     panelClasificacion.add(lblFondo_1);
 		    contentPane.add(PanelPlantilla);
 		    PanelPlantilla.setLayout(null);
 		    
@@ -304,32 +382,6 @@ public class Vista extends JFrame {
 		   lblFondo_Pantalla_Jugadores = new JLabel("");
 		   lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
 		   panelJugadores.add(lblFondo_Pantalla_Jugadores);
-		   
-		   panelMenu = new JPanel();
-		   panelMenu.setBounds(0, 0, 1329, 742);
-		   contentPane.add(panelMenu);
-		   panelMenu.setVisible(false);
-		   panelMenu.setLayout(null);
-		   
-		   btnSalir = new JButton("");
-		   btnSalir.setBounds(459, 597, 500, 113);
-		   panelMenu.add(btnSalir);
-		   
-		   btnJugadores = new JButton("");
-		   btnJugadores.setBounds(459, 474, 500, 113);
-		   panelMenu.add(btnJugadores);
-		   
-		   btnJugar = new JButton("");
-		   btnJugar.setBounds(459, 351, 500, 113);
-		   panelMenu.add(btnJugar);
-		   
-		   lblLogoMenu = new JLabel("");
-		   lblLogoMenu.setBounds(459, 0, 500, 338);
-		   panelMenu.add(lblLogoMenu);
-		   
-		   lblFondoMenu = new JLabel("");
-		   lblFondoMenu.setBounds(0, 0, 1339, 742);
-		   panelMenu.add(lblFondoMenu);
 	}
 	
 	public static ImageIcon ajustarTamañoImg(String ruta, int ancho, int alto) {

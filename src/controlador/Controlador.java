@@ -24,7 +24,7 @@ public class Controlador implements ActionListener,MouseListener {
 
     private Vista vista;
     private ControladorHibernate hibernate;
-    private DefaultTableModel modeloTJugadores;
+    private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
     public Controlador(Vista vista) {
         this.vista = vista;
         
@@ -52,13 +52,14 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnEleccionTres.addActionListener(this);
         this.vista.btnEleccionCuatro.addActionListener(this);
         this.vista.btnJugar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
+        this.vista.btnClasificaion.addActionListener(this);
         this.vista.lblSalir.addMouseListener(this);
         this.vista.btnSimularPartida.addActionListener(this);
         this.vista.btnJugadores.addActionListener(this);
         this.vista.lblVolverJugadores.addMouseListener(this);
         this.vista.lblVolverPlantilla.addMouseListener(this);
-      
+        //Clasificacion
+        this.vista.btnVolverClasificacion.addActionListener(this);
         
         //MOdelos
         modeloTJugadores= new DefaultTableModel();
@@ -70,8 +71,24 @@ public class Controlador implements ActionListener,MouseListener {
         modeloTJugadores.addColumn("F. Tecnica");
         modeloTJugadores.addColumn("F. Portero");
         
+        
+        modeloTJornadas=new DefaultTableModel();
+        modeloTJornadas.addColumn("Local");
+        modeloTJornadas.addColumn("");
+        modeloTJornadas.addColumn("Visitante");
+        
+        modeloTCLasidicacion=new DefaultTableModel();
+        modeloTCLasidicacion.addColumn("");
+        modeloTCLasidicacion.addColumn("Nombre");
+        modeloTCLasidicacion.addColumn("PJ");
+        modeloTCLasidicacion.addColumn("PTO");
+        modeloTCLasidicacion.addColumn("PG");
+        modeloTCLasidicacion.addColumn("PE");
+        modeloTCLasidicacion.addColumn("PP");
+        
+        
         vista.tablaJugadores.setModel(modeloTJugadores);
-        try {
+        try { 
 			hibernate.cargarJugadores();
 		} catch (Exception e) {
 			
@@ -119,17 +136,20 @@ public class Controlador implements ActionListener,MouseListener {
         if(e.getSource()==this.vista.lblFondoDraft) {
         	vista.panelElecion.setVisible(false);
         }
-        if(e.getSource()==this.vista.btnJugar) {
+        else if(e.getSource()==this.vista.btnJugar) {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.PanelPlantilla.setVisible(true);
         }
-        if(e.getSource()==this.vista.btnSalir) {
+        else if(e.getSource()==this.vista.btnClasificaion) {
         	this.vista.panelMenu.setVisible(false);
-        	this.vista.panelInicio.setVisible(true);
+        	this.vista.panelClasificacion.setVisible(true);
         }
-        if(e.getSource()==this.vista.btnJugadores) {
+        else if(e.getSource()==this.vista.btnJugadores) {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.panelJugadores.setVisible(true);
+        }else if(e.getSource()==this.vista.btnVolverClasificacion) {
+        	this.vista.panelClasificacion.setVisible(false);
+        	this.vista.panelMenu.setVisible(true);
         }
         
     }
@@ -203,7 +223,8 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnSimularPartida.setIcon(fotoEscalarButton(this.vista.btnSimularPartida,"imagenes/enfentramiento.png"));
         this.vista.btnJugar.setIcon(fotoEscalarButton(this.vista.btnJugar, "imagenes/boton-jugar.png"));
         this.vista.btnJugadores.setIcon(fotoEscalarButton(this.vista.btnJugadores, "imagenes/sobrenosotros.jpg"));
-        this.vista.btnSalir.setIcon(fotoEscalarButton(this.vista.btnSalir, "imagenes/boton-salir.png"));
+        //Cambiar imagen
+        this.vista.btnClasificaion.setIcon(fotoEscalarButton(this.vista.btnClasificaion, "imagenes/boton-salir.png"));
         this.vista.lblFondoDraft.setIcon(fotoEscalarLabel(this.vista.lblFondoDraft, "imagenes/fondo_futDraft.jpg"));
         this.vista.lblVolverJugadores.setIcon(fotoEscalarLabel(this.vista.lblVolverJugadores, "imagenes/volver.png"));
         this.vista.lblVolverPlantilla.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla, "imagenes/volver.png"));
@@ -281,6 +302,7 @@ public class Controlador implements ActionListener,MouseListener {
 	public void cargarTabla() {
 		List<Jugador> entrada=hibernate.extraerJugadores();
 		
+		modeloTJugadores.setRowCount(0);
 		for(Jugador clave:entrada) {
 			String[] row= {
 					clave.getNombre(),
