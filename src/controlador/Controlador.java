@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -31,7 +32,7 @@ public class Controlador implements ActionListener,MouseListener {
     private Vista vista;
     private ControladorHibernate hibernate;
     private DefaultTableModel modeloTJugadores;
-    private SessionFactory sessionFactory;
+
     public Controlador(Vista vista) {
         this.vista = vista;
         //Principio
@@ -155,27 +156,35 @@ public class Controlador implements ActionListener,MouseListener {
         
     }
     public void cargarPorteros() {
-        List<Jugador> porteros = hibernate.extraerJugadoresPorPosicion(sessionFactory, "POR");    
+        List<Jugador> porteros = hibernate.extraerJugadoresPorPosicion("POR"); 
+        Collections.shuffle(porteros); 
+
         vista.btnEleccionUno.setText("");
         vista.btnEleccionDos.setText("");
         vista.btnEleccionTres.setText("");
         vista.btnEleccionCuatro.setText("");
         vista.btnEleccionCinco.setText("");
 
-        if (porteros.size() > 0) {
-            vista.btnEleccionUno.setText(porteros.get(0).getNombre() + " - F. Ataque: " + porteros.get(0).getFuerzaAtaque());
-        }
-        if (porteros.size() > 1) {
-            vista.btnEleccionDos.setText(porteros.get(1).getNombre() + " - F. Ataque: " + porteros.get(1).getFuerzaAtaque());
-        }
-        if (porteros.size() > 2) {
-            vista.btnEleccionTres.setText(porteros.get(2).getNombre() + " - F. Ataque: " + porteros.get(2).getFuerzaAtaque());
-        }
-        if (porteros.size() > 3) {
-            vista.btnEleccionCuatro.setText(porteros.get(3).getNombre() + " - F. Ataque: " + porteros.get(3).getFuerzaAtaque());
-        }
-        if (porteros.size() > 4) {
-            vista.btnEleccionCinco.setText(porteros.get(4).getNombre() + " - F. Ataque: " + porteros.get(4).getFuerzaAtaque());
+        for (int i = 0; i < Math.min(5, porteros.size()); i++) {
+            Jugador portero = porteros.get(i);
+            String textoBoton = portero.getNombre() + " - F. Ataque: " + portero.getFuerzaAtaque();
+            switch (i) {
+                case 0:
+                    vista.btnEleccionUno.setText(textoBoton);
+                    break;
+                case 1:
+                    vista.btnEleccionDos.setText(textoBoton);
+                    break;
+                case 2:
+                    vista.btnEleccionTres.setText(textoBoton);
+                    break;
+                case 3:
+                    vista.btnEleccionCuatro.setText(textoBoton);
+                    break;
+                case 4:
+                    vista.btnEleccionCinco.setText(textoBoton);
+                    break;
+            }
         }
     }
 
