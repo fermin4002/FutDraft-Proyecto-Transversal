@@ -232,7 +232,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFtotoVersus_1.setIcon(fotoEscalarLabel(this.vista.lblFtotoVersus_1,"imagenes/versus.png"));
         this.vista.btnIniciarSimulacion.setIcon(fotoEscalarButton(this.vista.btnIniciarSimulacion, "imagenes/boton_simular.png"));
         this.vista.lblFondo_Marcador.setIcon(fotoEscalarLabel(this.vista.lblFondo_Marcador,"imagenes/marcador.png"));
-        this.vista.lblVolverPlantilla_3.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_3,"imagenes/siguiete_jornada.png"));
+        this.vista.lblSiguiente_Ronda.setIcon(fotoEscalarLabel(this.vista.lblSiguiente_Ronda,"imagenes/siguiete_jornada.png"));
     }
 
     @Override

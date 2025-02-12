@@ -66,7 +66,7 @@ public class Vista extends JFrame {
 	public JLabel lblLogJugadores;
 	public JTable tablaJugadores;
 	public JLabel lblVolverJugadores;
-	public JLabel lblNewLabel;
+	public JLabel lblJugadores;
 	public JPanel panelJugadores;
 	public JLabel lblFondo_Pantalla_Jugadores;
 	public JLabel lblVolverPlantilla;
@@ -91,7 +91,7 @@ public class Vista extends JFrame {
 	public JButton btnIniciarSimulacion;
 	public JLabel lblFondo_Marcador;
 	public JLabel lblMarcador;
-	public JLabel lblVolverPlantilla_3;
+	public JLabel lblSiguiente_Ronda;
 	/**
 	 * Launch the application.
 	 */
@@ -147,9 +147,9 @@ public class Vista extends JFrame {
 		          contentPane.add(panelSimulacion);
 		          panelSimulacion.setLayout(null);
 		          
-		          lblVolverPlantilla_3 = new JLabel("");
-		          lblVolverPlantilla_3.setBounds(1244, 0, 82, 79);
-		          panelSimulacion.add(lblVolverPlantilla_3);
+		          lblSiguiente_Ronda = new JLabel("");
+		          lblSiguiente_Ronda.setBounds(1244, 0, 82, 79);
+		          panelSimulacion.add(lblSiguiente_Ronda);
 		          
 		          lblMarcador = new JLabel("");
 		          lblMarcador.setBackground(new Color(255, 255, 255));
@@ -404,12 +404,12 @@ public class Vista extends JFrame {
 		   lblLogJugadores.setBounds(250, 1, 251, 146);
 		   panelJugadores.add(lblLogJugadores);
 		   
-		    lblNewLabel = new JLabel("Jugadores");
-		    lblNewLabel.setForeground(new Color(255, 255, 255));
-		   lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 45));
-		   lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		   lblNewLabel.setBounds(603, 0, 487, 147);
-		   panelJugadores.add(lblNewLabel);
+		    lblJugadores = new JLabel("Jugadores");
+		    lblJugadores.setForeground(new Color(255, 255, 255));
+		   lblJugadores.setFont(new Font("Consolas", Font.BOLD, 45));
+		   lblJugadores.setHorizontalAlignment(SwingConstants.CENTER);
+		   lblJugadores.setBounds(603, 0, 487, 147);
+		   panelJugadores.add(lblJugadores);
 		   
 		   scrollPane = new JScrollPane();
 		   scrollPane.setBounds(250, 157, 840, 549);
