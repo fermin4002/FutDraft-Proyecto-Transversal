@@ -252,5 +252,23 @@ public class ControladorHibernate {
 			
 		}
 	}
+	public List<Jugador> extraerJugadoresPorPosicion(SessionFactory sessionFactory,String posicion) {
+		List<Jugador> jugadores=new ArrayList<Jugador>();
+		Session sesion=null;
+	    try {
+	    	sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+		
+			Query<Jugador>q=sesion.createQuery("FROM Jugadore WHERE posicion: = posi");
+			q.setParameter("posi", posicion);
+			jugadores=q.getResultList();
+			
+			sesion.close();
+			
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+	    return jugadores;
+	}
 	
 }

@@ -17,6 +17,12 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
+
 import net.bytebuddy.asm.Advice.This;
 import persistencias.Jugador;
 
@@ -25,9 +31,10 @@ public class Controlador implements ActionListener,MouseListener {
     private Vista vista;
     private ControladorHibernate hibernate;
     private DefaultTableModel modeloTJugadores;
+    private SessionFactory sessionFactory;
     public Controlador(Vista vista) {
         this.vista = vista;
-        
+        //Principio
         this.vista.btnEmpezar.addActionListener(this);
         this.vista.btnEmpezar.setActionCommand("empezar");
         //Porteros
@@ -116,7 +123,11 @@ public class Controlador implements ActionListener,MouseListener {
         if (e.getSource() == this.vista.btnEmpezar) {
             this.vista.panelInicio.setVisible(false);
             this.vista.panelMenu.setVisible(true);
-        } else if (isPlayerButton(e.getSource())) {
+        }else if (e.getSource() == this.vista.btnPortero) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarPorteros(); 
+        }else if (isPlayerButton(e.getSource())) {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
         } else if (isEleccionButton(e.getSource())) {
@@ -142,6 +153,30 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelVistaEquipo.setVisible(true);
         }
         
+    }
+    public void cargarPorteros() {
+        List<Jugador> porteros = hibernate.extraerJugadoresPorPosicion(sessionFactory, "POR");    
+        vista.btnEleccionUno.setText("");
+        vista.btnEleccionDos.setText("");
+        vista.btnEleccionTres.setText("");
+        vista.btnEleccionCuatro.setText("");
+        vista.btnEleccionCinco.setText("");
+
+        if (porteros.size() > 0) {
+            vista.btnEleccionUno.setText(porteros.get(0).getNombre() + " - F. Ataque: " + porteros.get(0).getFuerzaAtaque());
+        }
+        if (porteros.size() > 1) {
+            vista.btnEleccionDos.setText(porteros.get(1).getNombre() + " - F. Ataque: " + porteros.get(1).getFuerzaAtaque());
+        }
+        if (porteros.size() > 2) {
+            vista.btnEleccionTres.setText(porteros.get(2).getNombre() + " - F. Ataque: " + porteros.get(2).getFuerzaAtaque());
+        }
+        if (porteros.size() > 3) {
+            vista.btnEleccionCuatro.setText(porteros.get(3).getNombre() + " - F. Ataque: " + porteros.get(3).getFuerzaAtaque());
+        }
+        if (porteros.size() > 4) {
+            vista.btnEleccionCinco.setText(porteros.get(4).getNombre() + " - F. Ataque: " + porteros.get(4).getFuerzaAtaque());
+        }
     }
 
     public boolean isPlayerButton(Object source) {
@@ -276,7 +311,7 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelVistaEquipo.setVisible(false);
         	this.vista.PanelPlantilla.setVisible(true);
         }else if(e.getSource()==this.vista.lblEmpezarSimulacion) {
-        	this.vista.PanelPlantilla.setVisible(false);
+        	this.vista.panelVistaEquipo.setVisible(false);
         	this.vista.panelSimulacion.setVisible(true);
         }else if(e.getSource()==this.vista.lblVolverPlantilla_Simulacion) {
         	this.vista.PanelPlantilla.setVisible(true);
@@ -383,4 +418,5 @@ public class Controlador implements ActionListener,MouseListener {
         String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
         label.setText(htmlText);
     }
+	
 }
