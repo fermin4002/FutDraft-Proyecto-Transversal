@@ -58,7 +58,8 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnJugadores.addActionListener(this);
         this.vista.lblVolverJugadores.addMouseListener(this);
         this.vista.lblVolverPlantilla.addMouseListener(this);
-      
+       //Ver equipos
+        this.vista.lblVolverPlantilla_1.addMouseListener(this);
         
         //MOdelos
         modeloTJugadores= new DefaultTableModel();
@@ -130,6 +131,10 @@ public class Controlador implements ActionListener,MouseListener {
         if(e.getSource()==this.vista.btnJugadores) {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.panelJugadores.setVisible(true);
+        }
+        if(e.getSource()==this.vista.btnSimularPartida) {
+        	this.vista.PanelPlantilla.setVisible(false);
+        	this.vista.panelVistaEquipo.setVisible(true);
         }
         
     }
@@ -210,7 +215,14 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblLogJugadores.setIcon(fotoEscalarLabel(this.vista.lblLogJugadores, "imagenes/logo.png"));
         this.vista.lblFondo_Pantalla_Jugadores.setIcon(fotoEscalarLabel(this.vista.lblFondo_Pantalla_Jugadores, "imagenes/fondo-principal.jpg"));
         this.vista.lblSalir.setIcon(fotoEscalarLabel(this.vista.lblSalir,"imagenes/salir.png"));
-    }
+        //panelVistaEquipo
+        this.vista.lblVolverPlantilla_1.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_1,"imagenes/volver.png"));
+        this.vista.lblNewLabel_EscudoEquipoLocal.setIcon(fotoEscalarLabel(this.vista.lblNewLabel_EscudoEquipoLocal,"imagenes/fotoLogoLocal.png"));
+        this.vista.lblNewLabel_EquipoVisitante.setIcon(fotoEscalarLabel(this.vista.lblNewLabel_EquipoVisitante,"imagenes/fotoLogoVisitante.png"));
+        this.vista.lblFtotoVersus.setIcon(fotoEscalarLabel(this.vista.lblFtotoVersus,"imagenes/versus.png"));
+        this.vista.lblFondoPantalla_2.setIcon(fotoEscalarLabel(this.vista.lblFondoPantalla_2,"imagenes/fondo-principal.jpg"));
+        this.vista.lblEmpezarSimulacion.setIcon(fotoEscalarLabel(this.vista.lblEmpezarSimulacion,"imagenes/fotoSilvato.png"));
+ }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -241,7 +253,11 @@ public class Controlador implements ActionListener,MouseListener {
         if(e.getSource()==this.vista.lblVolverPlantilla) {
         	this.vista.PanelPlantilla.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
+        }if(e.getSource()==this.vista.lblVolverPlantilla_1) {
+        	this.vista.panelVistaEquipo.setVisible(false);
+        	this.vista.PanelPlantilla.setVisible(true);
         }
+                	
     }
 
 	@Override
@@ -261,6 +277,7 @@ public class Controlador implements ActionListener,MouseListener {
 		 if (e.getSource() == this.vista.btnSimularPartida) {
 		        vista.btnSimularPartida.setIcon(fotoEscalarButton(vista.btnSimularPartida, "imagenes/enfentramiento_hover.png"));
 		        vista.btnSimularPartida.setBounds(vista.btnSimularPartida.getX(), vista.btnSimularPartida.getY(), 250, 60);
+		      
 		    }
 	}
 
