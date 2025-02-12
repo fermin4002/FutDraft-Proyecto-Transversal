@@ -157,6 +157,7 @@ public class Controlador implements ActionListener,MouseListener {
     }
     public void cargarPorteros() {
         List<Jugador> porteros = hibernate.extraerJugadoresPorPosicion("POR"); 
+        //Me mezcla la lista que he sacado de las consultas
         Collections.shuffle(porteros); 
 
         vista.btnEleccionUno.setText("");
@@ -164,7 +165,7 @@ public class Controlador implements ActionListener,MouseListener {
         vista.btnEleccionTres.setText("");
         vista.btnEleccionCuatro.setText("");
         vista.btnEleccionCinco.setText("");
-
+     // Asigno los 5 porteros aleatorios a los botones con el Math.min lo que hace esque me recorra 5 veces la lista y esos 5 porteros me los añade a los botones
         for (int i = 0; i < Math.min(5, porteros.size()); i++) {
             Jugador portero = porteros.get(i);
             String textoBoton = portero.getNombre() + " - F. Ataque: " + portero.getFuerzaAtaque();
