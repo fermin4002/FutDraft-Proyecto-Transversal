@@ -50,6 +50,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnEleccionDos.addActionListener(this);
         this.vista.btnEleccionTres.addActionListener(this);
         this.vista.btnEleccionCuatro.addActionListener(this);
+        this.vista.btnEleccionCinco.addActionListener(this);
         this.vista.btnJugar.addActionListener(this);
         this.vista.btnClasificaciones.addActionListener(this);
         this.vista.lblSalir.addMouseListener(this);
