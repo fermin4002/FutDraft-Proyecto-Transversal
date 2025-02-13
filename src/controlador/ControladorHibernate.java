@@ -86,12 +86,19 @@ public class ControladorHibernate {
 			String query="insert into jugador (id_jugador,equipo,nombre,posicion,fuerza_ataque,fuerza_tecnica,fuerza_defensa,fuerza_portero)values"
 					+ "(:num,:equipo,:nombre,:posicion,:fA,:fT,:fD,:fP)";
 			Query insert=session.createSQLQuery(query);
-			
+			Jugador temp=null;
 			for(JugadorCsv clave:jugadores) {
 				System.out.println("Empieza "+num);
-				
+				temp=new Jugador();
+				temp.setNombre(clave.getNombre());
+				temp.setEquipo_1(clave.getEquipo());
+				temp.setFuerzaAtaque(clave.getFuerzaAtaque());
+				temp.setFuerzaDefensa(clave.getFuerzaDefensa());
+				temp.setFuerzaPortero(clave.getFuerzaPortero());
+				temp.setFuerzaTecnica(clave.getFuerzaTecnica());
+				temp.setPosicion(clave.getPosicion());
 				num++;
-				String nombre=clave.getNombre();
+				/*String nombre=clave.getNombre();
 				String equipo=clave.getEquipo();
 				String posicion=clave.getPosicion();
 				
@@ -108,11 +115,11 @@ public class ControladorHibernate {
 				insert.setParameter("fA", fA);
 				insert.setParameter("fT", fT);
 				insert.setParameter("fD", fD);
-				insert.setParameter("fP", fP);
+				insert.setParameter("fP", fP);*/
 				
-				System.out.println(clave);
-				//session.saveOrUpdate(temp);
-				insert.executeUpdate();
+				System.out.println(temp);
+				session.saveOrUpdate(temp);
+				//insert.executeUpdate();
 				System.out.println("Fin "+num);
 				
 			}

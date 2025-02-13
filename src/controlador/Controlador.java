@@ -141,12 +141,7 @@ public class Controlador implements ActionListener,MouseListener {
         vista.tablaJugadores.setModel(modeloTJugadores);
         vista.tablaClasificacion.setModel(modeloTCLasidicacion);
         vista.tablaJornadas.setModel(modeloTJornadas);
-        try { 
-			hibernate.cargarJugadores();
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+        
         try {
 			this.hibernate=new ControladorHibernate();
 			hibernate.cargarJugadores();
@@ -214,7 +209,7 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelVistaEquipo.setVisible(true);
         }
         else if(e.getSource()==this.vista.btnFIltrar) {
-        	cargarTabla(modeloTCLasidicacion);
+        	cargarTabla(modeloTJugadores);
         }
         
     }
@@ -544,7 +539,7 @@ public class Controlador implements ActionListener,MouseListener {
 					String.valueOf(clave.getFuerzaAtaque()),
 					String.valueOf(clave.getFuerzaDefensa()),
 					String.valueOf(clave.getFuerzaTecnica()),
-					String.valueOf(clave.getFuerzaTecnica())
+					String.valueOf(clave.getFuerzaPortero())
 			};
 			
 			modelo.addRow(row);
