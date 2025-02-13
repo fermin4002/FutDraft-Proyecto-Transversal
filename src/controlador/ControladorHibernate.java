@@ -14,6 +14,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import modelo.JugadorCsv;
+import persistencias.Equipo;
 import persistencias.Jugador;
 
 public class ControladorHibernate {
@@ -342,5 +343,56 @@ public class ControladorHibernate {
 			}
 		}
 		return salida;
+	}
+	public Equipo crearEquipo() {
+		Session sesion=null;
+		Equipo salida=null;
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			salida=new Equipo();
+			salida.setNombre("patatas");
+			
+			sesion.save(salida);
+			
+			sesion.getTransaction().commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			if(null!=sesion) {
+				sesion.getTransaction().rollback();
+			}
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public void asignarEquipoUpdate(List<Jugador> plantilla) {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			for(Jugador clave:plantilla) {
+				sesion.update(clave);
+			}
+			
+			
+			sesion.getTransaction().commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			if(null!=sesion) {
+				sesion.getTransaction().rollback();
+			}
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
 	}
 }

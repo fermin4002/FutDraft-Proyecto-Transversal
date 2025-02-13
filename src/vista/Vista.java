@@ -214,6 +214,33 @@ public class Vista extends JFrame {
 		        panelJugadores = new JPanel();
 		        panelJugadores.setBounds(0, 0, 1329, 761);
 		        panelJugadores.setVisible(false);
+		        
+		         panelInicio = new JPanel();
+		         panelInicio.setBounds(0, 0, 1329, 742);
+		         
+		          contentPane.add(panelInicio);
+		          panelInicio.setLayout(null);
+		          
+		          lblTexto = new JLabel("Comienza");
+		          lblTexto.setFont(new Font("Consolas", Font.BOLD, 45));
+		          lblTexto.setBounds(470, 547, 281, 78);
+		          panelInicio.add(lblTexto);
+		          
+		          btnEmpezar = new JButton("");
+		          btnEmpezar.setBounds(741, 530, 193, 106);
+		          btnEmpezar.setContentAreaFilled(false); 
+		          btnEmpezar.setBorderPainted(false); 
+		          btnEmpezar.setFocusPainted(false);
+		          btnEmpezar.setOpaque(false); 
+		          panelInicio.add(btnEmpezar);
+		          
+		           lblLogo = new JLabel("");
+		           lblLogo.setBounds(450, 98, 500, 338);
+		           panelInicio.add(lblLogo);
+		           
+		            lblFondo = new JLabel("");
+		            lblFondo.setBounds(0, 0, 1329, 825);
+		            panelInicio.add(lblFondo);
 		        contentPane.add(panelJugadores);
 		        panelJugadores.setLayout(null);
 		        
@@ -511,7 +538,11 @@ public class Vista extends JFrame {
 		             panelElecion.setLayout(null);
 		             
 		             btnEleccionCinco = new JButton("");
+		             btnEleccionCinco.setForeground(new Color(255, 255, 255));
+		             btnEleccionCinco.setFont(new Font("Consolas", Font.BOLD, 10));
 		             btnEleccionCinco.setBounds(359, 29, 118, 285);
+		             btnEleccionCinco.setContentAreaFilled(false); 
+		             btnEleccionCinco.setBorderPainted(false); 
 		             panelElecion.add(btnEleccionCinco);
 		             
 		             lblSalir = new JLabel("");
@@ -519,18 +550,18 @@ public class Vista extends JFrame {
 		             panelElecion.add(lblSalir);
 		             
 		              btnEleccionUno = new JButton("");
-		              btnEleccionUno.addActionListener(new ActionListener() {
-		              	public void actionPerformed(ActionEvent e) {
-		              	}
-		              });
+		              btnEleccionUno.setForeground(new Color(255, 255, 255));
+		              btnEleccionUno.setFont(new Font("Consolas", Font.BOLD, 10));
+		              btnEleccionUno.setContentAreaFilled(false); 
+		              btnEleccionUno.setBorderPainted(false);
 		              btnEleccionUno.setBounds(41, 29, 116, 285);
 		              panelElecion.add(btnEleccionUno);
 		              
 		               btnEleccionDos = new JButton("");
-		               btnEleccionDos.addActionListener(new ActionListener() {
-		               	public void actionPerformed(ActionEvent e) {
-		               	}
-		               });
+		               btnEleccionDos.setForeground(new Color(255, 255, 255));
+		               btnEleccionDos.setFont(new Font("Consolas", Font.BOLD, 10));
+		               btnEleccionDos.setContentAreaFilled(false); 
+		               btnEleccionDos.setBorderPainted(false);
 		               btnEleccionDos.setBounds(196, 29, 117, 285);
 		               panelElecion.add(btnEleccionDos);
 		               
@@ -540,11 +571,19 @@ public class Vista extends JFrame {
 		                PanelPlantilla.add(lblFondoPlantilla);
 
 		                btnEleccionTres = new JButton("");
+		                btnEleccionTres.setForeground(new Color(255, 255, 255));
+		                btnEleccionTres.setFont(new Font("Consolas", Font.BOLD, 10));
 		                btnEleccionTres.setBounds(525, 29, 118, 285);
+		                btnEleccionTres.setContentAreaFilled(false); 
+		                btnEleccionTres.setBorderPainted(false);
 		                panelElecion.add(btnEleccionTres);
 		                
 		                 btnEleccionCuatro = new JButton("");
+		                 btnEleccionCuatro.setForeground(new Color(255, 255, 255));
+		                 btnEleccionCuatro.setFont(new Font("Consolas", Font.BOLD, 10));
 		                 btnEleccionCuatro.setBounds(684, 29, 116, 285);
+		                 btnEleccionCuatro.setContentAreaFilled(false); 
+		                 btnEleccionCuatro.setBorderPainted(false); 
 		                 panelElecion.add(btnEleccionCuatro);
 		                 
 		                 lblFondoDraft = new JLabel("");
@@ -807,33 +846,6 @@ public class Vista extends JFrame {
 		          lblFondeSimulacion = new JLabel("");
 		          lblFondeSimulacion.setBounds(0, 0, 1326, 736);
 		          panelSimulacion.add(lblFondeSimulacion);
-		      
-		       panelInicio = new JPanel();
-		       panelInicio.setBounds(0, 0, 1329, 742);
-		       
-		        contentPane.add(panelInicio);
-		        panelInicio.setLayout(null);
-		        
-		        lblTexto = new JLabel("Comienza");
-		        lblTexto.setFont(new Font("Consolas", Font.BOLD, 45));
-		        lblTexto.setBounds(470, 547, 281, 78);
-		        panelInicio.add(lblTexto);
-		        
-		        btnEmpezar = new JButton("");
-		        btnEmpezar.setBounds(741, 530, 193, 106);
-		        btnEmpezar.setContentAreaFilled(false); 
-		        btnEmpezar.setBorderPainted(false); 
-		        btnEmpezar.setFocusPainted(false);
-		        btnEmpezar.setOpaque(false); 
-		        panelInicio.add(btnEmpezar);
-		        
-		         lblLogo = new JLabel("");
-		         lblLogo.setBounds(450, 98, 500, 338);
-		         panelInicio.add(lblLogo);
-		         
-		          lblFondo = new JLabel("");
-		          lblFondo.setBounds(0, 0, 1329, 825);
-		          panelInicio.add(lblFondo);
 
 	}
 	

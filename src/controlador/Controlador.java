@@ -8,13 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -27,12 +30,14 @@ import org.hibernate.cfg.Configuration;
 
 
 import net.bytebuddy.asm.Advice.This;
+import persistencias.Equipo;
 import persistencias.Jugador;
 
 public class Controlador implements ActionListener,MouseListener {
 
     private Vista vista;
     private ControladorHibernate hibernate;
+    private DefaultListModel<String> listModelVisitante = new DefaultListModel<>();
 
     private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
 
@@ -85,6 +90,8 @@ public class Controlador implements ActionListener,MouseListener {
         //Ver simulacion
         this.vista.lblEmpezarSimulacion.addMouseListener(this);
         this.vista.lblVolverPlantilla_Simulacion.addMouseListener(this);
+        this.vista.panelVistaEquipo.setVisible(false); // Asegúrate de que el panel que contiene el JList esté visible
+        this.vista.listEquipoVisitante.setModel(listModelVisitante); 
         //Ver infromacion
         this.vista.lblInformacion.addMouseListener(this);
         //Informacion
@@ -180,6 +187,18 @@ public class Controlador implements ActionListener,MouseListener {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
             cargarPorteros(); 
+        }else if (e.getSource() == this.vista.btnDefensaDerecha || e.getSource() == this.vista.btnDefensaIzquierda|| e.getSource() == this.vista.btnDefensaIzquierdaCentro||e.getSource() == this.vista.btnDefensaDerechaCentro) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDefensores();
+        } else if (e.getSource() == this.vista.btnCentroCampistaDerecho || e.getSource() == this.vista.btnCentroCampistaIzquierdo||e.getSource() == this.vista.btnCentroCampistaDerechoCentro||e.getSource() == this.vista.btnCentroCampistaIzquierdoCentro) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarMediocampistas();
+        } else if (e.getSource() == this.vista.btnDelanteroDerecho || e.getSource() == this.vista.btnDelanteroIzquierda) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDelanteros();
         }else if (isPlayerButton(e.getSource())) {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
@@ -204,9 +223,14 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.panelJugadores.setVisible(true);
         }
-        else if(e.getSource()==this.vista.btnSimularPartida) {
-        	this.vista.PanelPlantilla.setVisible(false);
-        	this.vista.panelVistaEquipo.setVisible(true);
+        else if (e.getSource() == this.vista.btnSimularPartida) {
+        	
+        	for(int i=0;i<19;i++) {
+        		creacionTotalEquipo();
+        	}
+        	JList<String> jListVisitante = new JList<>(listModelVisitante);
+            this.vista.PanelPlantilla.setVisible(false);
+            this.vista.panelVistaEquipo.setVisible(true);
         }
         else if(e.getSource()==this.vista.btnFIltrar) {
         	cargarTabla(modeloTJugadores);
@@ -226,26 +250,141 @@ public class Controlador implements ActionListener,MouseListener {
      // Asigno los 5 porteros aleatorios a los botones con el Math.min lo que hace esque me recorra 5 veces la lista y esos 5 porteros me los añade a los botones
         for (int i = 0; i < Math.min(5, porteros.size()); i++) {
             Jugador portero = porteros.get(i);
-            String textoBoton = portero.getNombre() + " - F. Ataque: " + portero.getFuerzaAtaque();
+            String mensaje= portero.getNombre() +"<br>"+
+                	"F. Ataque: "+ portero.getFuerzaAtaque()+"<br>"+
+                	"F. Tecnica: "+ portero.getFuerzaTecnica()+"<br>"+
+                	"F. Defensa: "+ portero.getFuerzaDefensa()+"<br>"+
+                	"F. Portero: "+ portero.getFuerzaPortero()+"<br>";
+            switch (i) {
+            case 0:
+            	setLabelButton(vista.btnEleccionUno,mensaje);
+                break;
+            case 1:
+            	setLabelButton(vista.btnEleccionDos,mensaje);
+                break;
+            case 2:
+            	setLabelButton(vista.btnEleccionTres,mensaje);
+                break;
+            case 3:
+            	setLabelButton(vista.btnEleccionCuatro,mensaje);
+                break;
+            case 4:
+            	setLabelButton(vista.btnEleccionCinco,mensaje);
+                break;
+            }
+        }
+    }
+    public void cargarDefensores() {
+        List<Jugador> defensores = hibernate.extraerJugadoresPorPosicion("DEF");
+        Collections.shuffle(defensores);
+
+        vista.btnEleccionUno.setText("");
+        vista.btnEleccionDos.setText("");
+        vista.btnEleccionTres.setText("");
+        vista.btnEleccionCuatro.setText("");
+        vista.btnEleccionCinco.setText("");
+
+        for (int i = 0; i < Math.min(5, defensores.size()); i++) {
+            Jugador defensor = defensores.get(i);
+        	String mensaje= defensor.getNombre() +"<br>"+
+        	"F. Ataque: "+ defensor.getFuerzaAtaque()+"<br>"+
+        	"F. Tecnica: "+ defensor.getFuerzaTecnica()+"<br>"+
+        	"F. Defensa: "+ defensor.getFuerzaDefensa()+"<br>"+
+        	"F. Portero: "+ defensor.getFuerzaPortero()+"<br>";
+        
+        	
             switch (i) {
                 case 0:
-                    vista.btnEleccionUno.setText(textoBoton);
+                	setLabelButton(vista.btnEleccionUno,mensaje);
                     break;
                 case 1:
-                    vista.btnEleccionDos.setText(textoBoton);
+                	setLabelButton(vista.btnEleccionDos,mensaje);
                     break;
                 case 2:
-                    vista.btnEleccionTres.setText(textoBoton);
+                	setLabelButton(vista.btnEleccionTres,mensaje);
                     break;
                 case 3:
-                    vista.btnEleccionCuatro.setText(textoBoton);
+                	setLabelButton(vista.btnEleccionCuatro,mensaje);
                     break;
                 case 4:
-                    vista.btnEleccionCinco.setText(textoBoton);
+                	setLabelButton(vista.btnEleccionCinco,mensaje);
                     break;
             }
         }
     }
+    public void cargarMediocampistas() {
+        List<Jugador> mediocampistas = hibernate.extraerJugadoresPorPosicion("MED");
+        Collections.shuffle(mediocampistas);
+
+        vista.btnEleccionUno.setText("");
+        vista.btnEleccionDos.setText("");
+        vista.btnEleccionTres.setText("");
+        vista.btnEleccionCuatro.setText("");
+        vista.btnEleccionCinco.setText("");
+
+        for (int i = 0; i < Math.min(5, mediocampistas.size()); i++) {
+            Jugador mediocampista = mediocampistas.get(i);
+            String mensaje= mediocampista.getNombre() +"<br>"+
+                	"F. Ataque: "+ mediocampista.getFuerzaAtaque()+"<br>"+
+                	"F. Tecnica: "+ mediocampista.getFuerzaTecnica()+"<br>"+
+                	"F. Defensa: "+ mediocampista.getFuerzaDefensa()+"<br>"+
+                	"F. Portero: "+ mediocampista.getFuerzaPortero()+"<br>";
+            switch (i) {
+            case 0:
+            	setLabelButton(vista.btnEleccionUno,mensaje);
+                break;
+            case 1:
+            	setLabelButton(vista.btnEleccionDos,mensaje);
+                break;
+            case 2:
+            	setLabelButton(vista.btnEleccionTres,mensaje);
+                break;
+            case 3:
+            	setLabelButton(vista.btnEleccionCuatro,mensaje);
+                break;
+            case 4:
+            	setLabelButton(vista.btnEleccionCinco,mensaje);
+                break;
+            }
+        }
+    }
+    public void cargarDelanteros() {
+        List<Jugador> delanteros = hibernate.extraerJugadoresPorPosicion("DEL");
+        Collections.shuffle(delanteros);
+
+        vista.btnEleccionUno.setText("");
+        vista.btnEleccionDos.setText("");
+        vista.btnEleccionTres.setText("");
+        vista.btnEleccionCuatro.setText("");
+        vista.btnEleccionCinco.setText("");
+
+        for (int i = 0; i < Math.min(5, delanteros.size()); i++) {
+            Jugador delantero = delanteros.get(i);
+            String mensaje= delantero.getNombre() +"<br>"+
+                	"F. Ataque: "+ delantero.getFuerzaAtaque()+"<br>"+
+                	"F. Tecnica: "+ delantero.getFuerzaTecnica()+"<br>"+
+                	"F. Defensa: "+ delantero.getFuerzaDefensa()+"<br>"+
+                	"F. Portero: "+ delantero.getFuerzaPortero()+"<br>";
+            switch (i) {
+            case 0:
+            	setLabelButton(vista.btnEleccionUno,mensaje);
+                break;
+            case 1:
+            	setLabelButton(vista.btnEleccionDos,mensaje);
+                break;
+            case 2:
+            	setLabelButton(vista.btnEleccionTres,mensaje);
+                break;
+            case 3:
+            	setLabelButton(vista.btnEleccionCuatro,mensaje);
+                break;
+            case 4:
+            	setLabelButton(vista.btnEleccionCinco,mensaje);
+                break;
+            }
+        }
+    }
+
 
     public boolean isPlayerButton(Object source) {
         return source == this.vista.btnPortero ||
@@ -265,7 +404,8 @@ public class Controlador implements ActionListener,MouseListener {
         return source == this.vista.btnEleccionUno ||
                source == this.vista.btnEleccionDos ||
                source == this.vista.btnEleccionTres ||
-               source == this.vista.btnEleccionCuatro;
+               source == this.vista.btnEleccionCuatro||
+               source == this.vista.btnEleccionCinco;
     }
 
     public void disableButtons(JButton[] botones) {
@@ -563,5 +703,54 @@ public class Controlador implements ActionListener,MouseListener {
         String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
         label.setText(htmlText);
     }
+	public  void setLabelButton(JButton btnEleccionUno, String text) {
+        String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
+        btnEleccionUno.setText(htmlText);
+    }
+	 public List<Jugador> crerPlantillaMaquina() {
+	        listModelVisitante.clear(); 
+	        List<Jugador> equipo=new ArrayList<Jugador>();
+	        List<Jugador> temp;
+	        
+	        temp = hibernate.extraerJugadoresPorPosicion("POR");
+	        Collections.shuffle(temp);
+	        if (!temp.isEmpty()) {
+	            listModelVisitante.addElement(temp.get(0).getNombre()); 
+	        }  
+	        
+	        List<Jugador> defensas = hibernate.extraerJugadoresPorPosicion("DEF");
+	        Collections.shuffle(defensas);
+	        for (int i = 0; i < Math.min(4, defensas.size()); i++) {
+	            listModelVisitante.addElement(defensas.get(i).getNombre());
+	        }
 
+	        List<Jugador> mediocampistas = hibernate.extraerJugadoresPorPosicion("MED");
+	        Collections.shuffle(mediocampistas);
+	        for (int i = 0; i < Math.min(4, mediocampistas.size()); i++) {
+	            listModelVisitante.addElement(mediocampistas.get(i).getNombre()); 
+	        }
+
+	       
+	        List<Jugador> delanteros = hibernate.extraerJugadoresPorPosicion("DEL");
+	        Collections.shuffle(delanteros);
+	        for (int i = 0; i < Math.min(2, delanteros.size()); i++) {
+	            listModelVisitante.addElement(delanteros.get(i).getNombre()); 
+	        }
+
+	       return equipo;
+	}
+	public void asignarJugadoresEquipo(Equipo equipo,List<Jugador> jugadores) {
+		
+		for(Jugador clave:jugadores) {
+			clave.setEquipo(equipo);
+		}
+		
+	}
+	public void creacionTotalEquipo() {
+		List<Jugador> temp=crerPlantillaMaquina();
+		Equipo equipo=hibernate.crearEquipo();
+		asignarJugadoresEquipo(equipo, temp);
+		hibernate.asignarEquipoUpdate(temp);
+	}
+	 
 }
