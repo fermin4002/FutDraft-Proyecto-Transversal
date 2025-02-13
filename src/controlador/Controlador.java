@@ -32,6 +32,7 @@ import org.hibernate.cfg.Configuration;
 import net.bytebuddy.asm.Advice.This;
 import persistencias.Equipo;
 import persistencias.Jugador;
+import persistencias.Partido;
 
 public class Controlador implements ActionListener,MouseListener {
 
@@ -81,7 +82,7 @@ public class Controlador implements ActionListener,MouseListener {
         //Clasificacion
         this.vista.lblVolverClasificacion.addMouseListener(this);
         this.vista.btnFIltrar.addActionListener(this);
-
+        this.vista.comboBoxJornada.addActionListener(this);
         this.vista.lblSalirPrincipal.addMouseListener(this);
 
        //Ver equipos
@@ -116,8 +117,8 @@ public class Controlador implements ActionListener,MouseListener {
         modeloTCLasidicacion=new DefaultTableModel();
         modeloTCLasidicacion.addColumn("");
         modeloTCLasidicacion.addColumn("Nombre");
+        modeloTCLasidicacion.addColumn("PTS");
         modeloTCLasidicacion.addColumn("PJ");
-        modeloTCLasidicacion.addColumn("PTO");
         modeloTCLasidicacion.addColumn("PG");
         modeloTCLasidicacion.addColumn("PE");
         modeloTCLasidicacion.addColumn("PP");
@@ -151,13 +152,18 @@ public class Controlador implements ActionListener,MouseListener {
         
         try {
 			this.hibernate=new ControladorHibernate();
-			hibernate.cargarJugadores();
+			if(!hibernate.isJugadoresCargados()) {
+				hibernate.cargarJugadores();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
         
+        
+        
         //vista.comboBoxFiltroEquipo.setModel();
         cargarEquipos();
+        cargarComboJornada();
         cargarTabla(modeloTJugadores);
         imagenes();
     }
@@ -215,6 +221,8 @@ public class Controlador implements ActionListener,MouseListener {
         }
 
         else if(e.getSource()==this.vista.btnClasificaciones) {
+        	cargarTablaJornada();
+        	cargarTablaClasificacion();
         	this.vista.panelMenu.setVisible(false);
         	this.vista.panelClasificacion.setVisible(true);
 
@@ -224,9 +232,12 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelJugadores.setVisible(true);
         }
         else if (e.getSource() == this.vista.btnSimularPartida) {
-        	
-        	for(int i=0;i<19;i++) {
-        		creacionTotalEquipo();
+        	if(hibernate.isEquiposCreados()) {
+        		for(int i=0;i<19;i++) {
+            		creacionTotalEquipo();
+            	}
+        		generarCalendario();
+        		
         	}
         	JList<String> jListVisitante = new JList<>(listModelVisitante);
             this.vista.PanelPlantilla.setVisible(false);
@@ -235,6 +246,11 @@ public class Controlador implements ActionListener,MouseListener {
         else if(e.getSource()==this.vista.btnFIltrar) {
         	cargarTabla(modeloTJugadores);
         }
+        else if(e.getSource()==this.vista.comboBoxJornada) {
+        	cargarTablaJornada();
+        }
+        
+        
         
     }
     public void cargarPorteros() {
@@ -478,7 +494,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblVolverPlantilla.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla, "imagenes/volver.png"));
         //Clasificacion Cambiar imagen
         this.vista.lblVolverClasificacion.setIcon(fotoEscalarLabel(this.vista.lblVolverClasificacion,"imagenes/volver.png"));
-        
+        this.vista.lblFondoCLasificacion.setIcon(fotoEscalarLabel(this.vista.lblVolverClasificacion,"imagenes/ondo-principal.jpg"));
         
         this.vista.lblLogJugadores.setIcon(fotoEscalarLabel(this.vista.lblLogJugadores, "imagenes/logo.png"));
         this.vista.lblFondo_Pantalla_Jugadores.setIcon(fotoEscalarLabel(this.vista.lblFondo_Pantalla_Jugadores, "imagenes/fondo-principal.jpg"));
@@ -629,7 +645,17 @@ public class Controlador implements ActionListener,MouseListener {
 		
 	}
 	
-	//Tabla Jugadores
+	public  void setLabelText(JLabel label, String text) {
+        String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
+        label.setText(htmlText);
+    }
+	public  void setLabelButton(JButton btnEleccionUno, String text) {
+        String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
+        btnEleccionUno.setText(htmlText);
+    }
+	
+	
+	//CargarTabla y Spinners
 	public void cargarTabla(DefaultTableModel modelo) {
 		
 		int minA=(int) vista.spinnerMinAtaque.getValue();
@@ -691,7 +717,7 @@ public class Controlador implements ActionListener,MouseListener {
 	
 	public void cargarEquipos() {
 		
-		List<String> entrada=hibernate.extraerEquipos();
+		List<String> entrada=hibernate.extraerNombreEquipos();
 		
 		for(String clave:entrada) {
 			vista.comboBoxFiltroEquipo.addItem(clave);
@@ -699,42 +725,38 @@ public class Controlador implements ActionListener,MouseListener {
 		
 	}
 
-	public  void setLabelText(JLabel label, String text) {
-        String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
-        label.setText(htmlText);
-    }
-	public  void setLabelButton(JButton btnEleccionUno, String text) {
-        String htmlText = "<html>" + text.replace("\n", "<br>") + "</html>";
-        btnEleccionUno.setText(htmlText);
-    }
-	 public List<Jugador> crerPlantillaMaquina() {
-	        listModelVisitante.clear(); 
+	
+	
+	
+	//creacion de plantillas
+	public List<Jugador> crerPlantillaMaquina() {
+	        
 	        List<Jugador> equipo=new ArrayList<Jugador>();
 	        List<Jugador> temp;
 	        
 	        temp = hibernate.extraerJugadoresPorPosicion("POR");
 	        Collections.shuffle(temp);
 	        if (!temp.isEmpty()) {
-	            listModelVisitante.addElement(temp.get(0).getNombre()); 
+	            equipo.add(temp.get(0)); 
 	        }  
 	        
-	        List<Jugador> defensas = hibernate.extraerJugadoresPorPosicion("DEF");
-	        Collections.shuffle(defensas);
-	        for (int i = 0; i < Math.min(4, defensas.size()); i++) {
-	            listModelVisitante.addElement(defensas.get(i).getNombre());
+	        temp = hibernate.extraerJugadoresPorPosicion("DEF");
+	        Collections.shuffle(temp);
+	        for (int i = 0; i < Math.min(4, temp.size()); i++) {
+	        	equipo.add(temp.get(i));
 	        }
 
-	        List<Jugador> mediocampistas = hibernate.extraerJugadoresPorPosicion("MED");
-	        Collections.shuffle(mediocampistas);
-	        for (int i = 0; i < Math.min(4, mediocampistas.size()); i++) {
-	            listModelVisitante.addElement(mediocampistas.get(i).getNombre()); 
+	        temp = hibernate.extraerJugadoresPorPosicion("MED");
+	        Collections.shuffle(temp);
+	        for (int i = 0; i < Math.min(4, temp.size()); i++) {
+	        	equipo.add(temp.get(i));
 	        }
 
 	       
-	        List<Jugador> delanteros = hibernate.extraerJugadoresPorPosicion("DEL");
-	        Collections.shuffle(delanteros);
-	        for (int i = 0; i < Math.min(2, delanteros.size()); i++) {
-	            listModelVisitante.addElement(delanteros.get(i).getNombre()); 
+	        temp = hibernate.extraerJugadoresPorPosicion("DEL");
+	        Collections.shuffle(temp);
+	        for (int i = 0; i < Math.min(2, temp.size()); i++) {
+	        	equipo.add(temp.get(i));
 	        }
 
 	       return equipo;
@@ -748,9 +770,117 @@ public class Controlador implements ActionListener,MouseListener {
 	}
 	public void creacionTotalEquipo() {
 		List<Jugador> temp=crerPlantillaMaquina();
-		Equipo equipo=hibernate.crearEquipo();
+		Equipo equipo=hibernate.crearEquipo("patatas");
 		asignarJugadoresEquipo(equipo, temp);
 		hibernate.asignarEquipoUpdate(temp);
 	}
+	
+	//Generar Calendario
+	public void generarCalendario() {
+		List<Equipo> entrada=hibernate.extraerEquipos();
+		List<Partido>partidos=new ArrayList<Partido>();
+		int totalEquipos = entrada.size();
+        int mitad = totalEquipos / 2;
+
+		for(int i=0;i<19;i++) {
+			
+			for (int t = 0; t < mitad; t++) {
+				Equipo local = entrada.get(t);
+				Equipo visitante = entrada.get(totalEquipos - 1 - t);
+                partidos.add(new Partido(local,visitante,i+1));
+            }
+			
+            List<Equipo> nuevaLista = new ArrayList<>();
+            nuevaLista.add(entrada.get(0)); 
+            nuevaLista.add(entrada.get(totalEquipos - 1)); 
+
+            for (int t = 1; t < totalEquipos - 1; t++) {
+                nuevaLista.add(entrada.get(t));
+            }
+
+            entrada = nuevaLista;
+
+			
+			
+			
+		}
+		
+		hibernate.guardarCalendario(partidos);
+		
+	}
+	
+	public void cargarComboJornada() {
+
+		for(int i=1;i<20;i++) {
+			vista.comboBoxJornada.addItem("Jornada "+i);
+		}
+		
+	}
+	
+	public void cargarTablaJornada() {
+		
+		String [] valor=String.valueOf(vista.comboBoxJornada.getSelectedItem()).split(" ");
+		int jornada=Integer.parseInt(valor[1]);
+		List<Partido> partidos=hibernate.extraerJornada(jornada);
+		modeloTJornadas.setRowCount(0);
+		for(Partido clave:partidos) {
+			
+			String local=clave.getEquipoByIdEquipoLocal().getNombre();
+			String visitante=clave.getEquipoByIdEquipoVisitante().getNombre();
+			String resultadoL,resultadoV;
+			if(clave.getGolesLocal()==null) {
+				resultadoL="X";
+			}else {
+				resultadoL=String.valueOf(clave.getGolesLocal());
+			}
+			
+			if(clave.getGolesVisitante()==null) {
+				resultadoV="X";
+			}else {
+				resultadoV=String.valueOf(clave.getGolesVisitante());
+			}
+			modeloTJornadas.addRow(new String[] {local,resultadoL+"-"+resultadoV,visitante});
+		}
+		vista.tablaJornadas.setModel(modeloTJornadas);
+		
+	}
+	
+	public void cargarTablaClasificacion() {
+		List<Equipo> entrada=hibernate.extraerEquiposOrdenados();
+		int pos=1;
+		modeloTCLasidicacion.setRowCount(0);
+		for(Equipo clave:entrada) {
+			String posS=String.valueOf(pos);
+			String nombre=clave.getNombre();
+			String pts=String.valueOf(clave.getPuntos());
+			String pj=String.valueOf(clave.getEmpates()+clave.getVictorias()+clave.getDerrotas());
+			String v=String.valueOf(clave.getVictorias());
+			String e=String.valueOf(clave.getEmpates());
+			String d=String.valueOf(clave.getDerrotas());
+			
+			
+			modeloTCLasidicacion.addRow(new String[] {posS,nombre,pts,pj,v,e,d});
+			
+			pos++;
+		}
+		vista.tablaClasificacion.setModel(modeloTCLasidicacion);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 
 }

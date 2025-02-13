@@ -67,7 +67,7 @@ public class Jugador implements java.io.Serializable {
 	public void setIdJugador(int idJugador) {
 		this.idJugador = idJugador;
 	}
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_equipo", nullable = true)
 	public Equipo getEquipo() {
 		return this.equipo;

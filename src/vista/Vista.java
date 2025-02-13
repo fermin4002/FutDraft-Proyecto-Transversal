@@ -89,7 +89,7 @@ public class Vista extends JFrame {
 	public JScrollPane scrollPane;
 
 	public JPanel panelClasificacion;
-	public JLabel lblFondo_1;
+	public JLabel lblFondoCLasificacion;
 	public JTable tablaClasificacion;
 	public JTable tablaJornadas;
 	public JComboBox comboBoxJornada;
@@ -168,6 +168,8 @@ public class Vista extends JFrame {
 	public JLabel lblTextoComoJugar;
 	public JLabel lblDescripcionComoJugar;
 	public JSeparator separator_2;
+	public JLabel lblJornada;
+	public JLabel lblClasificacion;
 
 	/**
 	 * Launch the application.
@@ -205,15 +207,63 @@ public class Vista extends JFrame {
 	        
 		setContentPane(contentPane);
 		 contentPane.setLayout(null);
-
-		      
-		      panelClasificacion = new JPanel();
-		      panelClasificacion.setLayout(null);
-		      panelClasificacion.setVisible(false);
 		        
 		        panelJugadores = new JPanel();
 		        panelJugadores.setBounds(0, 0, 1329, 761);
 		        panelJugadores.setVisible(false);
+		         
+		         		      
+		         		      panelClasificacion = new JPanel();
+		         		      panelClasificacion.setLayout(null);
+		         		      panelClasificacion.setVisible(false);
+		         		      panelClasificacion.setBounds(0, 0, 1329, 742);
+		         		      contentPane.add(panelClasificacion);
+		         		      
+		         		      lblVolverClasificacion = new JLabel("");
+		         		      lblVolverClasificacion.setBounds(0, 0, 82, 79);
+		         		      panelClasificacion.add(lblVolverClasificacion);
+		         		      
+		         		      panelResultados = new JPanel();
+		         		      panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		         		      panelResultados.setBounds(144, 432, 348, 247);
+		         		      panelClasificacion.add(panelResultados);
+		         		      panelResultados.setLayout(null);
+		         		      
+		         		      tablaJornadas = new JTable();
+		         		      tablaJornadas.setShowVerticalLines(false);
+		         		      tablaJornadas.setRowSelectionAllowed(false);
+		         		      tablaJornadas.setBounds(10, 72, 326, 164);
+		         		      panelResultados.add(tablaJornadas);
+		         		      
+		         		      comboBoxJornada = new JComboBox();
+		         		      comboBoxJornada.setBounds(176, 11, 160, 47);
+		         		      panelResultados.add(comboBoxJornada);
+		         		      
+		         		      lblJornada = new JLabel("JORNADA");
+		         		      lblJornada.setFont(new Font("Tahoma", Font.BOLD, 29));
+		         		      lblJornada.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      lblJornada.setBounds(10, 11, 156, 47);
+		         		      panelResultados.add(lblJornada);
+		         		      
+		         		      JPanel panel = new JPanel();
+		         		      panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		         		      panel.setBounds(92, 11, 443, 402);
+		         		      panelClasificacion.add(panel);
+		         		      panel.setLayout(null);
+		         		      
+		         		      tablaClasificacion = new JTable();
+		         		      tablaClasificacion.setBounds(10, 63, 423, 327);
+		         		      panel.add(tablaClasificacion);
+		         		      
+		         		      lblClasificacion = new JLabel("CLASIFICACIÓN");
+		         		      lblClasificacion.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      lblClasificacion.setFont(new Font("Tahoma", Font.BOLD, 29));
+		         		      lblClasificacion.setBounds(10, 11, 423, 47);
+		         		      panel.add(lblClasificacion);
+		         		      
+		         		      lblFondoCLasificacion = new JLabel("");
+		         		      lblFondoCLasificacion.setBounds(0, 0, 1329, 742);
+		         		      panelClasificacion.add(lblFondoCLasificacion);
 		        
 		         panelInicio = new JPanel();
 		         panelInicio.setBounds(0, 0, 1329, 742);
@@ -426,40 +476,6 @@ public class Vista extends JFrame {
 		         lblFondo_Pantalla_Jugadores = new JLabel("");
 		         lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
 		         panelJugadores.add(lblFondo_Pantalla_Jugadores);
-		      panelClasificacion.setBounds(0, 0, 1329, 742);
-		      contentPane.add(panelClasificacion);
-		      
-		      lblVolverClasificacion = new JLabel("");
-		      lblVolverClasificacion.setBounds(0, 0, 82, 79);
-		      panelClasificacion.add(lblVolverClasificacion);
-		      
-		      panelResultados = new JPanel();
-		      panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		      panelResultados.setBounds(463, 84, 443, 346);
-		      panelClasificacion.add(panelResultados);
-		      panelResultados.setLayout(null);
-		      
-		      tablaJornadas = new JTable();
-		      tablaJornadas.setBounds(10, 61, 423, 275);
-		      panelResultados.add(tablaJornadas);
-		      
-		      comboBoxJornada = new JComboBox();
-		      comboBoxJornada.setBounds(226, 11, 207, 47);
-		      panelResultados.add(comboBoxJornada);
-		      
-		      JPanel panel = new JPanel();
-		      panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		      panel.setBounds(10, 84, 443, 587);
-		      panelClasificacion.add(panel);
-		      panel.setLayout(null);
-		      
-		      tablaClasificacion = new JTable();
-		      tablaClasificacion.setBounds(10, 63, 423, 513);
-		      panel.add(tablaClasificacion);
-		      
-		      lblFondo_1 = new JLabel("");
-		      lblFondo_1.setBounds(0, 0, 1329, 742);
-		      panelClasificacion.add(lblFondo_1);
 
 		        
 		        panelVistaEquipo = new JPanel();
@@ -564,11 +580,6 @@ public class Vista extends JFrame {
 		               btnEleccionDos.setBorderPainted(false);
 		               btnEleccionDos.setBounds(196, 29, 117, 285);
 		               panelElecion.add(btnEleccionDos);
-		               
-
-		                lblFondoPlantilla = new JLabel("");
-		                lblFondoPlantilla.setBounds(0, 0, 1329, 764);
-		                PanelPlantilla.add(lblFondoPlantilla);
 
 		                btnEleccionTres = new JButton("");
 		                btnEleccionTres.setForeground(new Color(255, 255, 255));
@@ -667,6 +678,7 @@ public class Vista extends JFrame {
 		                  btnDelanteroIzquierda.setFocusPainted(false);
 		                  PanelPlantilla.add(btnDelanteroIzquierda);
 		                  
+
 		                   lblFondoPlantilla = new JLabel("");
 		                   lblFondoPlantilla.setBounds(0, 0, 1329, 764);
 		                   PanelPlantilla.add(lblFondoPlantilla);

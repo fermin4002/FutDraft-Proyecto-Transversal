@@ -16,6 +16,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import modelo.JugadorCsv;
 import persistencias.Equipo;
 import persistencias.Jugador;
+import persistencias.Partido;
 
 public class ControladorHibernate {
 	
@@ -34,24 +35,6 @@ public class ControladorHibernate {
 		}
 	}
 	
-	/*public static void main(String[]args) {
-		try {
-			ControladorHibernate pru=new ControladorHibernate();
-			try {
-				/*List<Jugador> salida=pru.extraerJugadoresIdEquipo(sessionFactory, 1);
-				for(Jugador clave: salida) {
-					System.out.println(clave);
-				}
-				pru.cargarJugadores();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-	}*/
 	
 	public void close() {
 		if(null!=sessionFactory) {
@@ -99,28 +82,10 @@ public class ControladorHibernate {
 				temp.setFuerzaTecnica(clave.getFuerzaTecnica());
 				temp.setPosicion(clave.getPosicion());
 				num++;
-				/*String nombre=clave.getNombre();
-				String equipo=clave.getEquipo();
-				String posicion=clave.getPosicion();
 				
-				int fA=clave.getFuerzaAtaque();
-				int fT=clave.getFuerzaTecnica();
-				int fD=clave.getFuerzaDefensa();
-				int fP=clave.getFuerzaPortero();
-				
-				insert.setParameter("num", num);
-				insert.setParameter("nombre", nombre);
-				insert.setParameter("equipo", equipo);
-				insert.setParameter("posicion", posicion);
-				
-				insert.setParameter("fA", fA);
-				insert.setParameter("fT", fT);
-				insert.setParameter("fD", fD);
-				insert.setParameter("fP", fP);*/
 				
 				System.out.println(temp);
 				session.saveOrUpdate(temp);
-				//insert.executeUpdate();
 				System.out.println("Fin "+num);
 				
 			}
@@ -153,62 +118,7 @@ public class ControladorHibernate {
 			throw e;
 		}
 	}
-	
-	public List<Jugador> extraerJugadoresPosicion(SessionFactory session,String pos)throws Exception{
-		List<Jugador> jugadoresSalida=new ArrayList<Jugador>();
-		Session sesion=null;
-		
-		try {
-			sesion=session.getCurrentSession();
-			sesion.beginTransaction();
-			
-			
-			String rr="from Jugador where posicion =:pos and equipo=null";
-			
-			Query query= sesion.createQuery(rr);
-			query.setParameter("pos", pos);
-			
-			jugadoresSalida=query.list();
 
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw e;
-		}finally {
-			if(null!=sesion) {
-				sesion.close();
-			}
-		}
-		
-		return jugadoresSalida;
-	}
-	
-	public List<Jugador> extraerJugadoresIdEquipo(SessionFactory session,int idEquipo){
-		List<Jugador> jugadoresSalida=new ArrayList<Jugador>();
-		Session sesion=null;
-		
-		try {
-			sesion=session.getCurrentSession();
-			sesion.beginTransaction();
-			
-			
-			String rr="select * from Jugador where  id_equipo=:idEquipo";
-			
-			Query query= sesion.createSQLQuery(rr);
-			query.setParameter("idEquipo", idEquipo);
-			
-			jugadoresSalida=query.list();
-
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw e;
-		}finally {
-			if(null!=sesion) {
-				sesion.close();
-			}
-		}
-		
-		return jugadoresSalida;
-	}
 	
 	public List<Jugador> extraerJugadores(){
 		List<Jugador> salida=new ArrayList<Jugador>();
@@ -280,7 +190,7 @@ public class ControladorHibernate {
 	    return jugadores;
 	}
 	
-	public List<String> extraerEquipos(){
+	public List<String> extraerNombreEquipos(){
 		List<String> salida=new ArrayList<String>();
 		Session sesion=null;
 		
@@ -344,14 +254,14 @@ public class ControladorHibernate {
 		}
 		return salida;
 	}
-	public Equipo crearEquipo() {
+	public Equipo crearEquipo(String nombre) {
 		Session sesion=null;
 		Equipo salida=null;
 		try {
 			sesion=sessionFactory.getCurrentSession();
 			sesion.beginTransaction();
 			salida=new Equipo();
-			salida.setNombre("patatas");
+			salida.setNombre(nombre);
 			
 			sesion.save(salida);
 			
@@ -395,4 +305,169 @@ public class ControladorHibernate {
 			}
 		}
 	}
+	
+	public boolean isJugadoresCargados() {
+		boolean salida=false;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Jugador j where j.idJugador=1";
+			
+			Query query=sesion.createQuery(consulta);
+			Jugador temp=null;
+			temp=(Jugador) query.uniqueResult();
+			if(temp!=null) {
+				salida=true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public boolean isEquiposCreados() {
+		boolean salida=false;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Equipo";
+			
+			Query query=sesion.createQuery(consulta);
+			List<Equipo> temp=null;
+			temp=query.list();
+			if(temp.size()!=19/*20*/) {
+				salida=true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public List<Equipo> extraerEquipos() {
+		List<Equipo> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Equipo";
+			
+			Query query=sesion.createQuery(consulta);
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public List<Partido> extraerJornada(int jornada) {
+		List<Partido> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Partido e where e.jornada=:jornada";
+			
+			Query query=sesion.createQuery(consulta);
+			query.setParameter("jornada",jornada);
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public void guardarCalendario(List<Partido> partidos) {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			for(Partido clave:partidos) {
+				sesion.save(clave);
+			}
+			
+			
+			sesion.getTransaction().commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			if(null!=sesion) {
+				sesion.getTransaction().rollback();
+			}
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+	}
+	
+	public List<Equipo> extraerEquiposOrdenados() {
+		List<Equipo> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Equipo e order by e.puntos desc";
+			
+			Query query=sesion.createQuery(consulta);
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	
 }

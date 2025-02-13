@@ -37,6 +37,12 @@ public class Partido implements java.io.Serializable {
 		this.golesLocal = golesLocal;
 		this.golesVisitante = golesVisitante;
 	}
+	
+	public Partido( Equipo equipoByIdEquipoLocal,Equipo equipoByIdEquipoVisitante, int jornada) {
+		this.equipoByIdEquipoVisitante = equipoByIdEquipoVisitante;
+		this.equipoByIdEquipoLocal = equipoByIdEquipoLocal;
+		this.jornada = jornada;
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -50,7 +56,7 @@ public class Partido implements java.io.Serializable {
 		this.idPartido = idPartido;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_equipo_visitante", nullable = true)
 	public Equipo getEquipoByIdEquipoVisitante() {
 		return this.equipoByIdEquipoVisitante;
@@ -60,7 +66,7 @@ public class Partido implements java.io.Serializable {
 		this.equipoByIdEquipoVisitante = equipoByIdEquipoVisitante;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_equipo_local", nullable = true)
 	public Equipo getEquipoByIdEquipoLocal() {
 		return this.equipoByIdEquipoLocal;
