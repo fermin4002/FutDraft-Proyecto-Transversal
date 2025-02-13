@@ -1,5 +1,5 @@
 package persistencias;
-// Generated 5 feb 2025, 13:07:02 by Hibernate Tools 5.4.33.Final
+// Generated 13 feb 2025, 10:17:18 by Hibernate Tools 5.4.33.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,53 +9,50 @@ import java.util.Set;
  */
 public class Equipo implements java.io.Serializable {
 
-	private Integer idEquipo;
+	private int idEquipo;
 	private String nombre;
 	private int victorias;
 	private int empates;
 	private int derrotas;
 	private int puntos;
-	private int portero;
-	private int defensa;
-	private int centrocampista;
-	private int delantero;
+	private boolean equipoJugador;
+	private Set partidosForIdEquipoVisitante = new HashSet(0);
+	private Set partidosForIdEquipoLocal = new HashSet(0);
 	private Set jugadors = new HashSet(0);
 
 	public Equipo() {
 	}
 
-	public Equipo(String nombre, int victorias, int empates, int derrotas, int puntos, int portero, int defensa,
-			int centrocampista, int delantero) {
+	public Equipo(int idEquipo, String nombre, int victorias, int empates, int derrotas, int puntos,
+			boolean equipoJugador) {
+		this.idEquipo = idEquipo;
 		this.nombre = nombre;
 		this.victorias = victorias;
 		this.empates = empates;
 		this.derrotas = derrotas;
 		this.puntos = puntos;
-		this.portero = portero;
-		this.defensa = defensa;
-		this.centrocampista = centrocampista;
-		this.delantero = delantero;
+		this.equipoJugador = equipoJugador;
 	}
 
-	public Equipo(String nombre, int victorias, int empates, int derrotas, int puntos, int portero, int defensa,
-			int centrocampista, int delantero, Set jugadors) {
+	public Equipo(int idEquipo, String nombre, int victorias, int empates, int derrotas, int puntos,
+			boolean equipoJugador, Set partidosForIdEquipoVisitante, Set partidosForIdEquipoLocal, Set jugadors) {
+		this.idEquipo = idEquipo;
 		this.nombre = nombre;
 		this.victorias = victorias;
 		this.empates = empates;
 		this.derrotas = derrotas;
 		this.puntos = puntos;
-		this.portero = portero;
-		this.defensa = defensa;
-		this.centrocampista = centrocampista;
-		this.delantero = delantero;
+		this.equipoJugador = equipoJugador;
+		this.partidosForIdEquipoVisitante = partidosForIdEquipoVisitante;
+		this.partidosForIdEquipoLocal = partidosForIdEquipoLocal;
 		this.jugadors = jugadors;
 	}
 
-	public Integer getIdEquipo() {
+	public int getIdEquipo() {
 		return this.idEquipo;
 	}
 
-	public void setIdEquipo(Integer idEquipo) {
+	public void setIdEquipo(int idEquipo) {
 		this.idEquipo = idEquipo;
 	}
 
@@ -99,36 +96,28 @@ public class Equipo implements java.io.Serializable {
 		this.puntos = puntos;
 	}
 
-	public int getPortero() {
-		return this.portero;
+	public boolean isEquipoJugador() {
+		return this.equipoJugador;
 	}
 
-	public void setPortero(int portero) {
-		this.portero = portero;
+	public void setEquipoJugador(boolean equipoJugador) {
+		this.equipoJugador = equipoJugador;
 	}
 
-	public int getDefensa() {
-		return this.defensa;
+	public Set getPartidosForIdEquipoVisitante() {
+		return this.partidosForIdEquipoVisitante;
 	}
 
-	public void setDefensa(int defensa) {
-		this.defensa = defensa;
+	public void setPartidosForIdEquipoVisitante(Set partidosForIdEquipoVisitante) {
+		this.partidosForIdEquipoVisitante = partidosForIdEquipoVisitante;
 	}
 
-	public int getCentrocampista() {
-		return this.centrocampista;
+	public Set getPartidosForIdEquipoLocal() {
+		return this.partidosForIdEquipoLocal;
 	}
 
-	public void setCentrocampista(int centrocampista) {
-		this.centrocampista = centrocampista;
-	}
-
-	public int getDelantero() {
-		return this.delantero;
-	}
-
-	public void setDelantero(int delantero) {
-		this.delantero = delantero;
+	public void setPartidosForIdEquipoLocal(Set partidosForIdEquipoLocal) {
+		this.partidosForIdEquipoLocal = partidosForIdEquipoLocal;
 	}
 
 	public Set getJugadors() {

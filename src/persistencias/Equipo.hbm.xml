@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 5 feb 2025, 13:07:02 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 feb 2025, 10:17:18 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class catalog="liga_fantasy" name="persistencias.Equipo" optimistic-lock="none" table="equipo">
-        <id name="idEquipo" type="java.lang.Integer">
+        <id name="idEquipo" type="int">
             <column name="id_equipo"/>
-            <generator class="identity"/>
+            <generator class="assigned"/>
         </id>
         <property name="nombre" type="string">
             <column length="50" name="nombre" not-null="true"/>
@@ -21,18 +21,21 @@
         <property name="puntos" type="int">
             <column name="puntos" not-null="true"/>
         </property>
-        <property name="portero" type="int">
-            <column name="portero" not-null="true"/>
+        <property name="equipoJugador" type="boolean">
+            <column name="equipo_jugador" not-null="true"/>
         </property>
-        <property name="defensa" type="int">
-            <column name="defensa" not-null="true"/>
-        </property>
-        <property name="centrocampista" type="int">
-            <column name="centrocampista" not-null="true"/>
-        </property>
-        <property name="delantero" type="int">
-            <column name="delantero" not-null="true"/>
-        </property>
+        <set fetch="select" inverse="true" lazy="true" name="partidosForIdEquipoVisitante" table="partido">
+            <key>
+                <column name="id_equipo_visitante"/>
+            </key>
+            <one-to-many class="persistencias.Partido"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="partidosForIdEquipoLocal" table="partido">
+            <key>
+                <column name="id_equipo_local"/>
+            </key>
+            <one-to-many class="persistencias.Partido"/>
+        </set>
         <set fetch="select" inverse="true" lazy="true" name="jugadors" table="jugador">
             <key>
                 <column name="id_equipo"/>

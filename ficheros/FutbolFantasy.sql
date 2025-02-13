@@ -1,21 +1,16 @@
 drop database if exists liga_fantasy;
-CREATE  DATABASE  LIGA_FANTASY;
-USE LIGA_FANTASY;
+CREATE  DATABASE  liga_fantasy;
+USE liga_fantasy;
 
 create table equipo(
 	id_equipo int not null auto_increment,
+   
     nombre varchar(50) not null,
-    
-    victorias int(2) not null default 0,
+	victorias int(2) not null default 0,
     empates int(2) not null default 0,
     derrotas int(2) not null default 0,
     puntos int(3) not null default 0,
-    
-	portero int(1) not null default 1,
-    defensa int(1) not null default 4,
-    centrocampista int(1) not null default 4,
-    delantero int(1) not null default 2,
-    
+	equipo_jugador boolean not null default false,
     constraint pk_equipo primary key(id_equipo)
     
 );
@@ -30,7 +25,7 @@ create table jugador (
 	fuerza_tecnica int(2) not null,
     fuerza_defensa int(2) not null,
     fuerza_portero int(2) not null,
-   
+	
 	id_equipo int  null,
     
 	constraint PK_jugadores PRIMARY KEY(id_jugador),
@@ -38,104 +33,18 @@ create table jugador (
     
 );
 
+create table partido(
+id_partido int not null auto_increment,
 
-DELIMITER //
-create trigger asignacion_jugador
-after update on jugador 
-for each row
-begin 
-	if old.id_equipo is null and new.id_equipo is not null then
-		if upper(old.posicion) ="DEf" then 
-			 update equipo 
-			 set defensa=defensa-1 
-			 where id_equipo = new.id_equipo ;
-		elseif upper(old.posicion) ="POR" then 
-			 update equipo 
-			 set portero=portero-1 
-			 where id_equipo = new.id_equipo ;
-		elseif upper(old.posicion) ="MED" then 
-			 update equipo 
-			 set centrocampista=centrocampista-1 
-			 where id_equipo = new.id_equipo ;
-		elseif upper(old.posicion) ="DEL" then  
-			 update equipo 
-			 set delantero=delantero-1 
-			 where id_equipo = new.id_equipo ;
-		end if;
-	end if;    
-end;
-//
+jornada int not null,
+id_equipo_local int null,
+id_equipo_visitante int null,
+goles_local int null,
+goles_visitante int null,
 
+constraint PK_partido PRIMARY KEY(id_partido),
+constraint FK_equipo_local foreign key(id_equipo_local)references equipo(id_equipo),
+constraint FK_equipo_visitante foreign key(id_equipo_visitante)references equipo(id_equipo)
 
-
-create trigger limpieza_asignacion
-after update on jugador 
-for each row
-begin 
-	if old.id_equipo is not null and new.id_equipo is  null then
-		if upper(old.posicion) ="DEf" then 
-			 update equipo 
-			 set defensa=defensa+1 
-			 where id_equipo = old.id_equipo ;
-		elseif upper(old.posicion) ="POR" then 
-			 update equipo 
-			 set portero=portero+1 
-			 where id_equipo = old.id_equipo ;
-		elseif upper(old.posicion) ="MED" then 
-			 update equipo 
-			 set centrocampista=centrocampista+1 
-			 where id_equipo = old.id_equipo ;
-		elseif upper(old.posicion) ="DEL" then  
-			 update equipo 
-			 set delantero=delantero+1 
-			 where id_equipo = old.id_equipo ;
-		end if;
-	end if;    
-end;
-//
-
-
-
-create trigger reasignacion
-after update on jugador 
-for each row
-begin 
-	if old.id_equipo is not null and new.id_equipo is  not null then
-		if upper(old.posicion) ="DEf" then 
-			 update equipo 
-			 set defensa=defensa-1 
-			 where id_equipo = new.id_equipo ;
-             
-             update equipo 
-			 set defensa=defensa+1 
-			 where id_equipo = old.id_equipo ;
-		elseif upper(old.posicion) ="POR" then 
-			 update equipo 
-			 set portero=portero-1 
-			 where id_equipo = new.id_equipo ;
-             
-			 update equipo 
-			 set portero=portero+1 
-			 where id_equipo = old.id_equipo ;
-		elseif upper(old.posicion) ="MED" then 
-			 update equipo 
-			 set centrocampista=centrocampista-1 
-			 where id_equipo = new.id_equipo;
-             
-			 update equipo 
-			 set centrocampista=centrocampista+1 
-			 where id_equipo = old.id_equipo ;
-		elseif upper(old.posicion) ="DEL" then
-			 update equipo 
-			 set delantero=delantero-1 
-			 where id_equipo = new.id_equipo ;
-             
-			 update equipo 
-			 set delantero=delantero+1 
-			 where id_equipo = old.id_equipo ;
-		end if;
-	end if;    
-end;
-//
-DELIMITER ;
+);
 
