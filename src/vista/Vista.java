@@ -28,6 +28,8 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
 
 
 public class Vista extends JFrame {
@@ -97,6 +99,38 @@ public class Vista extends JFrame {
 	public JLabel lblFondoPantalla_2;
 	public JLabel lblFondeSimulacion;
 	public JLabel lblVolverPlantilla_2;
+	public JPanel panelFIltroJugadores;
+	public JComboBox comboBoxFiltroPosicion;
+	public JComboBox comboBoxFiltroEquipo;
+	public JButton btnFIltrar;
+	public JPanel panel_1;
+	public JLabel lblAtaqueFIltro;
+	public JLabel lblAtaqueMinFiltro;
+	public JLabel lblAtaqueMaxFiltro;
+	public JSpinner spinnerMinAtaque;
+	public JSpinner spinnerMaxAtaque;
+	public JPanel panel_2;
+	public JLabel lblTecnicaFIltro;
+	public JLabel lblTecnicaMinFiltro;
+	public JLabel lblTecnicaMaxFiltro;
+	public JSpinner spinnerMinTecnica;
+	public JSpinner spinnerMaxTecnica;
+	public JPanel panel_3;
+	public JLabel lblDefensaFiltro;
+	public JLabel lblDefensaMinFiltro;
+	public JLabel lblDefensaMaxFiltro;
+	public JSpinner spinnerMinDefensa;
+	public JSpinner spinnerMaxDefensa;
+	public JPanel panel_4;
+	public JLabel lblPorteroFIltro;
+	public JLabel lblProteroMinFiltro;
+	public JLabel lblProteroMaxFiltro;
+	public JSpinner spinnerMinPortero;
+	public JSpinner spinnerMaxPortero;
+	public JPanel panel_5;
+	public JLabel lblPosicionFIltro;
+	public JLabel lblEquipoFIltro;
+	public JLabel lblFIltros;
 
 	/**
 	 * Launch the application.
@@ -134,14 +168,206 @@ public class Vista extends JFrame {
 	        
 		setContentPane(contentPane);
 		 contentPane.setLayout(null);
-		   
-		   panelJugadores = new JPanel();
-		   panelJugadores.setBounds(0, 0, 1329, 761);
-		   panelJugadores.setVisible(false);
 		      
 		      panelClasificacion = new JPanel();
 		      panelClasificacion.setLayout(null);
 		      panelClasificacion.setVisible(false);
+		        
+		        panelJugadores = new JPanel();
+		        panelJugadores.setBounds(0, 0, 1329, 761);
+		        panelJugadores.setVisible(false);
+		        contentPane.add(panelJugadores);
+		        panelJugadores.setLayout(null);
+		        
+		        panelFIltroJugadores = new JPanel();
+		        panelFIltroJugadores.setBackground(new Color(255, 255, 255));
+		        panelFIltroJugadores.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		        panelFIltroJugadores.setBounds(890, 158, 403, 549);
+		        panelJugadores.add(panelFIltroJugadores);
+		        panelFIltroJugadores.setLayout(null);
+		        
+		        btnFIltrar = new JButton("Filtrar");
+		        btnFIltrar.setBounds(10, 477, 383, 44);
+		        panelFIltroJugadores.add(btnFIltrar);
+		        
+		        panel_1 = new JPanel();
+		        panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		        panel_1.setBackground(new Color(255, 255, 255));
+		        panel_1.setBounds(10, 193, 383, 60);
+		        panelFIltroJugadores.add(panel_1);
+		        panel_1.setLayout(null);
+		        
+		        lblAtaqueFIltro = new JLabel("Fuerza Ataque");
+		        lblAtaqueFIltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblAtaqueFIltro.setBounds(10, 11, 106, 35);
+		        panel_1.add(lblAtaqueFIltro);
+		        
+		        lblAtaqueMinFiltro = new JLabel("Min");
+		        lblAtaqueMinFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblAtaqueMinFiltro.setBounds(151, 11, 30, 35);
+		        panel_1.add(lblAtaqueMinFiltro);
+		        
+		        lblAtaqueMaxFiltro = new JLabel("Max");
+		        lblAtaqueMaxFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblAtaqueMaxFiltro.setBounds(260, 11, 30, 35);
+		        panel_1.add(lblAtaqueMaxFiltro);
+		        
+		        spinnerMinAtaque = new JSpinner();
+		        spinnerMinAtaque.setBounds(185, 10, 55, 38);
+		        panel_1.add(spinnerMinAtaque);
+		        
+		        spinnerMaxAtaque = new JSpinner();
+		        spinnerMaxAtaque.setBounds(290, 11, 55, 38);
+		        panel_1.add(spinnerMaxAtaque);
+		        	
+		        panel_2 = new JPanel();
+		        panel_2.setLayout(null);
+		        panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		        panel_2.setBackground(Color.WHITE);
+		        panel_2.setBounds(10, 264, 383, 60);
+		        panelFIltroJugadores.add(panel_2);
+		        
+		        lblTecnicaFIltro = new JLabel("Fuerza Tecnica");
+		        lblTecnicaFIltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblTecnicaFIltro.setBounds(10, 11, 106, 35);
+		        panel_2.add(lblTecnicaFIltro);
+		        
+		        lblTecnicaMinFiltro = new JLabel("Min");
+		        lblTecnicaMinFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblTecnicaMinFiltro.setBounds(151, 11, 30, 35);
+		        panel_2.add(lblTecnicaMinFiltro);
+		        
+		        lblTecnicaMaxFiltro = new JLabel("Max");
+		        lblTecnicaMaxFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblTecnicaMaxFiltro.setBounds(260, 11, 30, 35);
+		        panel_2.add(lblTecnicaMaxFiltro);
+		        
+		        spinnerMinTecnica = new JSpinner();
+		        spinnerMinTecnica.setBounds(185, 10, 55, 38);
+		        panel_2.add(spinnerMinTecnica);
+		        
+		        spinnerMaxTecnica = new JSpinner();
+		        spinnerMaxTecnica.setBounds(290, 11, 55, 38);
+		        panel_2.add(spinnerMaxTecnica);
+		        
+		        panel_3 = new JPanel();
+		        panel_3.setLayout(null);
+		        panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		        panel_3.setBackground(Color.WHITE);
+		        panel_3.setBounds(10, 335, 383, 60);
+		        panelFIltroJugadores.add(panel_3);
+		        
+		        lblDefensaFiltro = new JLabel("Fuerza Defensa");
+		        lblDefensaFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblDefensaFiltro.setBounds(10, 11, 106, 35);
+		        panel_3.add(lblDefensaFiltro);
+		        
+		        lblDefensaMinFiltro = new JLabel("Min");
+		        lblDefensaMinFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblDefensaMinFiltro.setBounds(151, 11, 30, 35);
+		        panel_3.add(lblDefensaMinFiltro);
+		        
+		        lblDefensaMaxFiltro = new JLabel("Max");
+		        lblDefensaMaxFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblDefensaMaxFiltro.setBounds(260, 11, 30, 35);
+		        panel_3.add(lblDefensaMaxFiltro);
+		        
+		        spinnerMinDefensa = new JSpinner();
+		        spinnerMinDefensa.setBounds(185, 10, 55, 38);
+		        panel_3.add(spinnerMinDefensa);
+		        
+		        spinnerMaxDefensa = new JSpinner();
+		        spinnerMaxDefensa.setBounds(290, 11, 55, 38);
+		        panel_3.add(spinnerMaxDefensa);
+		        
+		        panel_4 = new JPanel();
+		        panel_4.setLayout(null);
+		        panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
+		        panel_4.setBackground(Color.WHITE);
+		        panel_4.setBounds(10, 406, 383, 60);
+		        panelFIltroJugadores.add(panel_4);
+		        
+		        lblPorteroFIltro = new JLabel("Fuerza Portero");
+		        lblPorteroFIltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblPorteroFIltro.setBounds(10, 11, 106, 35);
+		        panel_4.add(lblPorteroFIltro);
+		        
+		        lblProteroMinFiltro = new JLabel("Min");
+		        lblProteroMinFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblProteroMinFiltro.setBounds(151, 11, 30, 35);
+		        panel_4.add(lblProteroMinFiltro);
+		        
+		        lblProteroMaxFiltro = new JLabel("Max");
+		        lblProteroMaxFiltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblProteroMaxFiltro.setBounds(260, 11, 30, 35);
+		        panel_4.add(lblProteroMaxFiltro);
+		        
+		        spinnerMinPortero = new JSpinner();
+		        spinnerMinPortero.setBounds(185, 10, 55, 38);
+		        panel_4.add(spinnerMinPortero);
+		        
+		        spinnerMaxPortero = new JSpinner();
+		        spinnerMaxPortero.setBounds(290, 11, 55, 38);
+		        panel_4.add(spinnerMaxPortero);
+		        
+		        panel_5 = new JPanel();
+		        panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
+		        panel_5.setBackground(new Color(255, 255, 255));
+		        panel_5.setBounds(10, 66, 383, 116);
+		        panelFIltroJugadores.add(panel_5);
+		        panel_5.setLayout(null);
+		        
+		        comboBoxFiltroEquipo = new JComboBox();
+		        comboBoxFiltroEquipo.setBounds(215, 61, 158, 44);
+		        panel_5.add(comboBoxFiltroEquipo);
+		        
+		        comboBoxFiltroPosicion = new JComboBox();
+		        comboBoxFiltroPosicion.setBounds(10, 61, 158, 44);
+		        panel_5.add(comboBoxFiltroPosicion);
+		        
+		        lblPosicionFIltro = new JLabel("Posicion");
+		        lblPosicionFIltro.setHorizontalAlignment(SwingConstants.CENTER);
+		        lblPosicionFIltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblPosicionFIltro.setBounds(10, 15, 158, 35);
+		        panel_5.add(lblPosicionFIltro);
+		        
+		        lblEquipoFIltro = new JLabel("Equipo");
+		        lblEquipoFIltro.setHorizontalAlignment(SwingConstants.CENTER);
+		        lblEquipoFIltro.setFont(new Font("Tahoma", Font.BOLD, 13));
+		        lblEquipoFIltro.setBounds(215, 15, 158, 35);
+		        panel_5.add(lblEquipoFIltro);
+		        
+		        lblFIltros = new JLabel("Filtros");
+		        lblFIltros.setHorizontalAlignment(SwingConstants.CENTER);
+		        lblFIltros.setFont(new Font("Tahoma", Font.BOLD, 33));
+		        lblFIltros.setBounds(10, 11, 383, 44);
+		        panelFIltroJugadores.add(lblFIltros);
+		        
+		        lblLogJugadores = new JLabel("");
+		        lblLogJugadores.setBounds(250, 1, 251, 146);
+		        panelJugadores.add(lblLogJugadores);
+		        
+		         lblNewLabel = new JLabel("Jugadores");
+		         lblNewLabel.setForeground(new Color(255, 255, 255));
+		         lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 45));
+		         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		         lblNewLabel.setBounds(603, 0, 487, 147);
+		         panelJugadores.add(lblNewLabel);
+		         
+		         scrollPane = new JScrollPane();
+		         scrollPane.setBounds(30, 158, 840, 549);
+		         panelJugadores.add(scrollPane);
+		         
+		         tablaJugadores = new JTable();
+		         scrollPane.setViewportView(tablaJugadores);
+		         
+		         lblVolverJugadores = new JLabel("");
+		         lblVolverJugadores.setBounds(0, 1, 82, 79);
+		         panelJugadores.add(lblVolverJugadores);
+		         
+		         lblFondo_Pantalla_Jugadores = new JLabel("");
+		         lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
+		         panelJugadores.add(lblFondo_Pantalla_Jugadores);
 		       
 		        panelInicio = new JPanel();
 		        panelInicio.setBounds(0, 0, 1329, 742);
@@ -427,34 +653,6 @@ public class Vista extends JFrame {
 		                lblFondoPlantilla = new JLabel("");
 		                lblFondoPlantilla.setBounds(0, 0, 1329, 764);
 		                PanelPlantilla.add(lblFondoPlantilla);
-		   contentPane.add(panelJugadores);
-		   panelJugadores.setLayout(null);
-		   
-		   lblLogJugadores = new JLabel("");
-		   lblLogJugadores.setBounds(250, 1, 251, 146);
-		   panelJugadores.add(lblLogJugadores);
-		   
-		    lblNewLabel = new JLabel("Jugadores");
-		    lblNewLabel.setForeground(new Color(255, 255, 255));
-		   lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 45));
-		   lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		   lblNewLabel.setBounds(603, 0, 487, 147);
-		   panelJugadores.add(lblNewLabel);
-		   
-		   scrollPane = new JScrollPane();
-		   scrollPane.setBounds(250, 157, 840, 549);
-		   panelJugadores.add(scrollPane);
-		   
-		   tablaJugadores = new JTable();
-		   scrollPane.setViewportView(tablaJugadores);
-		   
-		   lblVolverJugadores = new JLabel("");
-		   lblVolverJugadores.setBounds(0, 1, 82, 79);
-		   panelJugadores.add(lblVolverJugadores);
-		   
-		   lblFondo_Pantalla_Jugadores = new JLabel("");
-		   lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
-		   panelJugadores.add(lblFondo_Pantalla_Jugadores);
 	}
 	
 	public static ImageIcon ajustarTamañoImg(String ruta, int ancho, int alto) {

@@ -116,5 +116,6 @@ public class Jugador implements java.io.Serializable {
 	public void setFuerzaPortero(int fuerzaPortero) {
 		this.fuerzaPortero = fuerzaPortero;
 	}
-
+	
+	
 }

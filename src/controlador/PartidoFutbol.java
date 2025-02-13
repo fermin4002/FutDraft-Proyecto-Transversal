@@ -13,7 +13,7 @@ class PartidoFutbol extends Thread {
     private JLabel lblResultado;
     private DefaultListModel<String> listModel; 
     private String eventoTexto = "";
-
+    
     public PartidoFutbol(String equipoLocal, String equipoVisitante, JLabel lblMinutos, JLabel lblResultado, DefaultListModel<String> listModel) {
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
@@ -45,7 +45,7 @@ class PartidoFutbol extends Thread {
                     Thread.sleep(1000);
                 }
             }catch(InterruptedException e) {
-                return;
+                e.printStackTrace();
             }
         }
     }

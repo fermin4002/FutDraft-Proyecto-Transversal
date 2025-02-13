@@ -253,4 +253,68 @@ public class ControladorHibernate {
 		}
 	}
 	
+	public List<String> extraerEquipos(){
+		List<String> salida=new ArrayList<String>();
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			
+			String rr="select distinct equipo from jugador";
+			
+			Query query= sesion.createSQLQuery(rr);
+			
+			salida=query.list();
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		
+		return salida;
+	}
+	
+	public List<Jugador> extraerJugadoresFiltro(int minA,int maxA,int minT,int maxT,int minD,int maxD,int minP,int maxP){
+		List<Jugador> salida=null;
+		
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Jugador j where (j.fuerzaAtaque>= :minA and j.fuerzaAtaque<=:maxA)"
+					+ "and (j.fuerzaTecnica>= :minT and j.fuerzaTecnica<=:maxT) "
+					+ "and (j.fuerzaDefensa>= :minD and j.fuerzaDefensa<=:maxD) "
+					+ "and (j.fuerzaPortero>= :minP and j.fuerzaPortero<=:maxP) ";
+			
+			Query query= sesion.createQuery(consulta);
+			query.setParameter("minA", minA);
+			query.setParameter("minT", minT);
+			query.setParameter("minD", minD);
+			query.setParameter("minP", minP);
+			
+			query.setParameter("maxA", maxA);
+			query.setParameter("maxT", maxT);
+			query.setParameter("maxD", maxD);
+			query.setParameter("maxP", maxP);
+
+			salida=query.list();
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
 }

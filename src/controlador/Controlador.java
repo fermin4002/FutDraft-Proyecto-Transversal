@@ -10,9 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -61,7 +63,7 @@ public class Controlador implements ActionListener,MouseListener {
 
         //Clasificacion
         this.vista.lblVolverClasificacion.addMouseListener(this);
-
+        this.vista.btnFIltrar.addActionListener(this);
        //Ver equipos
         this.vista.lblVolverPlantilla_1.addMouseListener(this);
 
@@ -91,6 +93,28 @@ public class Controlador implements ActionListener,MouseListener {
         modeloTCLasidicacion.addColumn("PE");
         modeloTCLasidicacion.addColumn("PP");
         
+       
+        
+        
+        vista.spinnerMinPortero.setModel(new SpinnerNumberModel(1,1,99,1));
+        vista.spinnerMinAtaque.setModel(new SpinnerNumberModel(1,1,99,1));
+        vista.spinnerMinDefensa.setModel(new SpinnerNumberModel(1,1,99,1));
+        vista.spinnerMinTecnica.setModel(new SpinnerNumberModel(1,1,99,1));
+        
+        vista.spinnerMaxTecnica.setModel(new SpinnerNumberModel(99,1,99,1));
+        vista.spinnerMaxDefensa.setModel(new SpinnerNumberModel(99,1,99,1));
+        vista.spinnerMaxAtaque.setModel(new SpinnerNumberModel(99,1,99,1));
+        vista.spinnerMaxPortero.setModel(new SpinnerNumberModel(99,1,99,1));
+        
+        vista.comboBoxFiltroPosicion.addItem("Todas");
+        vista.comboBoxFiltroPosicion.addItem("POR");
+        vista.comboBoxFiltroPosicion.addItem("DEF");
+        vista.comboBoxFiltroPosicion.addItem("MED");
+        vista.comboBoxFiltroPosicion.addItem("DEL");
+        
+        vista.comboBoxFiltroEquipo.addItem("Todos");
+        
+        
         
         vista.tablaJugadores.setModel(modeloTJugadores);
         vista.tablaClasificacion.setModel(modeloTCLasidicacion);
@@ -107,6 +131,9 @@ public class Controlador implements ActionListener,MouseListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        
+        //vista.comboBoxFiltroEquipo.setModel();
+        cargarEquipos();
         cargarTabla(modeloTJugadores);
         imagenes();
     }
@@ -155,9 +182,12 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelMenu.setVisible(false);
         	this.vista.panelJugadores.setVisible(true);
         }
-        if(e.getSource()==this.vista.btnSimularPartida) {
+        else if(e.getSource()==this.vista.btnSimularPartida) {
         	this.vista.PanelPlantilla.setVisible(false);
         	this.vista.panelVistaEquipo.setVisible(true);
+        }
+        else if(e.getSource()==this.vista.btnFIltrar) {
+        	cargarTabla(modeloTCLasidicacion);
         }
         
     }
@@ -329,9 +359,46 @@ public class Controlador implements ActionListener,MouseListener {
 	
 	//Tabla Jugadores
 	public void cargarTabla(DefaultTableModel modelo) {
-		List<Jugador> entrada=hibernate.extraerJugadores();
+		
+		int minA=(int) vista.spinnerMinAtaque.getValue();
+		int maxA=(int) vista.spinnerMaxAtaque.getValue();
+		int minT=(int) vista.spinnerMinTecnica.getValue();
+		int maxT=(int) vista.spinnerMaxTecnica.getValue();
+		int minD=(int) vista.spinnerMinDefensa.getValue();
+		int maxD=(int) vista.spinnerMaxDefensa.getValue();
+		int minP=(int) vista.spinnerMinPortero.getValue();
+		int maxP=(int) vista.spinnerMaxPortero.getValue();
+		String equipo=String.valueOf(vista.comboBoxFiltroEquipo.getSelectedItem());
+		String posicion=String.valueOf(vista.comboBoxFiltroPosicion.getSelectedItem());
+		
+		
+		List<Jugador> entrada=hibernate.extraerJugadoresFiltro(minA,maxA,minT,maxT,minD,maxD,minP,maxP);
+		
+		int tamano=entrada.size();
+		
+		if(!equipo.equals("Todos")) {
+			for(int i =tamano-1;i>-1;i--) {
+				if(!entrada.get(i).getEquipo_1().equals(equipo)) {
+					entrada.remove(i);
+				}
+			}
+		}
+		
+		tamano=entrada.size();
+		
+		if(!posicion.equals("Todas")) {
+			for(int i =tamano-1;i>-1;i--) {
+				if(!entrada.get(i).getPosicion().equals(posicion)) {
+					entrada.remove(i);
+				}
+			}
+		}
+		
+		
+		
 		
 		modelo.setRowCount(0);
+		vista.tablaJugadores.setModel(modelo);
 		for(Jugador clave:entrada) {
 			String[] row= {
 					clave.getNombre(),
@@ -346,4 +413,17 @@ public class Controlador implements ActionListener,MouseListener {
 			modelo.addRow(row);
 		}
 	}
+	
+	
+	
+	public void cargarEquipos() {
+		
+		List<String> entrada=hibernate.extraerEquipos();
+		
+		for(String clave:entrada) {
+			vista.comboBoxFiltroEquipo.addItem(clave);
+		}
+		
+	}
+	
 }
