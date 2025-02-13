@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 feb 2025, 10:17:18 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="liga_fantasy" name="persistencias.Partido" optimistic-lock="none" table="partido">
+        <id name="idPartido" type="int">
+            <column name="id_partido"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="persistencias.Equipo" fetch="select" name="equipoByIdEquipoVisitante">
+            <column name="id_equipo_visitante"/>
+        </many-to-one>
+        <many-to-one class="persistencias.Equipo" fetch="select" name="equipoByIdEquipoLocal">
+            <column name="id_equipo_local"/>
+        </many-to-one>
+        <property name="jornada" type="int">
+            <column name="jornada" not-null="true"/>
+        </property>
+        <property name="golesLocal" type="java.lang.Integer">
+            <column name="goles_local"/>
+        </property>
+        <property name="golesVisitante" type="java.lang.Integer">
+            <column name="goles_visitante"/>
+        </property>
+    </class>
+</hibernate-mapping>
