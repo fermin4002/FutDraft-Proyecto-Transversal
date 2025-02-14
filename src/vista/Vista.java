@@ -179,6 +179,28 @@ public class Vista extends JFrame {
 	public JLabel lblNombreVisitanteVista;
 	public JComboBox<String> comboBoxEquipoClasificacion;
 	public JPanel panel_6;
+	public JPanel panelClasiDelantero1;
+	public JLabel lblClasiDelantero1;
+	public JPanel panelClasiDelantero1_1;
+	public JLabel lblClasiDelantero2;
+	public JPanel panelClasiDelantero1_2;
+	public JLabel lblClasiMedio2;
+	public JPanel panelClasiDelantero1_3;
+	public JLabel lblClasiMedio3;
+	public JPanel panelClasiDelantero1_4;
+	public JLabel lblClasiMedio1;
+	public JPanel panelClasiDelantero1_5;
+	public JLabel lblClasiMedio4;
+	public JPanel panelClasiDelantero1_6;
+	public JLabel lblClasiDefensa1;
+	public JPanel panelClasiDelantero1_7;
+	public JLabel lblClasiDefensa2;
+	public JPanel panelClasiDelantero1_8;
+	public JLabel lblClasiDefensa3;
+	public JPanel panelClasiDelantero1_9;
+	public JLabel lblClasiDefensa4;
+	public JPanel panelClasiDelantero1_10;
+	public JLabel lblClasiPortero;
 	public JLabel lblFondoClasificacionEquipo;
 
 	/**
@@ -242,6 +264,127 @@ public class Vista extends JFrame {
 		         		      		        		      panel_6.setBounds(555, 69, 719, 610);
 		         		      		        		      panelClasificacion.add(panel_6);
 		         		      		        		      panel_6.setLayout(null);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1 = new JPanel();
+		         		      		        		      panelClasiDelantero1.setBounds(77, 51, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1);
+		         		      		        		      panelClasiDelantero1.setLayout(null);
+		         		      		        		      
+		         		      		        		      lblClasiDelantero1 = new JLabel("");
+		         		      		        		      lblClasiDelantero1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiDelantero1.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiDelantero1.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1.add(lblClasiDelantero1);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_1 = new JPanel();
+		         		      		        		      panelClasiDelantero1_1.setLayout(null);
+		         		      		        		      panelClasiDelantero1_1.setBounds(481, 51, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_1);
+		         		      		        		      
+		         		      		        		      lblClasiDelantero2 = new JLabel("");
+		         		      		        		      lblClasiDelantero2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiDelantero2.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiDelantero2.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_1.add(lblClasiDelantero2);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_2 = new JPanel();
+		         		      		        		      panelClasiDelantero1_2.setLayout(null);
+		         		      		        		      panelClasiDelantero1_2.setBounds(150, 194, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_2);
+		         		      		        		      
+		         		      		        		      lblClasiMedio2 = new JLabel("");
+		         		      		        		      lblClasiMedio2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiMedio2.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiMedio2.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_2.add(lblClasiMedio2);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_3 = new JPanel();
+		         		      		        		      panelClasiDelantero1_3.setLayout(null);
+		         		      		        		      panelClasiDelantero1_3.setBounds(410, 194, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_3);
+		         		      		        		      
+		         		      		        		      lblClasiMedio3 = new JLabel("");
+		         		      		        		      lblClasiMedio3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiMedio3.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiMedio3.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_3.add(lblClasiMedio3);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_4 = new JPanel();
+		         		      		        		      panelClasiDelantero1_4.setLayout(null);
+		         		      		        		      panelClasiDelantero1_4.setBounds(63, 245, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_4);
+		         		      		        		      
+		         		      		        		      lblClasiMedio1 = new JLabel("");
+		         		      		        		      lblClasiMedio1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiMedio1.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiMedio1.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_4.add(lblClasiMedio1);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_5 = new JPanel();
+		         		      		        		      panelClasiDelantero1_5.setLayout(null);
+		         		      		        		      panelClasiDelantero1_5.setBounds(502, 245, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_5);
+		         		      		        		      
+		         		      		        		      lblClasiMedio4 = new JLabel("");
+		         		      		        		      lblClasiMedio4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiMedio4.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiMedio4.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_5.add(lblClasiMedio4);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_6 = new JPanel();
+		         		      		        		      panelClasiDelantero1_6.setLayout(null);
+		         		      		        		      panelClasiDelantero1_6.setBounds(63, 420, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_6);
+		         		      		        		      
+		         		      		        		      lblClasiDefensa1 = new JLabel("");
+		         		      		        		      lblClasiDefensa1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiDefensa1.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiDefensa1.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_6.add(lblClasiDefensa1);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_7 = new JPanel();
+		         		      		        		      panelClasiDelantero1_7.setLayout(null);
+		         		      		        		      panelClasiDelantero1_7.setBounds(150, 369, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_7);
+		         		      		        		      
+		         		      		        		      lblClasiDefensa2 = new JLabel("");
+		         		      		        		      lblClasiDefensa2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiDefensa2.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiDefensa2.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_7.add(lblClasiDefensa2);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_8 = new JPanel();
+		         		      		        		      panelClasiDelantero1_8.setLayout(null);
+		         		      		        		      panelClasiDelantero1_8.setBounds(410, 369, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_8);
+		         		      		        		      
+		         		      		        		      lblClasiDefensa3 = new JLabel("");
+		         		      		        		      lblClasiDefensa3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiDefensa3.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiDefensa3.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_8.add(lblClasiDefensa3);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_9 = new JPanel();
+		         		      		        		      panelClasiDelantero1_9.setLayout(null);
+		         		      		        		      panelClasiDelantero1_9.setBounds(502, 420, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_9);
+		         		      		        		      
+		         		      		        		      lblClasiDefensa4 = new JLabel("");
+		         		      		        		      lblClasiDefensa4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiDefensa4.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiDefensa4.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_9.add(lblClasiDefensa4);
+		         		      		        		      
+		         		      		        		      panelClasiDelantero1_10 = new JPanel();
+		         		      		        		      panelClasiDelantero1_10.setLayout(null);
+		         		      		        		      panelClasiDelantero1_10.setBounds(285, 537, 160, 40);
+		         		      		        		      panel_6.add(panelClasiDelantero1_10);
+		         		      		        		      
+		         		      		        		      lblClasiPortero = new JLabel("");
+		         		      		        		      lblClasiPortero.setFont(new Font("Tahoma", Font.BOLD, 14));
+		         		      		        		      lblClasiPortero.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasiPortero.setBounds(0, 0, 160, 40);
+		         		      		        		      panelClasiDelantero1_10.add(lblClasiPortero);
 		         		      		        		      
 		         		      		        		      lblFondoClasificacionEquipo = new JLabel("");
 		         		      		        		      lblFondoClasificacionEquipo.setBounds(0, 0, 719, 610);

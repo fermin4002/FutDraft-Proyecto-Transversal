@@ -584,12 +584,42 @@ public class ControladorHibernate {
 			sesion.getTransaction().commit();
 		}catch(Exception e) {
 			e.printStackTrace();
-			sesion.getTransaction().getRollbackOnly();
+			if(sesion!=null) {
+				sesion.getTransaction().getRollbackOnly();
+			}
 		}finally {
 			if(sesion==null) {
 				sesion.close();
 			}
 		}
+	}
+	
+	public List<Jugador> extraerPlantilla(Equipo equipo){
+		List<Jugador> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Jugador where equipo=:equipo order by posicion ";
+			
+			Query query=sesion.createQuery(consulta);
+			query.setParameter("equipo", equipo);
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		
+		return salida;
 	}
 	
 	

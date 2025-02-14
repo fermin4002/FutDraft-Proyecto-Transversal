@@ -48,7 +48,7 @@ public class Controlador implements ActionListener,MouseListener {
         jugador=new ArrayList<Jugador>();
         nombres =new String[] {
         	    "Tormenta FC", "Dragones Negros", "Relámpagos Dorados", "Águilas de Acero",
-        	    "Titanes del Gol", "Neón United", "COnstrucciones Villalta", "Furia Carmesí",
+        	    "Titanes del Gol", "Neón United", "Construcciones Villalta", "Ules FC",
         	    "Guerreros del Césped", "Rayo Espectral", "Patatillas FC", "Escorpiones de Fuego",
         	    "Trueno Celeste", "Sombras del Balón", "Leones del Horizonte", "Halcones Plateados",
         	    "Inferno FC", "Vikingos del Área", "Tempestad Azul"
@@ -94,7 +94,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.btnFIltrar.addActionListener(this);
         this.vista.comboBoxJornada.addActionListener(this);
         this.vista.lblSalirPrincipal.addMouseListener(this);
-
+        this.vista.comboBoxEquipoClasificacion.addActionListener(this);
        //Ver equipos
         this.vista.lblVolverPlantilla_1.addMouseListener(this);
 
@@ -329,6 +329,8 @@ public class Controlador implements ActionListener,MouseListener {
         	}else {
         		vista.lblErrorCreacion.setText("ERROR, introduzca un nombre para el equipo");
         	}
+        }else if(e.getSource()==this.vista.comboBoxEquipoClasificacion) {
+        	cargarPlantilla();
         }
         
         
@@ -964,6 +966,54 @@ public class Controlador implements ActionListener,MouseListener {
 		}
 		
 		lista.setModel(modelo);
+	}
+	
+	public void cargarPlantilla() {
+		int selec=vista.comboBoxEquipoClasificacion.getSelectedIndex();
+		Equipo equipo=hibernate.extraerEquiposOrdenados().get(selec);
+		List<Jugador> jugadores=hibernate.extraerPlantilla(equipo);
+		
+		if(jugadores.size()==11) {
+			for(int i =0;i<11;i++) {
+				
+				switch(i) {
+				case 0:
+					vista.lblClasiDefensa1.setText(jugadores.get(i).getNombre());
+					break;
+				case 1:
+					vista.lblClasiDefensa2.setText(jugadores.get(i).getNombre());
+					break;
+				case 2:
+					vista.lblClasiDefensa3.setText(jugadores.get(i).getNombre());
+					break;
+				case 3:
+					vista.lblClasiDefensa4.setText(jugadores.get(i).getNombre());
+					break;
+				case 4:
+					vista.lblClasiDelantero1.setText(jugadores.get(i).getNombre());
+					break;
+				case 5:
+					vista.lblClasiDelantero2.setText(jugadores.get(i).getNombre());
+					break;
+				case 6:
+					vista.lblClasiMedio1.setText(jugadores.get(i).getNombre());
+					break;
+				case 7:
+					vista.lblClasiMedio2.setText(jugadores.get(i).getNombre());
+					break;
+				case 8:
+					vista.lblClasiMedio3.setText(jugadores.get(i).getNombre());
+					break;
+				case 9:
+					vista.lblClasiMedio4.setText(jugadores.get(i).getNombre());
+					break;
+				case 10:
+					vista.lblClasiPortero.setText(jugadores.get(i).getNombre());
+					break;
+				}
+				
+			}
+		}
 	}
 	
 	
