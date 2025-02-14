@@ -202,6 +202,7 @@ public class Vista extends JFrame {
 	public JPanel panelClasiDelantero1_10;
 	public JLabel lblClasiPortero;
 	public JLabel lblFondoClasificacionEquipo;
+	public JScrollPane scrollPane_1;
 
 	/**
 	 * Launch the application.
@@ -396,7 +397,7 @@ public class Vista extends JFrame {
 		         		      		        		      
 		         		      		        		      panelResultados = new JPanel();
 		         		      		        		      panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		         		      		        		      panelResultados.setBounds(92, 432, 443, 247);
+		         		      		        		      panelResultados.setBounds(92, 451, 443, 247);
 		         		      		        		      panelClasificacion.add(panelResultados);
 		         		      		        		      panelResultados.setLayout(null);
 		         		      		        		      
@@ -418,13 +419,16 @@ public class Vista extends JFrame {
 		         		      		        		      
 		         		      		        		      JPanel panel = new JPanel();
 		         		      		        		      panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		         		      		        		      panel.setBounds(92, 11, 443, 402);
+		         		      		        		      panel.setBounds(92, 11, 443, 424);
 		         		      		        		      panelClasificacion.add(panel);
 		         		      		        		      panel.setLayout(null);
 		         		      		        		      
+		         		      		        		      scrollPane_1 = new JScrollPane();
+		         		      		        		      scrollPane_1.setBounds(10, 63, 423, 350);
+		         		      		        		      panel.add(scrollPane_1);
+		         		      		        		      
 		         		      		        		      tablaClasificacion = new JTable();
-		         		      		        		      tablaClasificacion.setBounds(10, 63, 423, 327);
-		         		      		        		      panel.add(tablaClasificacion);
+		         		      		        		      scrollPane_1.setViewportView(tablaClasificacion);
 		         		      		        		      
 		         		      		        		      lblClasificacion = new JLabel("CLASIFICACIÓN");
 		         		      		        		      lblClasificacion.setHorizontalAlignment(SwingConstants.CENTER);

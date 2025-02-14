@@ -125,9 +125,10 @@ public class Controlador implements ActionListener,MouseListener {
         modeloTJornadas.addColumn("Visitante");
         
         modeloTCLasidicacion=new DefaultTableModel();
-        modeloTCLasidicacion.addColumn("");
+        modeloTCLasidicacion.addColumn("POS");
         modeloTCLasidicacion.addColumn("Nombre");
         modeloTCLasidicacion.addColumn("PTS");
+        modeloTCLasidicacion.addColumn("DG");
         modeloTCLasidicacion.addColumn("PJ");
         modeloTCLasidicacion.addColumn("PG");
         modeloTCLasidicacion.addColumn("PE");
@@ -171,7 +172,7 @@ public class Controlador implements ActionListener,MouseListener {
         
         
         
-        //vista.comboBoxFiltroEquipo.setModel();
+        
         cargarEquipos();
         cargarComboJornada();
         cargarTabla(modeloTJugadores);
@@ -944,13 +945,14 @@ public class Controlador implements ActionListener,MouseListener {
 			String posS=String.valueOf(pos);
 			String nombre=clave.getNombre();
 			String pts=String.valueOf(clave.getPuntos());
+			String dg=String.valueOf(clave.getGolesFavor()-clave.getGolesContra());
 			String pj=String.valueOf(clave.getEmpates()+clave.getVictorias()+clave.getDerrotas());
 			String v=String.valueOf(clave.getVictorias());
 			String e=String.valueOf(clave.getEmpates());
 			String d=String.valueOf(clave.getDerrotas());
 			
 			modeloCombo.addElement(nombre);
-			modeloTCLasidicacion.addRow(new String[] {posS,nombre,pts,pj,v,e,d});
+			modeloTCLasidicacion.addRow(new String[] {posS,nombre,pts,dg,pj,v,e,d});
 			
 			pos++;
 		}

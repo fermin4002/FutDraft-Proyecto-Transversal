@@ -1,6 +1,9 @@
 package controlador;
 
 import javax.swing.*;
+
+import persistencias.Partido;
+
 import java.util.Random;
 
 class PartidoFutbol extends Thread {
@@ -8,15 +11,17 @@ class PartidoFutbol extends Thread {
     private String equipoVisitante;
     private int golesLocal;
     private int golesVisitante;
+    private Partido partido;
     private Random random;
     private JLabel lblMinutos;
     private JLabel lblResultado;
     private DefaultListModel<String> listModel; 
     private String eventoTexto = "";
     
-    public PartidoFutbol(String equipoLocal, String equipoVisitante, JLabel lblMinutos, JLabel lblResultado, DefaultListModel<String> listModel) {
-        this.equipoLocal = equipoLocal;
-        this.equipoVisitante = equipoVisitante;
+    public PartidoFutbol(Partido partido,JLabel lblMinutos, JLabel lblResultado, DefaultListModel<String> listModel) {
+        this.partido=partido;
+    	this.equipoLocal = partido.getEquipoByIdEquipoLocal().getNombre();
+        this.equipoVisitante = partido.getEquipoByIdEquipoVisitante().getNombre();
         this.golesLocal = 0;
         this.golesVisitante = 0;
         this.random = new Random();
@@ -27,6 +32,9 @@ class PartidoFutbol extends Thread {
 
     @Override
     public void run() {
+    	listModel.addElement("Comienza el partido y");
+    	listModel.addElement("arranca a rodar el esferico");
+    	listModel.addElement("en este"+equipoLocal+"-"+equipoVisitante);
         for (int minuto = 1; minuto <= 90; minuto++) {
         	
         	if(isInterrupted()) {
@@ -48,6 +56,7 @@ class PartidoFutbol extends Thread {
                 e.printStackTrace();
             }
         }
+        
     }
 
     

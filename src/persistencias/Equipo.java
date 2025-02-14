@@ -19,6 +19,8 @@ public class Equipo implements java.io.Serializable {
 	private int empates;
 	private int derrotas;
 	private int puntos;
+	private int golesFavor;
+	private int golesContra; 
 	private boolean equipoJugador;
 	private Set<Partido>  partidosForIdEquipoVisitante = new HashSet(0);
 	private Set<Partido>  partidosForIdEquipoLocal = new HashSet(0);
@@ -137,5 +139,22 @@ public class Equipo implements java.io.Serializable {
 	public void setJugadors(Set<Jugador> jugadors) {
 		this.jugadors = jugadors;
 	}
+	@Column(name="goles_favor", nullable=false)
+	public int getGolesFavor() {
+		return golesFavor;
+	}
+
+	public void setGolesFavor(int golesFavor) {
+		this.golesFavor = golesFavor;
+	}
+	@Column(name="goles_contra", nullable=false)
+	public int getGolesContra() {
+		return golesContra;
+	}
+
+	public void setGolesContra(int golesContra) {
+		this.golesContra = golesContra;
+	}
+	
 
 }
