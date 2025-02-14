@@ -228,6 +228,161 @@ public class Vista extends JFrame {
 		         		      		        panelVistaEquipo = new JPanel();
 		         		      		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		         		      		        panelVistaEquipo.setVisible(false);
+		         		      		        
+		         		      		         PanelPlantilla = new JPanel();
+		         		      		         PanelPlantilla.setBounds(0, 0, 1329, 742);
+		         		      		         PanelPlantilla.setVisible(false);
+		         		      		         contentPane.add(PanelPlantilla);
+		         		      		         PanelPlantilla.setLayout(null);
+		         		      		         
+		         		      		          panelElecion = new JPanel();
+		         		      		          panelElecion.setBounds(249, 148, 844, 324);
+		         		      		          panelElecion.setVisible(false);
+		         		      		          
+		         		      		          lblVolverPlantilla = new JLabel("");
+		         		      		          lblVolverPlantilla.setBounds(0, 0, 82, 79);
+		         		      		          PanelPlantilla.add(lblVolverPlantilla);
+		         		      		          
+		         		      		           btnSimularPartida = new JButton("");
+		         		      		           
+		         		      		           btnSimularPartida.setBounds(1029, 622, 213, 91);
+		         		      		           btnSimularPartida.setContentAreaFilled(false); 
+		         		      		           btnSimularPartida.setBorderPainted(false); 
+		         		      		           btnSimularPartida.setFocusPainted(false);
+		         		      		           
+		         		      		           PanelPlantilla.add(btnSimularPartida);
+		         		      		           PanelPlantilla.add(panelElecion);
+		         		      		           panelElecion.setLayout(null);
+		         		      		           
+		         		      		           btnEleccionCinco = new JButton("");
+		         		      		           btnEleccionCinco.setForeground(new Color(255, 255, 255));
+		         		      		           btnEleccionCinco.setFont(new Font("Consolas", Font.BOLD, 10));
+		         		      		           btnEleccionCinco.setBounds(359, 29, 118, 285);
+		         		      		           btnEleccionCinco.setContentAreaFilled(false); 
+		         		      		           btnEleccionCinco.setBorderPainted(false); 
+		         		      		           panelElecion.add(btnEleccionCinco);
+		         		      		           
+		         		      		           lblSalir = new JLabel("");
+		         		      		           lblSalir.setBounds(799, 0, 45, 31);
+		         		      		           panelElecion.add(lblSalir);
+		         		      		           
+		         		      		            btnEleccionUno = new JButton("");
+		         		      		            btnEleccionUno.setForeground(new Color(255, 255, 255));
+		         		      		            btnEleccionUno.setFont(new Font("Consolas", Font.BOLD, 10));
+		         		      		            btnEleccionUno.setContentAreaFilled(false); 
+		         		      		            btnEleccionUno.setBorderPainted(false);
+		         		      		            btnEleccionUno.setBounds(41, 29, 116, 285);
+		         		      		            panelElecion.add(btnEleccionUno);
+		         		      		            
+		         		      		             btnEleccionDos = new JButton("");
+		         		      		             btnEleccionDos.setForeground(new Color(255, 255, 255));
+		         		      		             btnEleccionDos.setFont(new Font("Consolas", Font.BOLD, 10));
+		         		      		             btnEleccionDos.setContentAreaFilled(false); 
+		         		      		             btnEleccionDos.setBorderPainted(false);
+		         		      		             btnEleccionDos.setBounds(196, 29, 117, 285);
+		         		      		             panelElecion.add(btnEleccionDos);
+		         		      		             
+		         		      		             		                btnEleccionTres = new JButton("");
+		         		      		             		                btnEleccionTres.setForeground(new Color(255, 255, 255));
+		         		      		             		                btnEleccionTres.setFont(new Font("Consolas", Font.BOLD, 10));
+		         		      		             		                btnEleccionTres.setBounds(525, 29, 118, 285);
+		         		      		             		                btnEleccionTres.setContentAreaFilled(false); 
+		         		      		             		                btnEleccionTres.setBorderPainted(false);
+		         		      		             		                panelElecion.add(btnEleccionTres);
+		         		      		             		                
+		         		      		             		                 btnEleccionCuatro = new JButton("");
+		         		      		             		                 btnEleccionCuatro.setForeground(new Color(255, 255, 255));
+		         		      		             		                 btnEleccionCuatro.setFont(new Font("Consolas", Font.BOLD, 10));
+		         		      		             		                 btnEleccionCuatro.setBounds(684, 29, 116, 285);
+		         		      		             		                 btnEleccionCuatro.setContentAreaFilled(false); 
+		         		      		             		                 btnEleccionCuatro.setBorderPainted(false); 
+		         		      		             		                 panelElecion.add(btnEleccionCuatro);
+		         		      		             		                 
+		         		      		             		                 lblFondoDraft = new JLabel("");
+		         		      		             		                 lblFondoDraft.setBounds(0, 0, 844, 324);
+		         		      		             		                 panelElecion.add(lblFondoDraft);
+		         		      		             		                 
+		         		      		             		                 btnPortero = new JButton("");
+		         		      		             		                 btnPortero.setBounds(626, 622, 85, 91);
+		         		      		             		                 btnPortero.setContentAreaFilled(false); 
+		         		      		             		                 btnPortero.setBorderPainted(false); 
+		         		      		             		                 btnPortero.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnPortero);
+		         		      		             		                 
+		         		      		             		                 btnDefensaIzquierda = new JButton("");
+		         		      		             		                 btnDefensaIzquierda.setBounds(870, 482, 85, 91);
+		         		      		             		                 btnDefensaIzquierda.setContentAreaFilled(false); 
+		         		      		             		                 btnDefensaIzquierda.setBorderPainted(false); 
+		         		      		             		                 btnDefensaIzquierda.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnDefensaIzquierda);
+		         		      		             		                 
+		         		      		             		                 btnCentroCampistaIzquierdoCentro = new JButton("");
+		         		      		             		                 btnCentroCampistaIzquierdoCentro.setBounds(747, 343, 85, 91);
+		         		      		             		                 btnCentroCampistaIzquierdoCentro.setContentAreaFilled(false); 
+		         		      		             		                 btnCentroCampistaIzquierdoCentro.setBorderPainted(false); 
+		         		      		             		                 btnCentroCampistaIzquierdoCentro.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnCentroCampistaIzquierdoCentro);
+		         		      		             		                 
+		         		      		             		                 btnDefensaIzquierdaCentro = new JButton("");
+		         		      		             		                 btnDefensaIzquierdaCentro.setBounds(747, 482, 85, 91);
+		         		      		             		                 btnDefensaIzquierdaCentro.setContentAreaFilled(false); 
+		         		      		             		                 btnDefensaIzquierdaCentro.setBorderPainted(false); 
+		         		      		             		                 btnDefensaIzquierdaCentro.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnDefensaIzquierdaCentro);
+		         		      		             		                 
+		         		      		             		                 btnDefensaDerechaCentro = new JButton("");
+		         		      		             		                 btnDefensaDerechaCentro.setBounds(525, 482, 85, 91);
+		         		      		             		                 btnDefensaDerechaCentro.setContentAreaFilled(false); 
+		         		      		             		                 btnDefensaDerechaCentro.setBorderPainted(false); 
+		         		      		             		                 btnDefensaDerechaCentro.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnDefensaDerechaCentro);
+		         		      		             		                 
+		         		      		             		                 btnDefensaDerecha = new JButton("");
+		         		      		             		                 btnDefensaDerecha.setBounds(403, 482, 85, 91);
+		         		      		             		                 btnDefensaDerecha.setContentAreaFilled(false); 
+		         		      		             		                 btnDefensaDerecha.setBorderPainted(false); 
+		         		      		             		                 btnDefensaDerecha.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnDefensaDerecha);
+		         		      		             		                 
+		         		      		             		                 btnCentroCampistaIzquierdo = new JButton("");
+		         		      		             		                 btnCentroCampistaIzquierdo.setBounds(870, 343, 85, 91);
+		         		      		             		                 btnCentroCampistaIzquierdo.setContentAreaFilled(false); 
+		         		      		             		                 btnCentroCampistaIzquierdo.setBorderPainted(false); 
+		         		      		             		                 btnCentroCampistaIzquierdo.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnCentroCampistaIzquierdo);
+		         		      		             		                 
+		         		      		             		                 btnCentroCampistaDerechoCentro = new JButton("");
+		         		      		             		                 btnCentroCampistaDerechoCentro.setBounds(525, 343, 85, 91);
+		         		      		             		                 btnCentroCampistaDerechoCentro.setContentAreaFilled(false); 
+		         		      		             		                 btnCentroCampistaDerechoCentro.setBorderPainted(false); 
+		         		      		             		                 btnCentroCampistaDerechoCentro.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnCentroCampistaDerechoCentro);
+		         		      		             		                 
+		         		      		             		                 btnCentroCampistaDerecho = new JButton("");
+		         		      		             		                 btnCentroCampistaDerecho.setBounds(403, 343, 85, 91);
+		         		      		             		                 btnCentroCampistaDerecho.setContentAreaFilled(false); 
+		         		      		             		                 btnCentroCampistaDerecho.setBorderPainted(false); 
+		         		      		             		                 btnCentroCampistaDerecho.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnCentroCampistaDerecho);
+		         		      		             		                 
+		         		      		             		                 btnDelanteroDerecho = new JButton("");
+		         		      		             		                 btnDelanteroDerecho.setBounds(735, 148, 85, 91);
+		         		      		             		                 btnDelanteroDerecho.setContentAreaFilled(false); 
+		         		      		             		                 btnDelanteroDerecho.setBorderPainted(false); 
+		         		      		             		                 btnDelanteroDerecho.setFocusPainted(false);
+		         		      		             		                 PanelPlantilla.add(btnDelanteroDerecho);
+		         		      		             		                 
+		         		      		             		                  btnDelanteroIzquierda = new JButton("");
+		         		      		             		                  btnDelanteroIzquierda.setBounds(525, 148, 85, 91);
+		         		      		             		                  btnDelanteroIzquierda.setContentAreaFilled(false); 
+		         		      		             		                  btnDelanteroIzquierda.setBorderPainted(false); 
+		         		      		             		                  btnDelanteroIzquierda.setFocusPainted(false);
+		         		      		             		                  PanelPlantilla.add(btnDelanteroIzquierda);
+		         		      		             		                  
+
+		         		      		             		                   lblFondoPlantilla = new JLabel("");
+		         		      		             		                   lblFondoPlantilla.setBounds(0, 0, 1329, 764);
+		         		      		             		                   PanelPlantilla.add(lblFondoPlantilla);
 		         		      		        contentPane.add(panelVistaEquipo);
 		         		      		        panelVistaEquipo.setLayout(null);
 		         		      		        
@@ -609,161 +764,6 @@ public class Vista extends JFrame {
 		          panelSimulacion = new JPanel();
 		          panelSimulacion.setBounds(0, 0, 1347, 736);
 		          panelSimulacion.setVisible(false);
-		          
-		           PanelPlantilla = new JPanel();
-		           PanelPlantilla.setBounds(0, 0, 1329, 742);
-		           PanelPlantilla.setVisible(false);
-		           contentPane.add(PanelPlantilla);
-		           PanelPlantilla.setLayout(null);
-		           
-		            panelElecion = new JPanel();
-		            panelElecion.setBounds(249, 148, 844, 324);
-		            panelElecion.setVisible(false);
-		            
-		            lblVolverPlantilla = new JLabel("");
-		            lblVolverPlantilla.setBounds(0, 0, 82, 79);
-		            PanelPlantilla.add(lblVolverPlantilla);
-		            
-		             btnSimularPartida = new JButton("");
-		             
-		             btnSimularPartida.setBounds(1029, 622, 213, 91);
-		             btnSimularPartida.setContentAreaFilled(false); 
-		             btnSimularPartida.setBorderPainted(false); 
-		             btnSimularPartida.setFocusPainted(false);
-		             
-		             PanelPlantilla.add(btnSimularPartida);
-		             PanelPlantilla.add(panelElecion);
-		             panelElecion.setLayout(null);
-		             
-		             btnEleccionCinco = new JButton("");
-		             btnEleccionCinco.setForeground(new Color(255, 255, 255));
-		             btnEleccionCinco.setFont(new Font("Consolas", Font.BOLD, 10));
-		             btnEleccionCinco.setBounds(359, 29, 118, 285);
-		             btnEleccionCinco.setContentAreaFilled(false); 
-		             btnEleccionCinco.setBorderPainted(false); 
-		             panelElecion.add(btnEleccionCinco);
-		             
-		             lblSalir = new JLabel("");
-		             lblSalir.setBounds(799, 0, 45, 31);
-		             panelElecion.add(lblSalir);
-		             
-		              btnEleccionUno = new JButton("");
-		              btnEleccionUno.setForeground(new Color(255, 255, 255));
-		              btnEleccionUno.setFont(new Font("Consolas", Font.BOLD, 10));
-		              btnEleccionUno.setContentAreaFilled(false); 
-		              btnEleccionUno.setBorderPainted(false);
-		              btnEleccionUno.setBounds(41, 29, 116, 285);
-		              panelElecion.add(btnEleccionUno);
-		              
-		               btnEleccionDos = new JButton("");
-		               btnEleccionDos.setForeground(new Color(255, 255, 255));
-		               btnEleccionDos.setFont(new Font("Consolas", Font.BOLD, 10));
-		               btnEleccionDos.setContentAreaFilled(false); 
-		               btnEleccionDos.setBorderPainted(false);
-		               btnEleccionDos.setBounds(196, 29, 117, 285);
-		               panelElecion.add(btnEleccionDos);
-
-		                btnEleccionTres = new JButton("");
-		                btnEleccionTres.setForeground(new Color(255, 255, 255));
-		                btnEleccionTres.setFont(new Font("Consolas", Font.BOLD, 10));
-		                btnEleccionTres.setBounds(525, 29, 118, 285);
-		                btnEleccionTres.setContentAreaFilled(false); 
-		                btnEleccionTres.setBorderPainted(false);
-		                panelElecion.add(btnEleccionTres);
-		                
-		                 btnEleccionCuatro = new JButton("");
-		                 btnEleccionCuatro.setForeground(new Color(255, 255, 255));
-		                 btnEleccionCuatro.setFont(new Font("Consolas", Font.BOLD, 10));
-		                 btnEleccionCuatro.setBounds(684, 29, 116, 285);
-		                 btnEleccionCuatro.setContentAreaFilled(false); 
-		                 btnEleccionCuatro.setBorderPainted(false); 
-		                 panelElecion.add(btnEleccionCuatro);
-		                 
-		                 lblFondoDraft = new JLabel("");
-		                 lblFondoDraft.setBounds(0, 0, 844, 324);
-		                 panelElecion.add(lblFondoDraft);
-		                 
-		                 btnPortero = new JButton("");
-		                 btnPortero.setBounds(626, 622, 85, 91);
-		                 btnPortero.setContentAreaFilled(false); 
-		                 btnPortero.setBorderPainted(false); 
-		                 btnPortero.setFocusPainted(false);
-		                 PanelPlantilla.add(btnPortero);
-		                 
-		                 btnDefensaIzquierda = new JButton("");
-		                 btnDefensaIzquierda.setBounds(870, 482, 85, 91);
-		                 btnDefensaIzquierda.setContentAreaFilled(false); 
-		                 btnDefensaIzquierda.setBorderPainted(false); 
-		                 btnDefensaIzquierda.setFocusPainted(false);
-		                 PanelPlantilla.add(btnDefensaIzquierda);
-		                 
-		                 btnCentroCampistaIzquierdoCentro = new JButton("");
-		                 btnCentroCampistaIzquierdoCentro.setBounds(747, 343, 85, 91);
-		                 btnCentroCampistaIzquierdoCentro.setContentAreaFilled(false); 
-		                 btnCentroCampistaIzquierdoCentro.setBorderPainted(false); 
-		                 btnCentroCampistaIzquierdoCentro.setFocusPainted(false);
-		                 PanelPlantilla.add(btnCentroCampistaIzquierdoCentro);
-		                 
-		                 btnDefensaIzquierdaCentro = new JButton("");
-		                 btnDefensaIzquierdaCentro.setBounds(747, 482, 85, 91);
-		                 btnDefensaIzquierdaCentro.setContentAreaFilled(false); 
-		                 btnDefensaIzquierdaCentro.setBorderPainted(false); 
-		                 btnDefensaIzquierdaCentro.setFocusPainted(false);
-		                 PanelPlantilla.add(btnDefensaIzquierdaCentro);
-		                 
-		                 btnDefensaDerechaCentro = new JButton("");
-		                 btnDefensaDerechaCentro.setBounds(525, 482, 85, 91);
-		                 btnDefensaDerechaCentro.setContentAreaFilled(false); 
-		                 btnDefensaDerechaCentro.setBorderPainted(false); 
-		                 btnDefensaDerechaCentro.setFocusPainted(false);
-		                 PanelPlantilla.add(btnDefensaDerechaCentro);
-		                 
-		                 btnDefensaDerecha = new JButton("");
-		                 btnDefensaDerecha.setBounds(403, 482, 85, 91);
-		                 btnDefensaDerecha.setContentAreaFilled(false); 
-		                 btnDefensaDerecha.setBorderPainted(false); 
-		                 btnDefensaDerecha.setFocusPainted(false);
-		                 PanelPlantilla.add(btnDefensaDerecha);
-		                 
-		                 btnCentroCampistaIzquierdo = new JButton("");
-		                 btnCentroCampistaIzquierdo.setBounds(870, 343, 85, 91);
-		                 btnCentroCampistaIzquierdo.setContentAreaFilled(false); 
-		                 btnCentroCampistaIzquierdo.setBorderPainted(false); 
-		                 btnCentroCampistaIzquierdo.setFocusPainted(false);
-		                 PanelPlantilla.add(btnCentroCampistaIzquierdo);
-		                 
-		                 btnCentroCampistaDerechoCentro = new JButton("");
-		                 btnCentroCampistaDerechoCentro.setBounds(525, 343, 85, 91);
-		                 btnCentroCampistaDerechoCentro.setContentAreaFilled(false); 
-		                 btnCentroCampistaDerechoCentro.setBorderPainted(false); 
-		                 btnCentroCampistaDerechoCentro.setFocusPainted(false);
-		                 PanelPlantilla.add(btnCentroCampistaDerechoCentro);
-		                 
-		                 btnCentroCampistaDerecho = new JButton("");
-		                 btnCentroCampistaDerecho.setBounds(403, 343, 85, 91);
-		                 btnCentroCampistaDerecho.setContentAreaFilled(false); 
-		                 btnCentroCampistaDerecho.setBorderPainted(false); 
-		                 btnCentroCampistaDerecho.setFocusPainted(false);
-		                 PanelPlantilla.add(btnCentroCampistaDerecho);
-		                 
-		                 btnDelanteroDerecho = new JButton("");
-		                 btnDelanteroDerecho.setBounds(735, 148, 85, 91);
-		                 btnDelanteroDerecho.setContentAreaFilled(false); 
-		                 btnDelanteroDerecho.setBorderPainted(false); 
-		                 btnDelanteroDerecho.setFocusPainted(false);
-		                 PanelPlantilla.add(btnDelanteroDerecho);
-		                 
-		                  btnDelanteroIzquierda = new JButton("");
-		                  btnDelanteroIzquierda.setBounds(525, 148, 85, 91);
-		                  btnDelanteroIzquierda.setContentAreaFilled(false); 
-		                  btnDelanteroIzquierda.setBorderPainted(false); 
-		                  btnDelanteroIzquierda.setFocusPainted(false);
-		                  PanelPlantilla.add(btnDelanteroIzquierda);
-		                  
-
-		                   lblFondoPlantilla = new JLabel("");
-		                   lblFondoPlantilla.setBounds(0, 0, 1329, 764);
-		                   PanelPlantilla.add(lblFondoPlantilla);
 		          
 		          panelInformacion = new JPanel();
 		          panelInformacion.setBounds(0, 0, 1321, 734);
