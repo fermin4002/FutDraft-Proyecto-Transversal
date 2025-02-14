@@ -280,6 +280,30 @@ public class ControladorHibernate {
 		return salida;
 	}
 	
+	public void crearEquipo(Equipo equipo) {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			sesion.save(equipo);
+			
+			sesion.getTransaction().commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			if(null!=sesion) {
+				sesion.getTransaction().rollback();
+			}
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		
+	}
+	
 	public void asignarEquipoUpdate(List<Jugador> plantilla) {
 		Session sesion=null;
 		
@@ -335,7 +359,7 @@ public class ControladorHibernate {
 		return salida;
 	}
 	
-	public boolean isEquiposCreados() {
+	public boolean isEquiposCreados(int cantidad) {
 		boolean salida=false;
 		Session sesion=null;
 		
@@ -348,7 +372,36 @@ public class ControladorHibernate {
 			Query query=sesion.createQuery(consulta);
 			List<Equipo> temp=null;
 			temp=query.list();
-			if(temp.size()!=19/*20*/) {
+			if(temp.size()>=cantidad) {
+				salida=true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public boolean isEquiposCreadosMenor(int cantidad) {
+		boolean salida=false;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Equipo";
+			
+			Query query=sesion.createQuery(consulta);
+			List<Equipo> temp=null;
+			temp=query.list();
+			if(temp.size()<cantidad) {
 				salida=true;
 			}
 			
@@ -454,6 +507,34 @@ public class ControladorHibernate {
 			String consulta="from Equipo e order by e.puntos desc";
 			
 			Query query=sesion.createQuery(consulta);
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	//btnSimularPartida.setEnabled(false);
+	public List<Partido> extraerJornadasNoJugadas(){
+		List<Partido> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Partido e where e.golesLocal=null and (e.equipoByIdEquipoLocal.equipoJugador=true or e.equipoByIdEquipoVisitante.equipoJugador=true)"
+					+ " order by e.jornada";
+			
+			Query query=sesion.createQuery(consulta);
+			
 			salida=query.list();
 			
 			

@@ -170,7 +170,13 @@ public class Vista extends JFrame {
 	public JSeparator separator_2;
 	public JLabel lblJornada;
 	public JLabel lblClasificacion;
-	public JPanel panel_6;
+	public JPanel panelNombreEquipo;
+	public JLabel lblIntroduceNombre;
+	public JTextField txtNombreEquipoJugador;
+	public JButton btnCrearEquipoPropio;
+	public JLabel lblErrorCreacion;
+	public JLabel lblNombreLocalVista;
+	public JLabel lblNombreVisitanteVista;
 
 	/**
 	 * Launch the application.
@@ -218,15 +224,92 @@ public class Vista extends JFrame {
 		         		      panelClasificacion.setLayout(null);
 		         		      panelClasificacion.setVisible(false);
 		         		      
+		         		      		        
+		         		      		        panelVistaEquipo = new JPanel();
+		         		      		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
+		         		      		        panelVistaEquipo.setVisible(false);
+		         		      		        contentPane.add(panelVistaEquipo);
+		         		      		        panelVistaEquipo.setLayout(null);
+		         		      		        
+		         		      		        lblNombreVisitanteVista = new JLabel("");
+		         		      		        lblNombreVisitanteVista.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        lblNombreVisitanteVista.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		         		      		        lblNombreVisitanteVista.setBounds(749, 303, 283, 41);
+		         		      		        panelVistaEquipo.add(lblNombreVisitanteVista);
+		         		      		        
+		         		      		        lblNombreLocalVista = new JLabel("");
+		         		      		        lblNombreLocalVista.setForeground(new Color(255, 255, 255));
+		         		      		        lblNombreLocalVista.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        lblNombreLocalVista.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		         		      		        lblNombreLocalVista.setBounds(273, 303, 283, 41);
+		         		      		        panelVistaEquipo.add(lblNombreLocalVista);
+		         		      		        
+		         		      		        lblEmpezarSimulacion = new JLabel("");
+		         		      		        lblEmpezarSimulacion.setBounds(598, 499, 106, 90);
+		         		      		        panelVistaEquipo.add(lblEmpezarSimulacion);
+		         		      		        
+		         		      		        lblNewLabel_EscudoEquipoLocal = new JLabel("");
+		         		      		        lblNewLabel_EscudoEquipoLocal.setBounds(273, 66, 283, 226);
+		         		      		        panelVistaEquipo.add(lblNewLabel_EscudoEquipoLocal);
+		         		      		        
+		         		      		        lblNewLabel_EquipoVisitante = new JLabel("");
+		         		      		        lblNewLabel_EquipoVisitante.setBounds(749, 66, 283, 226);
+		         		      		        panelVistaEquipo.add(lblNewLabel_EquipoVisitante);
+		         		      		        
+		         		      		        listEquipoVisitante = new JList();
+		         		      		        listEquipoVisitante.setBorder(new CompoundBorder());
+		         		      		        listEquipoVisitante.setBounds(749, 354, 283, 374);
+		         		      		        panelVistaEquipo.add(listEquipoVisitante);
+		         		      		        
+		         		      		        listEquipoLocal = new JList();
+		         		      		        listEquipoLocal.setBorder(new CompoundBorder());
+		         		      		        listEquipoLocal.setBounds(273, 354, 283, 374);
+		         		      		        panelVistaEquipo.add(listEquipoLocal);
+		         		      		        
+		         		      		        lblVolverPlantilla_1 = new JLabel("");
+		         		      		        lblVolverPlantilla_1.setBounds(0, 0, 82, 79);
+		         		      		        panelVistaEquipo.add(lblVolverPlantilla_1);
+		         		      		        
+		         		      		        lblFtotoVersus = new JLabel("");
+		         		      		        lblFtotoVersus.setBounds(598, 190, 106, 90);
+		         		      		        panelVistaEquipo.add(lblFtotoVersus);
+		         		      		        
+		         		      		        lblFondoPantalla_2 = new JLabel("");
+		         		      		        lblFondoPantalla_2.setBounds(0, 0, 1352, 736);
+		         		      		        panelVistaEquipo.add(lblFondoPantalla_2);
+		         		      
 		         		      panelMenu = new JPanel();
 		         		      panelMenu.setBounds(0, 0, 1329, 742);
 		         		      contentPane.add(panelMenu);
 		         		      panelMenu.setVisible(false);
 		         		      panelMenu.setLayout(null);
 		         		      
-		         		      panel_6 = new JPanel();
-		         		      panel_6.setBounds(327, 127, 647, 565);
-		         		      panelMenu.add(panel_6);
+		         		      panelNombreEquipo = new JPanel();
+		         		      panelNombreEquipo.setBounds(348, 145, 647, 565);
+		         		      panelMenu.add(panelNombreEquipo);
+		         		      panelNombreEquipo.setVisible(false);
+		         		      panelNombreEquipo.setEnabled(false);
+		         		      panelNombreEquipo.setLayout(null);
+		         		      
+		         		      lblIntroduceNombre = new JLabel("Introduce el nombre de tu equipo:");
+		         		      lblIntroduceNombre.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		         		      lblIntroduceNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      lblIntroduceNombre.setBounds(153, 31, 375, 94);
+		         		      panelNombreEquipo.add(lblIntroduceNombre);
+		         		      
+		         		      txtNombreEquipoJugador = new JTextField();
+		         		      txtNombreEquipoJugador.setBounds(153, 136, 375, 54);
+		         		      panelNombreEquipo.add(txtNombreEquipoJugador);
+		         		      txtNombreEquipoJugador.setColumns(10);
+		         		      
+		         		      btnCrearEquipoPropio = new JButton("Crear Equipo");
+		         		      btnCrearEquipoPropio.setBounds(153, 315, 375, 47);
+		         		      panelNombreEquipo.add(btnCrearEquipoPropio);
+		         		      
+		         		      lblErrorCreacion = new JLabel("");
+		         		      lblErrorCreacion.setForeground(new Color(255, 0, 0));
+		         		      lblErrorCreacion.setBounds(153, 219, 375, 66);
+		         		      panelNombreEquipo.add(lblErrorCreacion);
 		         		      
 		         		      lblInformacion = new JLabel("");
 		         		      lblInformacion.setBounds(1243, 0, 76, 71);
@@ -515,53 +598,12 @@ public class Vista extends JFrame {
 		         lblFondo_Pantalla_Jugadores = new JLabel("");
 		         lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
 		         panelJugadores.add(lblFondo_Pantalla_Jugadores);
-
-		        
-		        panelVistaEquipo = new JPanel();
-		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
-		        panelVistaEquipo.setVisible(false);
-		        contentPane.add(panelVistaEquipo);
-		        panelVistaEquipo.setLayout(null);
-		        
-		        lblEmpezarSimulacion = new JLabel("");
-		        lblEmpezarSimulacion.setBounds(598, 499, 106, 90);
-		        panelVistaEquipo.add(lblEmpezarSimulacion);
-		        
-		        lblNewLabel_EscudoEquipoLocal = new JLabel("");
-		        lblNewLabel_EscudoEquipoLocal.setBounds(273, 93, 283, 226);
-		        panelVistaEquipo.add(lblNewLabel_EscudoEquipoLocal);
-		        
-		        lblNewLabel_EquipoVisitante = new JLabel("");
-		        lblNewLabel_EquipoVisitante.setBounds(749, 93, 283, 226);
-		        panelVistaEquipo.add(lblNewLabel_EquipoVisitante);
-		        
-		        listEquipoVisitante = new JList();
-		        listEquipoVisitante.setBorder(new CompoundBorder());
-		        listEquipoVisitante.setBounds(749, 354, 283, 374);
-		        panelVistaEquipo.add(listEquipoVisitante);
-		        
-		        listEquipoLocal = new JList();
-		        listEquipoLocal.setBorder(new CompoundBorder());
-		        listEquipoLocal.setBounds(273, 354, 283, 374);
-		        panelVistaEquipo.add(listEquipoLocal);
-		        
-		        lblVolverPlantilla_1 = new JLabel("");
-		        lblVolverPlantilla_1.setBounds(0, 0, 82, 79);
-		        panelVistaEquipo.add(lblVolverPlantilla_1);
-		        
-		        lblFtotoVersus = new JLabel("");
-		        lblFtotoVersus.setBounds(598, 190, 106, 90);
-		        panelVistaEquipo.add(lblFtotoVersus);
-		        
-		        lblFondoPantalla_2 = new JLabel("");
-		        lblFondoPantalla_2.setBounds(0, 0, 1352, 736);
-		        panelVistaEquipo.add(lblFondoPantalla_2);
 		        
 		         panelElecion = new JPanel();
 		         panelElecion.setBounds(249, 148, 844, 324);
 		         panelElecion.setVisible(false);
 		         
-		          btnSimularPartida = new JButton("");
+		         
 
 		          
 		          panelSimulacion = new JPanel();
@@ -588,6 +630,7 @@ public class Vista extends JFrame {
 		             btnSimularPartida.setContentAreaFilled(false); 
 		             btnSimularPartida.setBorderPainted(false); 
 		             btnSimularPartida.setFocusPainted(false);
+		             
 		             PanelPlantilla.add(btnSimularPartida);
 		             PanelPlantilla.add(panelElecion);
 		             panelElecion.setLayout(null);

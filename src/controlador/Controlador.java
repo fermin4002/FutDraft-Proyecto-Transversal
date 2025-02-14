@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -38,7 +39,7 @@ public class Controlador implements ActionListener,MouseListener {
 
     private Vista vista;
     private ControladorHibernate hibernate;
-    private DefaultListModel<String> listModelVisitante = new DefaultListModel<>();
+    
 
     private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
 
@@ -47,6 +48,7 @@ public class Controlador implements ActionListener,MouseListener {
         //Principio
         this.vista.btnEmpezar.addActionListener(this);
         this.vista.btnEmpezar.setActionCommand("empezar");
+        this.vista.btnCrearEquipoPropio.addActionListener(this);
         //Porteros
         this.vista.btnPortero.addActionListener(this);
         //Delanteros
@@ -91,8 +93,8 @@ public class Controlador implements ActionListener,MouseListener {
         //Ver simulacion
         this.vista.lblEmpezarSimulacion.addMouseListener(this);
         this.vista.lblVolverPlantilla_Simulacion.addMouseListener(this);
-        this.vista.panelVistaEquipo.setVisible(false); // Asegúrate de que el panel que contiene el JList esté visible
-        this.vista.listEquipoVisitante.setModel(listModelVisitante); 
+        this.vista.panelVistaEquipo.setVisible(false); 
+       
         //Ver infromacion
         this.vista.lblInformacion.addMouseListener(this);
         //Informacion
@@ -216,8 +218,19 @@ public class Controlador implements ActionListener,MouseListener {
         	vista.panelElecion.setVisible(false);
         }
         else if(e.getSource()==this.vista.btnJugar) {
-        	this.vista.panelMenu.setVisible(false);
-        	this.vista.PanelPlantilla.setVisible(true);
+        	if(hibernate.isEquiposCreados(1)) {
+	        	this.vista.panelMenu.setVisible(false);
+	        	this.vista.PanelPlantilla.setVisible(true);
+        	}else {
+        		
+        		this.vista.panelMenu.setEnabled(false);
+        		this.vista.btnJugar.setEnabled(false);
+        		this.vista.btnJugadores.setEnabled(false);
+        		this.vista.btnClasificaciones.setEnabled(false);
+        		
+        		this.vista.panelNombreEquipo.setVisible(true);
+        		this.vista.panelNombreEquipo.setEnabled(true);
+        	}
         }
 
         else if(e.getSource()==this.vista.btnClasificaciones) {
@@ -232,14 +245,20 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelJugadores.setVisible(true);
         }
         else if (e.getSource() == this.vista.btnSimularPartida) {
-        	if(hibernate.isEquiposCreados()) {
+        	if(hibernate.isEquiposCreadosMenor(20)) {
         		for(int i=0;i<19;i++) {
             		creacionTotalEquipo();
             	}
         		generarCalendario();
-        		
-        	}
-        	JList<String> jListVisitante = new JList<>(listModelVisitante);
+            }
+        	Partido partido=hibernate.extraerJornadasNoJugadas().get(0);
+        	vista.lblNombreLocalVista.setText(partido.getEquipoByIdEquipoLocal().getNombre());
+        	vista.lblNombreVisitanteVista.setText(partido.getEquipoByIdEquipoVisitante().getNombre());
+        	
+        	cargarLista(vista.listEquipoLocal,partido.getEquipoByIdEquipoLocal().getJugadors());
+        	cargarLista(vista.listEquipoVisitante,partido.getEquipoByIdEquipoVisitante().getJugadors());
+        	
+        	
             this.vista.PanelPlantilla.setVisible(false);
             this.vista.panelVistaEquipo.setVisible(true);
         }
@@ -248,6 +267,23 @@ public class Controlador implements ActionListener,MouseListener {
         }
         else if(e.getSource()==this.vista.comboBoxJornada) {
         	cargarTablaJornada();
+        }
+        else if(e.getSource()==this.vista.btnCrearEquipoPropio) {
+        	if(!String.valueOf(vista.txtNombreEquipoJugador.getText()).equals("")) {
+        		String nombre=String.valueOf(vista.txtNombreEquipoJugador.getText());
+        		Equipo equipo=new Equipo();
+        		equipo.setNombre(nombre);
+        		equipo.setEquipoJugador(true);
+        		hibernate.crearEquipo(equipo);
+        		this.vista.panelMenu.setVisible(false);
+        		this.vista.panelNombreEquipo.setVisible(false);
+        		this.vista.btnJugar.setEnabled(true);
+        		this.vista.btnJugadores.setEnabled(true);
+        		this.vista.btnClasificaciones.setEnabled(true);
+	        	this.vista.PanelPlantilla.setVisible(true);
+        	}else {
+        		vista.lblErrorCreacion.setText("ERROR, introduzca un nombre para el equipo");
+        	}
         }
         
         
@@ -464,6 +500,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFondoPlantilla.setIcon(fotoEscalarLabel(this.vista.lblFondoPlantilla, "imagenes/cesped.png"));
         this.vista.lblSalirPrincipal.setIcon(fotoEscalarLabel(this.vista.lblSalirPrincipal, "imagenes/salir-principal.png"));
         this.vista.lblInformacion.setIcon(fotoEscalarLabel(this.vista.lblInformacion, "imagenes/informacion.png"));
+        
 
         this.vista.btnEmpezar.setIcon(fotoEscalarButton(this.vista.btnEmpezar, "imagenes/boton-inicio.png"));
         //menu
@@ -866,6 +903,15 @@ public class Controlador implements ActionListener,MouseListener {
 		vista.tablaClasificacion.setModel(modeloTCLasidicacion);
 	}
 	
+	public void cargarLista(JList lista, Set<Jugador> jugadores) {
+		DefaultListModel<String> modelo=new DefaultListModel<String>();
+		for(Jugador clave:jugadores) {
+			String elemento=clave.getPosicion()+"-"+clave.getNombre();
+			modelo.addElement(elemento);
+		}
+		
+		lista.setModel(modelo);
+	}
 	
 	
 	
