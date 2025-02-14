@@ -170,6 +170,7 @@ public class Vista extends JFrame {
 	public JSeparator separator_2;
 	public JLabel lblJornada;
 	public JLabel lblClasificacion;
+	public JPanel panel_6;
 
 	/**
 	 * Launch the application.
@@ -216,6 +217,44 @@ public class Vista extends JFrame {
 		         		      panelClasificacion = new JPanel();
 		         		      panelClasificacion.setLayout(null);
 		         		      panelClasificacion.setVisible(false);
+		         		      
+		         		      panelMenu = new JPanel();
+		         		      panelMenu.setBounds(0, 0, 1329, 742);
+		         		      contentPane.add(panelMenu);
+		         		      panelMenu.setVisible(false);
+		         		      panelMenu.setLayout(null);
+		         		      
+		         		      panel_6 = new JPanel();
+		         		      panel_6.setBounds(327, 127, 647, 565);
+		         		      panelMenu.add(panel_6);
+		         		      
+		         		      lblInformacion = new JLabel("");
+		         		      lblInformacion.setBounds(1243, 0, 76, 71);
+		         		      panelMenu.add(lblInformacion);
+		         		      
+		         		      lblSalirPrincipal = new JLabel("");
+		         		      lblSalirPrincipal.setBounds(0, 0, 76, 71);
+		         		      panelMenu.add(lblSalirPrincipal);
+		         		      
+		         		      btnClasificaciones = new JButton("");
+		         		      btnClasificaciones.setBounds(459, 597, 500, 113);
+		         		      panelMenu.add(btnClasificaciones);
+		         		      
+		         		      btnJugadores = new JButton("");
+		         		      btnJugadores.setBounds(459, 474, 500, 113);
+		         		      panelMenu.add(btnJugadores);
+		         		      
+		         		      btnJugar = new JButton("");
+		         		      btnJugar.setBounds(459, 351, 500, 113);
+		         		      panelMenu.add(btnJugar);
+		         		      
+		         		      lblLogoMenu = new JLabel("");
+		         		      lblLogoMenu.setBounds(459, 0, 500, 338);
+		         		      panelMenu.add(lblLogoMenu);
+		         		      
+		         		      lblFondoMenu = new JLabel("");
+		         		      lblFondoMenu.setBounds(0, 0, 1339, 742);
+		         		      panelMenu.add(lblFondoMenu);
 		         		      panelClasificacion.setBounds(0, 0, 1329, 742);
 		         		      contentPane.add(panelClasificacion);
 		         		      
@@ -682,40 +721,6 @@ public class Vista extends JFrame {
 		                   lblFondoPlantilla = new JLabel("");
 		                   lblFondoPlantilla.setBounds(0, 0, 1329, 764);
 		                   PanelPlantilla.add(lblFondoPlantilla);
-		          
-		          panelMenu = new JPanel();
-		          panelMenu.setBounds(0, 0, 1329, 742);
-		          contentPane.add(panelMenu);
-		          panelMenu.setVisible(false);
-		          panelMenu.setLayout(null);
-		          
-		          lblInformacion = new JLabel("");
-		          lblInformacion.setBounds(1243, 0, 76, 71);
-		          panelMenu.add(lblInformacion);
-		          
-		          lblSalirPrincipal = new JLabel("");
-		          lblSalirPrincipal.setBounds(0, 0, 76, 71);
-		          panelMenu.add(lblSalirPrincipal);
-		          
-		          btnClasificaciones = new JButton("");
-		          btnClasificaciones.setBounds(459, 597, 500, 113);
-		          panelMenu.add(btnClasificaciones);
-		          
-		          btnJugadores = new JButton("");
-		          btnJugadores.setBounds(459, 474, 500, 113);
-		          panelMenu.add(btnJugadores);
-		          
-		          btnJugar = new JButton("");
-		          btnJugar.setBounds(459, 351, 500, 113);
-		          panelMenu.add(btnJugar);
-		          
-		          lblLogoMenu = new JLabel("");
-		          lblLogoMenu.setBounds(459, 0, 500, 338);
-		          panelMenu.add(lblLogoMenu);
-		          
-		          lblFondoMenu = new JLabel("");
-		          lblFondoMenu.setBounds(0, 0, 1339, 742);
-		          panelMenu.add(lblFondoMenu);
 		          
 		          panelInformacion = new JPanel();
 		          panelInformacion.setBounds(0, 0, 1321, 734);
