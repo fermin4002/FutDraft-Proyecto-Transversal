@@ -92,7 +92,7 @@ public class Vista extends JFrame {
 	public JLabel lblFondoCLasificacion;
 	public JTable tablaClasificacion;
 	public JTable tablaJornadas;
-	public JComboBox comboBoxJornada;
+	public JComboBox<String> comboBoxJornada;
 	public JPanel panelResultados;
 	public JLabel lblVolverClasificacion;
 
@@ -100,16 +100,16 @@ public class Vista extends JFrame {
 	public JPanel panelVistaEquipo;
 	public JLabel lblNewLabel_EscudoEquipoLocal;
 	public JLabel lblNewLabel_EquipoVisitante;
-	public JList listEquipoVisitante;
-	public JList listEquipoLocal;
+	public JList<String> listEquipoVisitante;
+	public JList<String> listEquipoLocal;
 	public JLabel lblVolverPlantilla_1;
 	public JLabel lblFtotoVersus;
 	public JLabel lblEmpezarSimulacion;
 	public JLabel lblFondoPantalla_2;
 	public JLabel lblFondeSimulacion;
 	public JPanel panelFIltroJugadores;
-	public JComboBox comboBoxFiltroPosicion;
-	public JComboBox comboBoxFiltroEquipo;
+	public JComboBox<String> comboBoxFiltroPosicion;
+	public JComboBox<String> comboBoxFiltroEquipo;
 	public JButton btnFIltrar;
 	public JPanel panel_1;
 	public JLabel lblAtaqueFIltro;
@@ -142,7 +142,7 @@ public class Vista extends JFrame {
 
 	public JLabel lblVolverPlantilla_Simulacion;
 	public JPanel panelSimulacion;
-	public JList listSimulacion;
+	public JList<String> listSimulacion;
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_EscudoEquipoLocal_Simulacion;
 	public JLabel lblNewLabel_EscudoEquipoVisitante_Simulacion;
@@ -177,6 +177,9 @@ public class Vista extends JFrame {
 	public JLabel lblErrorCreacion;
 	public JLabel lblNombreLocalVista;
 	public JLabel lblNombreVisitanteVista;
+	public JComboBox<String> comboBoxEquipoClasificacion;
+	public JPanel panel_6;
+	public JLabel lblFondoClasificacionEquipo;
 
 	/**
 	 * Launch the application.
@@ -218,16 +221,77 @@ public class Vista extends JFrame {
 		        panelJugadores = new JPanel();
 		        panelJugadores.setBounds(0, 0, 1329, 761);
 		        panelJugadores.setVisible(false);
-		         
-		         		      
-		         		      panelClasificacion = new JPanel();
-		         		      panelClasificacion.setLayout(null);
-		         		      panelClasificacion.setVisible(false);
 		         		      
 		         		      		        
 		         		      		        panelVistaEquipo = new JPanel();
 		         		      		        panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		         		      		        panelVistaEquipo.setVisible(false);
+		         		      		        
+		         		      		        		      
+		         		      		        		      panelClasificacion = new JPanel();
+		         		      		        		      panelClasificacion.setLayout(null);
+		         		      		        		      panelClasificacion.setVisible(false);
+		         		      		        		      panelClasificacion.setBounds(0, 0, 1329, 742);
+		         		      		        		      contentPane.add(panelClasificacion);
+		         		      		        		      
+		         		      		        		      comboBoxEquipoClasificacion = new JComboBox<String>();
+		         		      		        		      comboBoxEquipoClasificacion.setBounds(545, 11, 160, 47);
+		         		      		        		      panelClasificacion.add(comboBoxEquipoClasificacion);
+		         		      		        		      
+		         		      		        		      panel_6 = new JPanel();
+		         		      		        		      panel_6.setBounds(555, 69, 719, 610);
+		         		      		        		      panelClasificacion.add(panel_6);
+		         		      		        		      panel_6.setLayout(null);
+		         		      		        		      
+		         		      		        		      lblFondoClasificacionEquipo = new JLabel("");
+		         		      		        		      lblFondoClasificacionEquipo.setBounds(0, 0, 719, 610);
+		         		      		        		      panel_6.add(lblFondoClasificacionEquipo);
+		         		      		        		      
+		         		      		        		      lblVolverClasificacion = new JLabel("");
+		         		      		        		      lblVolverClasificacion.setBounds(0, 0, 82, 79);
+		         		      		        		      panelClasificacion.add(lblVolverClasificacion);
+		         		      		        		      
+		         		      		        		      panelResultados = new JPanel();
+		         		      		        		      panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		         		      		        		      panelResultados.setBounds(92, 432, 443, 247);
+		         		      		        		      panelClasificacion.add(panelResultados);
+		         		      		        		      panelResultados.setLayout(null);
+		         		      		        		      
+		         		      		        		      tablaJornadas = new JTable();
+		         		      		        		      tablaJornadas.setShowVerticalLines(false);
+		         		      		        		      tablaJornadas.setRowSelectionAllowed(false);
+		         		      		        		      tablaJornadas.setBounds(10, 72, 423, 164);
+		         		      		        		      panelResultados.add(tablaJornadas);
+		         		      		        		      
+		         		      		        		      comboBoxJornada = new JComboBox<String>();
+		         		      		        		      comboBoxJornada.setBounds(242, 11, 160, 47);
+		         		      		        		      panelResultados.add(comboBoxJornada);
+		         		      		        		      
+		         		      		        		      lblJornada = new JLabel("JORNADA");
+		         		      		        		      lblJornada.setFont(new Font("Tahoma", Font.BOLD, 29));
+		         		      		        		      lblJornada.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblJornada.setBounds(10, 11, 156, 47);
+		         		      		        		      panelResultados.add(lblJornada);
+		         		      		        		      
+		         		      		        		      JPanel panel = new JPanel();
+		         		      		        		      panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		         		      		        		      panel.setBounds(92, 11, 443, 402);
+		         		      		        		      panelClasificacion.add(panel);
+		         		      		        		      panel.setLayout(null);
+		         		      		        		      
+		         		      		        		      tablaClasificacion = new JTable();
+		         		      		        		      tablaClasificacion.setBounds(10, 63, 423, 327);
+		         		      		        		      panel.add(tablaClasificacion);
+		         		      		        		      
+		         		      		        		      lblClasificacion = new JLabel("CLASIFICACIÓN");
+		         		      		        		      lblClasificacion.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		      lblClasificacion.setFont(new Font("Tahoma", Font.BOLD, 29));
+		         		      		        		      lblClasificacion.setBounds(10, 11, 423, 47);
+		         		      		        		      panel.add(lblClasificacion);
+		         		      		        		      
+		         		      		        		      lblFondoCLasificacion = new JLabel("");
+		         		      		        		      lblFondoCLasificacion.setBounds(0, 0, 1329, 742);
+		         		      		        		      panelClasificacion.add(lblFondoCLasificacion);
 		         		      		        contentPane.add(panelVistaEquipo);
 		         		      		        panelVistaEquipo.setLayout(null);
 		         		      		        
@@ -256,12 +320,12 @@ public class Vista extends JFrame {
 		         		      		        lblNewLabel_EquipoVisitante.setBounds(749, 66, 283, 226);
 		         		      		        panelVistaEquipo.add(lblNewLabel_EquipoVisitante);
 		         		      		        
-		         		      		        listEquipoVisitante = new JList();
+		         		      		        listEquipoVisitante = new JList<String>();
 		         		      		        listEquipoVisitante.setBorder(new CompoundBorder());
 		         		      		        listEquipoVisitante.setBounds(749, 354, 283, 374);
 		         		      		        panelVistaEquipo.add(listEquipoVisitante);
 		         		      		        
-		         		      		        listEquipoLocal = new JList();
+		         		      		        listEquipoLocal = new JList<String>();
 		         		      		        listEquipoLocal.setBorder(new CompoundBorder());
 		         		      		        listEquipoLocal.setBounds(273, 354, 283, 374);
 		         		      		        panelVistaEquipo.add(listEquipoLocal);
@@ -338,54 +402,6 @@ public class Vista extends JFrame {
 		         		      lblFondoMenu = new JLabel("");
 		         		      lblFondoMenu.setBounds(0, 0, 1339, 742);
 		         		      panelMenu.add(lblFondoMenu);
-		         		      panelClasificacion.setBounds(0, 0, 1329, 742);
-		         		      contentPane.add(panelClasificacion);
-		         		      
-		         		      lblVolverClasificacion = new JLabel("");
-		         		      lblVolverClasificacion.setBounds(0, 0, 82, 79);
-		         		      panelClasificacion.add(lblVolverClasificacion);
-		         		      
-		         		      panelResultados = new JPanel();
-		         		      panelResultados.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		         		      panelResultados.setBounds(144, 432, 348, 247);
-		         		      panelClasificacion.add(panelResultados);
-		         		      panelResultados.setLayout(null);
-		         		      
-		         		      tablaJornadas = new JTable();
-		         		      tablaJornadas.setShowVerticalLines(false);
-		         		      tablaJornadas.setRowSelectionAllowed(false);
-		         		      tablaJornadas.setBounds(10, 72, 326, 164);
-		         		      panelResultados.add(tablaJornadas);
-		         		      
-		         		      comboBoxJornada = new JComboBox();
-		         		      comboBoxJornada.setBounds(176, 11, 160, 47);
-		         		      panelResultados.add(comboBoxJornada);
-		         		      
-		         		      lblJornada = new JLabel("JORNADA");
-		         		      lblJornada.setFont(new Font("Tahoma", Font.BOLD, 29));
-		         		      lblJornada.setHorizontalAlignment(SwingConstants.CENTER);
-		         		      lblJornada.setBounds(10, 11, 156, 47);
-		         		      panelResultados.add(lblJornada);
-		         		      
-		         		      JPanel panel = new JPanel();
-		         		      panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		         		      panel.setBounds(92, 11, 443, 402);
-		         		      panelClasificacion.add(panel);
-		         		      panel.setLayout(null);
-		         		      
-		         		      tablaClasificacion = new JTable();
-		         		      tablaClasificacion.setBounds(10, 63, 423, 327);
-		         		      panel.add(tablaClasificacion);
-		         		      
-		         		      lblClasificacion = new JLabel("CLASIFICACIÓN");
-		         		      lblClasificacion.setHorizontalAlignment(SwingConstants.CENTER);
-		         		      lblClasificacion.setFont(new Font("Tahoma", Font.BOLD, 29));
-		         		      lblClasificacion.setBounds(10, 11, 423, 47);
-		         		      panel.add(lblClasificacion);
-		         		      
-		         		      lblFondoCLasificacion = new JLabel("");
-		         		      lblFondoCLasificacion.setBounds(0, 0, 1329, 742);
-		         		      panelClasificacion.add(lblFondoCLasificacion);
 		        
 		         panelInicio = new JPanel();
 		         panelInicio.setBounds(0, 0, 1329, 742);
@@ -554,11 +570,11 @@ public class Vista extends JFrame {
 		        panelFIltroJugadores.add(panel_5);
 		        panel_5.setLayout(null);
 		        
-		        comboBoxFiltroEquipo = new JComboBox();
+		        comboBoxFiltroEquipo = new JComboBox<String>();
 		        comboBoxFiltroEquipo.setBounds(215, 61, 158, 44);
 		        panel_5.add(comboBoxFiltroEquipo);
 		        
-		        comboBoxFiltroPosicion = new JComboBox();
+		        comboBoxFiltroPosicion = new JComboBox<String>();
 		        comboBoxFiltroPosicion.setBounds(10, 61, 158, 44);
 		        panel_5.add(comboBoxFiltroPosicion);
 		        
@@ -895,7 +911,7 @@ public class Vista extends JFrame {
 		          lblNewLabel_1.setBounds(135, 87, 291, 74);
 		          panelSimulacion.add(lblNewLabel_1);
 		          
-		          listSimulacion = new JList();
+		          listSimulacion = new JList<String>();
 		          listSimulacion.setBounds(135, 169, 290, 557);
 		          panelSimulacion.add(listSimulacion);
 		          

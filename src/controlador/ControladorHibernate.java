@@ -177,7 +177,7 @@ public class ControladorHibernate {
 	    	sesion=sessionFactory.getCurrentSession();
 			sesion.beginTransaction();
 		
-			Query q=sesion.createQuery("FROM Jugador WHERE posicion = :posi");
+			Query q=sesion.createQuery("FROM Jugador WHERE posicion = :posi and equipo=null");
 			q.setParameter("posi", posicion);
 			
 			jugadores=q.getResultList();
@@ -548,6 +548,48 @@ public class ControladorHibernate {
 			}
 		}
 		return salida;
+	}
+	public Equipo extraEquipoJugador() {
+		Equipo equipo=null;
+		Session sesion=null;
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			Query q=sesion.createQuery("FROM Equipo WHERE equipoJugador=true");
+			equipo=(Equipo) q.uniqueResult();
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sesion!=null) {
+				sesion.close();
+			}
+		}
+		return equipo;
+		
+	}
+	public void añadirequipo(Jugador jugador,Equipo equipo) {
+
+		Session sesion=null;
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			jugador.setEquipo(equipo);
+			sesion.update(jugador);
+			
+			sesion.getTransaction().commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			sesion.getTransaction().getRollbackOnly();
+		}finally {
+			if(sesion==null) {
+				sesion.close();
+			}
+		}
 	}
 	
 	

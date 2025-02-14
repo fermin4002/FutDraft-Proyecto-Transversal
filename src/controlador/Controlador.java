@@ -39,12 +39,20 @@ public class Controlador implements ActionListener,MouseListener {
 
     private Vista vista;
     private ControladorHibernate hibernate;
-    
-
+    private String[] nombres;
+    private List<Jugador> jugador;
     private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
 
     public Controlador(Vista vista) {
         this.vista = vista;
+        jugador=new ArrayList<Jugador>();
+        nombres =new String[] {
+        	    "Tormenta FC", "Dragones Negros", "Relámpagos Dorados", "Águilas de Acero",
+        	    "Titanes del Gol", "Neón United", "COnstrucciones Villalta", "Furia Carmesí",
+        	    "Guerreros del Césped", "Rayo Espectral", "Patatillas FC", "Escorpiones de Fuego",
+        	    "Trueno Celeste", "Sombras del Balón", "Leones del Horizonte", "Halcones Plateados",
+        	    "Inferno FC", "Vikingos del Área", "Tempestad Azul"
+        	};
         //Principio
         this.vista.btnEmpezar.addActionListener(this);
         this.vista.btnEmpezar.setActionCommand("empezar");
@@ -207,16 +215,53 @@ public class Controlador implements ActionListener,MouseListener {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
             cargarDelanteros();
-        }else if (isPlayerButton(e.getSource())) {
+        }
+        //Copiado
+        else if (e.getSource()==this.vista.btnEleccionUno) {
+       	 vista.panelElecion.setVisible(false);
+            enableButtons(botonesDeshabilitar);
+            Equipo equipo=hibernate.extraEquipoJugador();
+            Jugador jugador=this.jugador.get(0);
+            hibernate.añadirequipo(jugador, equipo);
+
+	    }else if (e.getSource()==this.vista.btnEleccionDos) {
+	       	 vista.panelElecion.setVisible(false);
+	         enableButtons(botonesDeshabilitar);
+	         Equipo equipo=hibernate.extraEquipoJugador();
+            Jugador jugador=this.jugador.get(1);
+            hibernate.añadirequipo(jugador, equipo);
+	    }else if (e.getSource()==this.vista.btnEleccionTres) {
+	    	vista.panelElecion.setVisible(false);
+	    	enableButtons(botonesDeshabilitar); 
+	    	Equipo equipo=hibernate.extraEquipoJugador();
+           Jugador jugador=this.jugador.get(2);
+           hibernate.añadirequipo(jugador, equipo);
+	    }else if (e.getSource()==this.vista.btnEleccionCuatro) {
+	    	vista.panelElecion.setVisible(false);
+	    	enableButtons(botonesDeshabilitar);  
+	    	Equipo equipo=hibernate.extraEquipoJugador();
+           Jugador jugador=this.jugador.get(3);
+           hibernate.añadirequipo(jugador, equipo);
+	    }else if (e.getSource()==this.vista.btnEleccionCinco) {
+	    	vista.panelElecion.setVisible(false);
+	    	enableButtons(botonesDeshabilitar); 
+	    	Equipo equipo=hibernate.extraEquipoJugador();
+           Jugador jugador=this.jugador.get(4);
+           hibernate.añadirequipo(jugador,equipo);
+        }
+        
+        else if (isPlayerButton(e.getSource())) {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
         } else if (isEleccionButton(e.getSource())) {
             vista.panelElecion.setVisible(false);
             enableButtons(botonesDeshabilitar);
         }
-        if(e.getSource()==this.vista.lblFondoDraft) {
+        //
+        /*if(e.getSource()==this.vista.lblFondoDraft) {
         	vista.panelElecion.setVisible(false);
-        }
+        }*/
+        
         else if(e.getSource()==this.vista.btnJugar) {
         	if(hibernate.isEquiposCreados(1)) {
 	        	this.vista.panelMenu.setVisible(false);
@@ -247,7 +292,7 @@ public class Controlador implements ActionListener,MouseListener {
         else if (e.getSource() == this.vista.btnSimularPartida) {
         	if(hibernate.isEquiposCreadosMenor(20)) {
         		for(int i=0;i<19;i++) {
-            		creacionTotalEquipo();
+            		creacionTotalEquipo(nombres[i]);
             	}
         		generarCalendario();
             }
@@ -293,7 +338,7 @@ public class Controlador implements ActionListener,MouseListener {
         List<Jugador> porteros = hibernate.extraerJugadoresPorPosicion("POR"); 
         //Me mezcla la lista que he sacado de las consultas
         Collections.shuffle(porteros); 
-
+        this.jugador.clear();
         vista.btnEleccionUno.setText("");
         vista.btnEleccionDos.setText("");
         vista.btnEleccionTres.setText("");
@@ -324,12 +369,13 @@ public class Controlador implements ActionListener,MouseListener {
             	setLabelButton(vista.btnEleccionCinco,mensaje);
                 break;
             }
+            this.jugador.add(portero);
         }
     }
     public void cargarDefensores() {
         List<Jugador> defensores = hibernate.extraerJugadoresPorPosicion("DEF");
         Collections.shuffle(defensores);
-
+        this.jugador.clear();
         vista.btnEleccionUno.setText("");
         vista.btnEleccionDos.setText("");
         vista.btnEleccionTres.setText("");
@@ -362,12 +408,13 @@ public class Controlador implements ActionListener,MouseListener {
                 	setLabelButton(vista.btnEleccionCinco,mensaje);
                     break;
             }
+            this.jugador.add(defensor);
         }
     }
     public void cargarMediocampistas() {
         List<Jugador> mediocampistas = hibernate.extraerJugadoresPorPosicion("MED");
         Collections.shuffle(mediocampistas);
-
+        this.jugador.clear();
         vista.btnEleccionUno.setText("");
         vista.btnEleccionDos.setText("");
         vista.btnEleccionTres.setText("");
@@ -398,12 +445,13 @@ public class Controlador implements ActionListener,MouseListener {
             	setLabelButton(vista.btnEleccionCinco,mensaje);
                 break;
             }
+            this.jugador.add(mediocampista);
         }
     }
     public void cargarDelanteros() {
         List<Jugador> delanteros = hibernate.extraerJugadoresPorPosicion("DEL");
         Collections.shuffle(delanteros);
-
+        this.jugador.clear();
         vista.btnEleccionUno.setText("");
         vista.btnEleccionDos.setText("");
         vista.btnEleccionTres.setText("");
@@ -434,6 +482,7 @@ public class Controlador implements ActionListener,MouseListener {
             	setLabelButton(vista.btnEleccionCinco,mensaje);
                 break;
             }
+            this.jugador.add(delantero);
         }
     }
 
@@ -531,7 +580,9 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblVolverPlantilla.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla, "imagenes/volver.png"));
         //Clasificacion Cambiar imagen
         this.vista.lblVolverClasificacion.setIcon(fotoEscalarLabel(this.vista.lblVolverClasificacion,"imagenes/volver.png"));
-        this.vista.lblFondoCLasificacion.setIcon(fotoEscalarLabel(this.vista.lblVolverClasificacion,"imagenes/ondo-principal.jpg"));
+        this.vista.lblFondoCLasificacion.setIcon(fotoEscalarLabel(this.vista.lblFondoCLasificacion,"imagenes/fondo-principal.jpg"));
+        this.vista.lblFondoClasificacionEquipo.setIcon(fotoEscalarLabel(this.vista.lblFondoClasificacionEquipo,"imagenes/cesped.png"));
+        
         
         this.vista.lblLogJugadores.setIcon(fotoEscalarLabel(this.vista.lblLogJugadores, "imagenes/logo.png"));
         this.vista.lblFondo_Pantalla_Jugadores.setIcon(fotoEscalarLabel(this.vista.lblFondo_Pantalla_Jugadores, "imagenes/fondo-principal.jpg"));
@@ -805,9 +856,9 @@ public class Controlador implements ActionListener,MouseListener {
 		}
 		
 	}
-	public void creacionTotalEquipo() {
+	public void creacionTotalEquipo(String nombre) {
 		List<Jugador> temp=crerPlantillaMaquina();
-		Equipo equipo=hibernate.crearEquipo("patatas");
+		Equipo equipo=hibernate.crearEquipo(nombre);
 		asignarJugadoresEquipo(equipo, temp);
 		hibernate.asignarEquipoUpdate(temp);
 	}
@@ -884,6 +935,7 @@ public class Controlador implements ActionListener,MouseListener {
 	
 	public void cargarTablaClasificacion() {
 		List<Equipo> entrada=hibernate.extraerEquiposOrdenados();
+		DefaultComboBoxModel<String> modeloCombo=new DefaultComboBoxModel<String>();
 		int pos=1;
 		modeloTCLasidicacion.setRowCount(0);
 		for(Equipo clave:entrada) {
@@ -895,11 +947,12 @@ public class Controlador implements ActionListener,MouseListener {
 			String e=String.valueOf(clave.getEmpates());
 			String d=String.valueOf(clave.getDerrotas());
 			
-			
+			modeloCombo.addElement(nombre);
 			modeloTCLasidicacion.addRow(new String[] {posS,nombre,pts,pj,v,e,d});
 			
 			pos++;
 		}
+		vista.comboBoxEquipoClasificacion.setModel(modeloCombo);
 		vista.tablaClasificacion.setModel(modeloTCLasidicacion);
 	}
 	
