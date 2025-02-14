@@ -74,7 +74,7 @@ public class Equipo implements java.io.Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	@Column(name="victorias",nullable=true)
+	@Column(name="victorias",nullable=false)
 	public int getVictorias() {
 		return this.victorias;
 	}
@@ -82,7 +82,7 @@ public class Equipo implements java.io.Serializable {
 	public void setVictorias(int victorias) {
 		this.victorias = victorias;
 	}
-	@Column(name="empates",nullable=true)
+	@Column(name="empates",nullable=false)
 	public int getEmpates() {
 		return this.empates;
 	}
@@ -90,7 +90,7 @@ public class Equipo implements java.io.Serializable {
 	public void setEmpates(int empates) {
 		this.empates = empates;
 	}
-	@Column(name="derrotas",nullable=true)
+	@Column(name="derrotas",nullable=false)
 	public int getDerrotas() {
 		return this.derrotas;
 	}
@@ -98,7 +98,7 @@ public class Equipo implements java.io.Serializable {
 	public void setDerrotas(int derrotas) {
 		this.derrotas = derrotas;
 	}
-	@Column(name="puntos",nullable=true)
+	@Column(name="puntos",nullable=false)
 	public int getPuntos() {
 		return this.puntos;
 	}
@@ -106,7 +106,7 @@ public class Equipo implements java.io.Serializable {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
-	@Column(name="equipo_jugador",nullable=true)
+	@Column(name="equipo_jugador",nullable=false)
 	public boolean isEquipoJugador() {
 		return this.equipoJugador;
 	}

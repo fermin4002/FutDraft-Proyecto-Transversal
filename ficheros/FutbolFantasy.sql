@@ -10,6 +10,8 @@ create table equipo(
     empates int(2) not null default 0,
     derrotas int(2) not null default 0,
     puntos int(3) not null default 0,
+    goles_favor int not null default 0,
+    goles_contra int not null default 0,
 	equipo_jugador boolean not null default false,
     constraint pk_equipo primary key(id_equipo)
     
@@ -48,3 +50,4 @@ constraint FK_equipo_visitante foreign key(id_equipo_visitante)references equipo
 
 );
 
+select * from jugador where id_equipo=2 order by posicion;
