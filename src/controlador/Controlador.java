@@ -46,6 +46,7 @@ public class Controlador implements ActionListener,MouseListener {
     private Jugador defensorSeleccionado;
     private Jugador mediocampistaSeleccionado;
     private Jugador delanteroSeleccionado;
+    private PartidoFutbol partidoFutbol;
     public Controlador(Vista vista) {
         this.vista = vista;
         jugador=new ArrayList<Jugador>();
@@ -106,7 +107,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblEmpezarSimulacion.addMouseListener(this);
         this.vista.lblVolverPlantilla_Simulacion.addMouseListener(this);
         this.vista.panelVistaEquipo.setVisible(false); 
-       
+        this.vista.btnIniciarSimulacion.addActionListener(this);
         //Ver infromacion
         this.vista.lblInformacion.addMouseListener(this);
         //Informacion
@@ -371,6 +372,13 @@ public class Controlador implements ActionListener,MouseListener {
         	}else {
         		vista.lblErrorCreacion.setText("ERROR, introduzca un nombre para el equipo");
         	}
+        }else if(e.getSource()==this.vista.btnIniciarSimulacion) {
+        	String nombre_equipoLocal=vista.lblNombreLocalVista.getText();
+        	String nombre_equipoVisitanter=vista.lblNombreVisitanteVista.getText();
+        	DefaultListModel<String> listasituacion=new DefaultListModel<>();
+        	partidoFutbol = new PartidoFutbol(nombre_equipoLocal, nombre_equipoVisitanter,vista.lblMinutos,vista.lblMarcador,listasituacion);
+        	partidoFutbol.start();
+        	vista.listSimulacion.setModel(listasituacion);
         }
         
         
@@ -735,7 +743,6 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFtotoVersus_1.setIcon(fotoEscalarLabel(this.vista.lblFtotoVersus_1,"imagenes/versus.png"));
         this.vista.btnIniciarSimulacion.setIcon(fotoEscalarButton(this.vista.btnIniciarSimulacion, "imagenes/boton_simular.png"));
         this.vista.lblFondo_Marcador.setIcon(fotoEscalarLabel(this.vista.lblFondo_Marcador,"imagenes/marcador.png"));
-        this.vista.lblSiguiente_Ronda.setIcon(fotoEscalarLabel(this.vista.lblSiguiente_Ronda,"imagenes/siguiete_jornada.png"));
         //panelInformacion
         this.vista.lblFondoInformacion.setIcon(fotoEscalarLabel(this.vista.lblFondoInformacion,"imagenes/fondo-principal.jpg"));
         this.vista.lblSalirMenu_Informacion.setIcon(fotoEscalarLabel(this.vista.lblSalirMenu_Informacion,"imagenes/volver.png"));
