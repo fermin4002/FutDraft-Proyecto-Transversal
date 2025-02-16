@@ -593,6 +593,28 @@ public class ControladorHibernate {
 			}
 		}
 	}
+	public List<Jugador> obtenerJugadoresPorEquipo() {
+	    List<Jugador> jugadores = new ArrayList<>();
+	    Session sesion = null;
+
+	    try {
+	        sesion = sessionFactory.getCurrentSession();
+	        sesion.beginTransaction();
+
+	        Query query = sesion.createQuery("FROM Jugador WHERE equipo.id =1");
+	     
+	        jugadores = query.list();
+	        
+	        sesion.getTransaction().commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (sesion != null) {
+	            sesion.close();
+	        }
+	    }
+	    return jugadores;
+	}
 	
 	public List<Jugador> extraerPlantilla(Equipo equipo){
 		List<Jugador> salida=null;
