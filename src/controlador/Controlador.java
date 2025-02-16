@@ -36,7 +36,7 @@ import persistencias.Jugador;
 import persistencias.Partido;
 
 public class Controlador implements ActionListener,MouseListener {
-
+	private int jugadoresEquipoLocalSeleccionados = 0;
     private Vista vista;
     private ControladorHibernate hibernate;
     private String[] nombres;
@@ -309,12 +309,14 @@ public class Controlador implements ActionListener,MouseListener {
 	        	this.vista.panelMenu.setVisible(false);
 	        	this.vista.PanelPlantilla.setVisible(true);
 	        	cargarJugadoresEquipo();
+	        	verificarJugadoresSeleccionados();
         	}else {
-        		
+        		verificarJugadoresSeleccionados();
         		this.vista.panelMenu.setEnabled(false);
         		this.vista.btnJugar.setEnabled(false);
         		this.vista.btnJugadores.setEnabled(false);
         		this.vista.btnClasificaciones.setEnabled(false);
+        		
         		
         		this.vista.panelNombreEquipo.setVisible(true);
         		this.vista.panelNombreEquipo.setEnabled(true);
@@ -379,6 +381,8 @@ public class Controlador implements ActionListener,MouseListener {
         	partidoFutbol = new PartidoFutbol(nombre_equipoLocal, nombre_equipoVisitanter,vista.lblMinutos,vista.lblMarcador,listasituacion);
         	partidoFutbol.start();
         	vista.listSimulacion.setModel(listasituacion);
+        	this.vista.btnIniciarSimulacion.setEnabled(false);
+        	
         }
         
         
@@ -444,6 +448,8 @@ public class Controlador implements ActionListener,MouseListener {
         btnPortero.setVisible(false); 
         btnPortero.setEnabled(false);  
         btnPortero.setIcon(fotoEscalarButton(btnPortero, "")); 
+        jugadoresEquipoLocalSeleccionados++;
+        verificarJugadoresSeleccionados();
     }
 
 
@@ -499,6 +505,8 @@ public class Controlador implements ActionListener,MouseListener {
             btnDefensor.setVisible(true);
             btnDefensor.setEnabled(true);
             btnDefensor.setIcon(fotoEscalarButton(btnDefensor, "imagenes/camiseta-de-futbol.png")); 
+            jugadoresEquipoLocalSeleccionados++;
+            verificarJugadoresSeleccionados();
         }
 
         
@@ -507,6 +515,8 @@ public class Controlador implements ActionListener,MouseListener {
         btnDefensor.setVisible(false); 
         btnDefensor.setEnabled(false);  
         btnDefensor.setIcon(fotoEscalarButton(btnDefensor, "")); 
+        jugadoresEquipoLocalSeleccionados++;
+        verificarJugadoresSeleccionados();
     }
 
     public void cargarMediocampistas(JLabel lblNombreMediocampista, JButton btnMediocampista) {
@@ -551,6 +561,7 @@ public class Controlador implements ActionListener,MouseListener {
                     break;
             }
             this.jugador.add(mediocampista);
+            
         }
     }
 
@@ -558,7 +569,9 @@ public class Controlador implements ActionListener,MouseListener {
         if (mediocampistaSeleccionado != null) {
             btnMediocampista.setVisible(true);
             btnMediocampista.setEnabled(true);
-            btnMediocampista.setIcon(fotoEscalarButton(btnMediocampista, "imagenes/camiseta-de-futbol.png")); // Cambia a la imagen original
+            btnMediocampista.setIcon(fotoEscalarButton(btnMediocampista, "imagenes/camiseta-de-futbol.png"));
+            jugadoresEquipoLocalSeleccionados++;
+            verificarJugadoresSeleccionados();
         }
 
        
@@ -567,6 +580,8 @@ public class Controlador implements ActionListener,MouseListener {
         btnMediocampista.setVisible(false); 
         btnMediocampista.setEnabled(false);  
         btnMediocampista.setIcon(fotoEscalarButton(btnMediocampista, "")); 
+        jugadoresEquipoLocalSeleccionados++;
+        verificarJugadoresSeleccionados();
     }
 
     public void cargarDelanteros(JLabel lblNombreDelantero, JButton btnDelantero) {
@@ -620,13 +635,15 @@ public class Controlador implements ActionListener,MouseListener {
           
             btnDelantero.setVisible(true);
             btnDelantero.setEnabled(true);
-            btnDelantero.setIcon(fotoEscalarButton(btnDelantero, "imagenes/camiseta-de-futbol.png")); // Cambia a la imagen original
+            btnDelantero.setIcon(fotoEscalarButton(btnDelantero, "imagenes/camiseta-de-futbol.png"));
         }
         delanteroSeleccionado = delantero;
         lblNombreDelantero.setText(delantero.getNombre()); 
         btnDelantero.setVisible(false); 
         btnDelantero.setEnabled(false);  
         btnDelantero.setIcon(fotoEscalarButton(btnDelantero, "")); 
+        jugadoresEquipoLocalSeleccionados++;
+        verificarJugadoresSeleccionados();
     }
     public boolean isPlayerButton(Object source) {
         return source == this.vista.btnPortero ||
@@ -1191,4 +1208,16 @@ public class Controlador implements ActionListener,MouseListener {
 	        }
 	    }
 	}
+    private void verificarJugadoresSeleccionados() {
+    	List<Jugador> total = hibernate.obtenerJugadoresPorEquipo();
+    	int jugadoresEquipoLocalSeleccionados=total.size();
+    	System.out.println(jugadoresEquipoLocalSeleccionados);
+        if (jugadoresEquipoLocalSeleccionados >=10 ) {
+            vista.btnSimularPartida.setEnabled(true);
+        } else {
+            vista.btnSimularPartida.setEnabled(false);
+           
+        }
+    }
+   
 }
