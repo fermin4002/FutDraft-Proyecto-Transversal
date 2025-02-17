@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import persistencias.Partido;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 class PartidoFutbol extends Thread {
@@ -17,7 +18,7 @@ class PartidoFutbol extends Thread {
     private JLabel lblResultado;
     private DefaultListModel<String> listModel; 
     private String eventoTexto = "";
-    
+    private ArrayList<Integer> jugadas=new ArrayList<Integer>();
     public PartidoFutbol(Partido partido,JLabel lblMinutos, JLabel lblResultado, DefaultListModel<String> listModel) {
         this.partido=partido;
     	this.equipoLocal = partido.getEquipoByIdEquipoLocal().getNombre();
@@ -28,6 +29,17 @@ class PartidoFutbol extends Thread {
         this.lblMinutos = lblMinutos;
         this.lblResultado = lblResultado;
         this.listModel = listModel; 
+        int contador=0;
+        int num;
+        while(contador<12) {
+        	num=(int)(1+Math.random()*90);
+        	if(!jugadas.contains(num)) {
+        		jugadas.add(num);
+        		contador++;
+        	}
+        }
+        
+        
     }
 
     @Override
