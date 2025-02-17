@@ -217,6 +217,7 @@ public class Vista extends JFrame {
 	public JLabel lblNombreCentroCampistaIzquierdo;
 	public JLabel lblMinutos;
 	public JLabel lblSiguiente_Ronda;
+	public JLabel lblFondoNombreEquipo;
 
 
 	/**
@@ -265,6 +266,7 @@ public class Vista extends JFrame {
 		panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		panelVistaEquipo.setVisible(false);
 		         		      		        		       
+
 		         		      		        		       		      
 		panelClasificacion = new JPanel();
 		panelClasificacion.setLayout(null);
@@ -277,7 +279,7 @@ public class Vista extends JFrame {
 		panelPlantilla.setLayout(null);
 		
 		btnDefensaDerecha = new JButton("");
-		btnDefensaDerecha.setBounds(259, 482, 85, 91);
+		btnDefensaDerecha.setBounds(403, 482, 85, 91);
 		panelPlantilla.add(btnDefensaDerecha);
 		btnDefensaDerecha.setContentAreaFilled(false);          		      		        		  
 		btnDefensaDerecha.setBorderPainted(false); 
@@ -706,8 +708,12 @@ public class Vista extends JFrame {
 		lblErrorCreacion.setForeground(new Color(255, 0, 0));
 		lblErrorCreacion.setBounds(153, 219, 375, 66);
 		panelNombreEquipo.add(lblErrorCreacion);
-		         		      		        		      
-		lblInformacion = new JLabel("");
+		 
+		lblFondoNombreEquipo = new JLabel("");
+		lblFondoNombreEquipo.setBounds(0, 0, 647, 565);
+		panelNombreEquipo.add(lblFondoNombreEquipo);
+		
+	    lblInformacion = new JLabel("");
 		lblInformacion.setBounds(1243, 0, 76, 71);
 		panelMenu.add(lblInformacion);
 		         		      		        		      
@@ -736,7 +742,7 @@ public class Vista extends JFrame {
 		panelMenu.add(lblFondoMenu);
 		contentPane.add(panelVistaEquipo);
 		panelVistaEquipo.setLayout(null);
-		         		      		        
+		
 		lblNombreVisitanteVista = new JLabel("");
 		lblNombreVisitanteVista.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreVisitanteVista.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -992,6 +998,7 @@ public class Vista extends JFrame {
 		lblVolverJugadores.setBounds(0, 1, 82, 79);
 		panelJugadores.add(lblVolverJugadores);
 		         
+
 
 		lblFondo_Pantalla_Jugadores = new JLabel("");
 		lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);

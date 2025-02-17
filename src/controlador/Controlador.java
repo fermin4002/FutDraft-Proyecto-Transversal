@@ -318,6 +318,9 @@ public class Controlador implements ActionListener,MouseListener {
         		this.vista.btnJugar.setEnabled(false);
         		this.vista.btnJugadores.setEnabled(false);
         		this.vista.btnClasificaciones.setEnabled(false);
+        		this.vista.btnJugar.setVisible(false);
+        		this.vista.btnJugadores.setVisible(false);
+        		this.vista.btnClasificaciones.setVisible(false);
         		
         		
         		this.vista.panelNombreEquipo.setVisible(true);
@@ -620,7 +623,6 @@ public class Controlador implements ActionListener,MouseListener {
 
        
         //inicio
-
         this.vista.lblFondoPlantilla.setIcon(fotoEscalarLabel(this.vista.lblFondoPlantilla, "imagenes/cesped.png"));
         this.vista.lblSalirPrincipal.setIcon(fotoEscalarLabel(this.vista.lblSalirPrincipal, "imagenes/salir-principal.png"));
         this.vista.lblInformacion.setIcon(fotoEscalarLabel(this.vista.lblInformacion, "imagenes/informacion.png"));
@@ -630,6 +632,7 @@ public class Controlador implements ActionListener,MouseListener {
         //menu
         this.vista.btnJugar.setIcon(fotoEscalarButton(this.vista.btnJugar, "imagenes/boton-jugar.png"));
         this.vista.btnJugadores.setIcon(fotoEscalarButton(this.vista.btnJugadores, "imagenes/sobrenosotros.jpg"));
+        this.vista.lblFondoNombreEquipo.setIcon(fotoEscalarLabel(this.vista.lblFondoNombreEquipo, "imagenes/fondo-principal.jpg"));
         //jugador
         this.vista.lblVolverJugadores.setIcon(fotoEscalarLabel(this.vista.lblVolverJugadores, "imagenes/volver.png"));
         //Selecion plantilla
@@ -713,6 +716,12 @@ public class Controlador implements ActionListener,MouseListener {
 
         	this.vista.panelPlantilla.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
+        	this.vista.btnJugar.setEnabled(true);
+        	this.vista.btnJugar.setVisible(true);
+        	this.vista.btnClasificaciones.setVisible(true);
+        	this.vista.btnClasificaciones.setEnabled(true);
+        	this.vista.btnJugadores.setEnabled(true);
+        	this.vista.btnJugadores.setVisible(true);
         }else if(e.getSource()==this.vista.lblVolverPlantilla_1) {
         	this.vista.panelVistaEquipo.setVisible(false);
         	this.vista.panelPlantilla.setVisible(true);
@@ -1210,5 +1219,5 @@ public class Controlador implements ActionListener,MouseListener {
            
         }
     }
-
+ 
 }
