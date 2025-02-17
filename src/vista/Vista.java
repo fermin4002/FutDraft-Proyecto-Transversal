@@ -191,6 +191,7 @@ public class Vista extends JFrame {
 	public JLabel lblNombreDelanteroIzquierdo;
 	public JLabel lblNombreCentroCampistaIzquierdo;
 	public JLabel lblMinutos;
+	public JLabel lblFondoNombreEquipo;
 
 	/**
 	 * Launch the application.
@@ -249,6 +250,73 @@ public class Vista extends JFrame {
 		         		      		        		       panelSimulacion = new JPanel();
 		         		      		        		       panelSimulacion.setBounds(0, 0, 1347, 736);
 		         		      		        		       panelSimulacion.setVisible(false);
+		         		      		        		       
+		         		      		        		       panelMenu = new JPanel();
+		         		      		        		       panelMenu.setBounds(0, 0, 1329, 742);
+		         		      		        		       contentPane.add(panelMenu);
+		         		      		        		       panelMenu.setVisible(false);
+		         		      		        		       panelMenu.setLayout(null);
+		         		      		        		       
+		         		      		        		       panelNombreEquipo = new JPanel();
+		         		      		        		       panelNombreEquipo.setBounds(348, 145, 647, 565);
+		         		      		        		       panelMenu.add(panelNombreEquipo);
+		         		      		        		       panelNombreEquipo.setVisible(false);
+		         		      		        		       panelNombreEquipo.setEnabled(false);
+		         		      		        		       panelNombreEquipo.setLayout(null);
+		         		      		        		       
+		         		      		        		       lblIntroduceNombre = new JLabel("Introduce el nombre de tu equipo:");
+		         		      		        		       lblIntroduceNombre.setForeground(new Color(255, 255, 255));
+		         		      		        		       lblIntroduceNombre.setFont(new Font("Consolas", Font.BOLD, 17));
+		         		      		        		       lblIntroduceNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		         		      		        		       lblIntroduceNombre.setBounds(153, 31, 375, 94);
+		         		      		        		       panelNombreEquipo.add(lblIntroduceNombre);
+		         		      		        		       
+		         		      		        		       txtNombreEquipoJugador = new JTextField();
+		         		      		        		       txtNombreEquipoJugador.setBounds(153, 136, 375, 54);
+		         		      		        		       panelNombreEquipo.add(txtNombreEquipoJugador);
+		         		      		        		       txtNombreEquipoJugador.setColumns(10);
+		         		      		        		       
+		         		      		        		       btnCrearEquipoPropio = new JButton("Crear Equipo");
+		         		      		        		       btnCrearEquipoPropio.setBounds(153, 315, 375, 47);
+		         		      		        		       panelNombreEquipo.add(btnCrearEquipoPropio);
+		         		      		        		       
+		         		      		        		       lblErrorCreacion = new JLabel("");
+		         		      		        		       lblErrorCreacion.setFont(new Font("Consolas", Font.BOLD, 17));
+		         		      		        		       lblErrorCreacion.setForeground(new Color(255, 0, 0));
+		         		      		        		       lblErrorCreacion.setBounds(153, 219, 375, 66);
+		         		      		        		       panelNombreEquipo.add(lblErrorCreacion);
+		         		      		        		       
+		         		      		        		       lblFondoNombreEquipo = new JLabel("");
+		         		      		        		       lblFondoNombreEquipo.setBounds(0, 0, 647, 565);
+		         		      		        		       panelNombreEquipo.add(lblFondoNombreEquipo);
+		         		      		        		       
+		         		      		        		       lblInformacion = new JLabel("");
+		         		      		        		       lblInformacion.setBounds(1243, 0, 76, 71);
+		         		      		        		       panelMenu.add(lblInformacion);
+		         		      		        		       
+		         		      		        		       lblSalirPrincipal = new JLabel("");
+		         		      		        		       lblSalirPrincipal.setBounds(0, 0, 76, 71);
+		         		      		        		       panelMenu.add(lblSalirPrincipal);
+		         		      		        		       
+		         		      		        		       btnClasificaciones = new JButton("");
+		         		      		        		       btnClasificaciones.setBounds(459, 597, 500, 113);
+		         		      		        		       panelMenu.add(btnClasificaciones);
+		         		      		        		       
+		         		      		        		       btnJugadores = new JButton("");
+		         		      		        		       btnJugadores.setBounds(459, 474, 500, 113);
+		         		      		        		       panelMenu.add(btnJugadores);
+		         		      		        		       
+		         		      		        		       btnJugar = new JButton("");
+		         		      		        		       btnJugar.setBounds(459, 351, 500, 113);
+		         		      		        		       panelMenu.add(btnJugar);
+		         		      		        		       
+		         		      		        		       lblLogoMenu = new JLabel("");
+		         		      		        		       lblLogoMenu.setBounds(459, 0, 500, 338);
+		         		      		        		       panelMenu.add(lblLogoMenu);
+		         		      		        		       
+		         		      		        		       lblFondoMenu = new JLabel("");
+		         		      		        		       lblFondoMenu.setBounds(0, 0, 1339, 742);
+		         		      		        		       panelMenu.add(lblFondoMenu);
 		         		      		        		       contentPane.add(panelSimulacion);
 		         		      		        		       panelSimulacion.setLayout(null);
 		         		      		        		       
@@ -309,67 +377,6 @@ public class Vista extends JFrame {
 		         		      		        		       lblFondeSimulacion = new JLabel("");
 		         		      		        		       lblFondeSimulacion.setBounds(0, 0, 1326, 736);
 		         		      		        		       panelSimulacion.add(lblFondeSimulacion);
-		         		      		        		      
-		         		      		        		      panelMenu = new JPanel();
-		         		      		        		      panelMenu.setBounds(0, 0, 1329, 742);
-		         		      		        		      contentPane.add(panelMenu);
-		         		      		        		      panelMenu.setVisible(false);
-		         		      		        		      panelMenu.setLayout(null);
-		         		      		        		      
-		         		      		        		      panelNombreEquipo = new JPanel();
-		         		      		        		      panelNombreEquipo.setBounds(348, 145, 647, 565);
-		         		      		        		      panelMenu.add(panelNombreEquipo);
-		         		      		        		      panelNombreEquipo.setVisible(false);
-		         		      		        		      panelNombreEquipo.setEnabled(false);
-		         		      		        		      panelNombreEquipo.setLayout(null);
-		         		      		        		      
-		         		      		        		      lblIntroduceNombre = new JLabel("Introduce el nombre de tu equipo:");
-		         		      		        		      lblIntroduceNombre.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		         		      		        		      lblIntroduceNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		         		      		        		      lblIntroduceNombre.setBounds(153, 31, 375, 94);
-		         		      		        		      panelNombreEquipo.add(lblIntroduceNombre);
-		         		      		        		      
-		         		      		        		      txtNombreEquipoJugador = new JTextField();
-		         		      		        		      txtNombreEquipoJugador.setBounds(153, 136, 375, 54);
-		         		      		        		      panelNombreEquipo.add(txtNombreEquipoJugador);
-		         		      		        		      txtNombreEquipoJugador.setColumns(10);
-		         		      		        		      
-		         		      		        		      btnCrearEquipoPropio = new JButton("Crear Equipo");
-		         		      		        		      btnCrearEquipoPropio.setBounds(153, 315, 375, 47);
-		         		      		        		      panelNombreEquipo.add(btnCrearEquipoPropio);
-		         		      		        		      
-		         		      		        		      lblErrorCreacion = new JLabel("");
-		         		      		        		      lblErrorCreacion.setForeground(new Color(255, 0, 0));
-		         		      		        		      lblErrorCreacion.setBounds(153, 219, 375, 66);
-		         		      		        		      panelNombreEquipo.add(lblErrorCreacion);
-		         		      		        		      
-		         		      		        		      lblInformacion = new JLabel("");
-		         		      		        		      lblInformacion.setBounds(1243, 0, 76, 71);
-		         		      		        		      panelMenu.add(lblInformacion);
-		         		      		        		      
-		         		      		        		      lblSalirPrincipal = new JLabel("");
-		         		      		        		      lblSalirPrincipal.setBounds(0, 0, 76, 71);
-		         		      		        		      panelMenu.add(lblSalirPrincipal);
-		         		      		        		      
-		         		      		        		      btnClasificaciones = new JButton("");
-		         		      		        		      btnClasificaciones.setBounds(459, 597, 500, 113);
-		         		      		        		      panelMenu.add(btnClasificaciones);
-		         		      		        		      
-		         		      		        		      btnJugadores = new JButton("");
-		         		      		        		      btnJugadores.setBounds(459, 474, 500, 113);
-		         		      		        		      panelMenu.add(btnJugadores);
-		         		      		        		      
-		         		      		        		      btnJugar = new JButton("");
-		         		      		        		      btnJugar.setBounds(459, 351, 500, 113);
-		         		      		        		      panelMenu.add(btnJugar);
-		         		      		        		      
-		         		      		        		      lblLogoMenu = new JLabel("");
-		         		      		        		      lblLogoMenu.setBounds(459, 0, 500, 338);
-		         		      		        		      panelMenu.add(lblLogoMenu);
-		         		      		        		      
-		         		      		        		      lblFondoMenu = new JLabel("");
-		         		      		        		      lblFondoMenu.setBounds(0, 0, 1339, 742);
-		         		      		        		      panelMenu.add(lblFondoMenu);
 		         		      		        		      panelClasificacion.setBounds(0, 0, 1329, 742);
 		         		      		        		      contentPane.add(panelClasificacion);
 		         		      		        		      
@@ -796,6 +803,13 @@ public class Vista extends JFrame {
 		              panelElecion.setBounds(249, 148, 844, 324);
 		              panelElecion.setVisible(false);
 		              
+		              btnDefensaDerecha = new JButton("");
+		              btnDefensaDerecha.setBounds(403, 482, 85, 91);
+		              btnDefensaDerecha.setContentAreaFilled(false); 
+		              btnDefensaDerecha.setBorderPainted(false); 
+		              btnDefensaDerecha.setFocusPainted(false);
+		              PanelPlantilla.add(btnDefensaDerecha);
+		              
 		              lblNombreCentroCampistaIzquierdo = new JLabel("");
 		              lblNombreCentroCampistaIzquierdo.setForeground(Color.BLACK);
 		              lblNombreCentroCampistaIzquierdo.setBackground(new Color(255, 255, 255));
@@ -894,7 +908,7 @@ public class Vista extends JFrame {
 		                		                 lblNombreDefensaIDerecha.setForeground(Color.BLACK);
 		                		                 lblNombreDefensaIDerecha.setHorizontalAlignment(SwingConstants.CENTER);
 		                		                 lblNombreDefensaIDerecha.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		                		                 lblNombreDefensaIDerecha.setBounds(204, 509, 241, 108);
+		                		                 lblNombreDefensaIDerecha.setBounds(207, 509, 241, 108);
 		                		                 PanelPlantilla.add(lblNombreDefensaIDerecha);
 		                		                 
 		                		                 lblNombreDefensaIDerechaCentro = new JLabel("");
@@ -971,13 +985,6 @@ public class Vista extends JFrame {
 		                		                  btnDefensaDerechaCentro.setBorderPainted(false); 
 		                		                  btnDefensaDerechaCentro.setFocusPainted(false);
 		                		                  PanelPlantilla.add(btnDefensaDerechaCentro);
-		                		                  
-		                		                  btnDefensaDerecha = new JButton("");
-		                		                  btnDefensaDerecha.setBounds(403, 482, 85, 91);
-		                		                  btnDefensaDerecha.setContentAreaFilled(false); 
-		                		                  btnDefensaDerecha.setBorderPainted(false); 
-		                		                  btnDefensaDerecha.setFocusPainted(false);
-		                		                  PanelPlantilla.add(btnDefensaDerecha);
 		                		                  
 		                		                  btnCentroCampistaIzquierdo = new JButton("");
 		                		                  btnCentroCampistaIzquierdo.setBounds(870, 343, 85, 91);
