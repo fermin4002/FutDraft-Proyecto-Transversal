@@ -150,7 +150,6 @@ public class Vista extends JFrame {
 	public JButton btnIniciarSimulacion;
 	public JLabel lblFondo_Marcador;
 	public JLabel lblMarcador;
-	public JLabel lblSiguiente_Ronda;
 	public JLabel lblSalirPrincipal;
 	public JLabel lblInformacion;
 	public JPanel panelMostrarInformacion;
@@ -216,6 +215,8 @@ public class Vista extends JFrame {
 	public JLabel lblNombreDelanteroDerecho;
 	public JLabel lblNombreDelanteroIzquierdo;
 	public JLabel lblNombreCentroCampistaIzquierdo;
+	public JLabel lblMinutos;
+	public JLabel lblSiguiente_Ronda;
 
 
 	/**
@@ -259,7 +260,7 @@ public class Vista extends JFrame {
 		panelJugadores.setBounds(0, 0, 1329, 761);
 		panelJugadores.setVisible(false);
 		         		      
-		         		      		        
+
 		panelVistaEquipo = new JPanel();
 		panelVistaEquipo.setBounds(0, 0, 1329, 736);
 		panelVistaEquipo.setVisible(false);
@@ -367,7 +368,8 @@ public class Vista extends JFrame {
 		         		      		        		       		          		                  
 		btnDefensaIzquierda = new JButton("");
 		btnDefensaIzquierda.setBounds(870, 482, 85, 91);
-		btnDefensaIzquierda.setContentAreaFilled(false);          		      		        		       		          		                  btnDefensaIzquierda.setBorderPainted(false); 
+		btnDefensaIzquierda.setContentAreaFilled(false);
+		btnDefensaIzquierda.setBorderPainted(false); 
 		btnDefensaIzquierda.setFocusPainted(false);
 		panelPlantilla.add(btnDefensaIzquierda);
 		
@@ -402,7 +404,8 @@ public class Vista extends JFrame {
 		btnCentroCampistaDerechoCentro = new JButton("");
 		btnCentroCampistaDerechoCentro.setBounds(525, 343, 85, 91);
 		btnCentroCampistaDerechoCentro.setContentAreaFilled(false); 
-		btnCentroCampistaDerechoCentro.setBorderPainted(false);          		      		        		       		          		                  btnCentroCampistaDerechoCentro.setFocusPainted(false);
+		btnCentroCampistaDerechoCentro.setBorderPainted(false);
+		btnCentroCampistaDerechoCentro.setFocusPainted(false);
 		panelPlantilla.add(btnCentroCampistaDerechoCentro);
 		
 		
@@ -675,6 +678,7 @@ public class Vista extends JFrame {
 		contentPane.add(panelMenu);
 		panelMenu.setVisible(false);
 		panelMenu.setLayout(null);
+
 		         		      		        		      
 		panelNombreEquipo = new JPanel();
 		panelNombreEquipo.setBounds(348, 145, 647, 565);
@@ -988,6 +992,7 @@ public class Vista extends JFrame {
 		lblVolverJugadores.setBounds(0, 1, 82, 79);
 		panelJugadores.add(lblVolverJugadores);
 		         
+
 		lblFondo_Pantalla_Jugadores = new JLabel("");
 		lblFondo_Pantalla_Jugadores.setBounds(0, 0, 1329, 751);
 		panelJugadores.add(lblFondo_Pantalla_Jugadores);
@@ -995,6 +1000,7 @@ public class Vista extends JFrame {
 		panelSimulacion = new JPanel();
 		panelSimulacion.setBounds(0, 0, 1347, 736);
 		panelSimulacion.setVisible(false);
+
 		          
 		panelInformacion = new JPanel();
 		panelInformacion.setBounds(0, 0, 1321, 734);
@@ -1081,6 +1087,7 @@ public class Vista extends JFrame {
 		lblSalirMenu_Informacion.setBounds(0, 0, 76, 71);
 		panelInformacion.add(lblSalirMenu_Informacion);
 		           
+
 		lblFondoInformacion = new JLabel("");
 		lblFondoInformacion.setBounds(0, 0, 1331, 745);
 		panelInformacion.add(lblFondoInformacion);
@@ -1137,6 +1144,7 @@ public class Vista extends JFrame {
 		lblFondeSimulacion = new JLabel("");
 		lblFondeSimulacion.setBounds(0, 0, 1326, 736);
 		panelSimulacion.add(lblFondeSimulacion);
+
 
 	}
 	

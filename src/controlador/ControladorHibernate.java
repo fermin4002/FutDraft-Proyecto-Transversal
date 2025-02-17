@@ -601,7 +601,7 @@ public class ControladorHibernate {
 	        sesion = sessionFactory.getCurrentSession();
 	        sesion.beginTransaction();
 
-	        Query query = sesion.createQuery("FROM Jugador WHERE equipo.id =1");
+	        Query query = sesion.createQuery("FROM Jugador WHERE equipo.equipoJugador=true order by posicion");
 	     
 	        jugadores = query.list();
 	        

@@ -36,14 +36,17 @@ import persistencias.Jugador;
 import persistencias.Partido;
 
 public class Controlador implements ActionListener,MouseListener {
-
+	int jugadoresEquipoLocalSeleccionados = 0;
     private Vista vista;
     private ControladorHibernate hibernate;
     private String[] nombres;
     private List<Jugador> jugador;
-    private List<Jugador> jugadoresSeleccionados = new ArrayList<>();
     private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
-
+    private Jugador porteroSeleccionado;
+    private Jugador defensorSeleccionado;
+    private Jugador mediocampistaSeleccionado;
+    private Jugador delanteroSeleccionado;
+    private PartidoFutbol partidoFutbol;
     public Controlador(Vista vista) {
         this.vista = vista;
         jugador=new ArrayList<Jugador>();
@@ -104,7 +107,7 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblEmpezarSimulacion.addMouseListener(this);
         this.vista.lblVolverPlantilla_Simulacion.addMouseListener(this);
         this.vista.panelVistaEquipo.setVisible(false); 
-       
+        this.vista.btnIniciarSimulacion.addActionListener(this);
         //Ver infromacion
         this.vista.lblInformacion.addMouseListener(this);
         //Informacion
@@ -206,49 +209,48 @@ public class Controlador implements ActionListener,MouseListener {
         }else if (e.getSource() == this.vista.btnPortero) {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
-            cargarPorteros(this.vista.lblNombrePortero,this.vista.btnPortero); 
-           this.vista.btnPortero.setVisible(false);
-        }else if (e.getSource() == this.vista.btnDefensaDerecha){
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarDefensores(this.vista.lblNombreDefensaIDerecha, this.vista.btnDefensaDerecha);
-        }else if (e.getSource() == this.vista.btnDefensaIzquierda){
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarDefensores(this.vista.lblNombreDefensaIzquierda, this.vista.btnDefensaIzquierda);
-        }else if (e.getSource() == this.vista.btnDefensaIzquierdaCentro) {
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarDefensores(this.vista.lblNombreDefensaIzquierdaCentro,this.vista.btnDefensaIzquierdaCentro);
-        }else if(e.getSource() == this.vista.btnDefensaDerechaCentro) {
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarDefensores(this.vista.lblNombreDefensaIDerechaCentro,this.vista.btnDefensaDerechaCentro);
-       		
-        } else if (e.getSource() == this.vista.btnCentroCampistaDerecho){
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarMediocampistas(this.vista.lblNombreCentroCampistaDerecha,this.vista.btnCentroCampistaDerecho);
-        }else if (e.getSource() == this.vista.btnCentroCampistaIzquierdo) {
-        	 vista.panelElecion.setVisible(true);
-             disableButtons(botonesDeshabilitar);
-             cargarMediocampistas(this.vista.lblNombreCentroCampistaIzquierdo,this.vista.btnCentroCampistaIzquierdo);
-        }else if(e.getSource() == this.vista.btnCentroCampistaDerechoCentro) {
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarMediocampistas(this.vista.lblNombreCentroCampistaDerechaCentro,this.vista.btnCentroCampistaDerechoCentro);
-        }else if (e.getSource() == this.vista.btnCentroCampistaIzquierdoCentro) {
-        	vista.panelElecion.setVisible(true);
-            disableButtons(botonesDeshabilitar);
-            cargarMediocampistas(this.vista.lblNombreCentroCampistaIzquierdoCentro,this.vista.btnCentroCampistaIzquierdoCentro);
-        } else if (e.getSource() == this.vista.btnDelanteroDerecho){
-        	  vista.panelElecion.setVisible(true);
-              disableButtons(botonesDeshabilitar);
-              cargarDelanteros(this.vista.lblNombreDelanteroDerecho,this.vista.btnDelanteroDerecho);
-        }else if(e.getSource() == this.vista.btnDelanteroIzquierda) {
+            cargarPorteros(this.vista.lblNombrePortero, this.vista.btnPortero);
+            this.vista.btnPortero.setVisible(false);
+        } else if (e.getSource() == this.vista.btnDefensaDerecha) {
             vista.panelElecion.setVisible(true);
             disableButtons(botonesDeshabilitar);
-            cargarDelanteros(this.vista.lblNombreDelanteroIzquierdo,this.vista.btnDelanteroIzquierda);
+            cargarDefensores(this.vista.lblNombreDefensaIDerecha, this.vista.btnDefensaDerecha);
+        } else if (e.getSource() == this.vista.btnDefensaIzquierda) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDefensores(this.vista.lblNombreDefensaIzquierda, this.vista.btnDefensaIzquierda);
+        } else if (e.getSource() == this.vista.btnDefensaIzquierdaCentro) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDefensores(this.vista.lblNombreDefensaIzquierdaCentro, this.vista.btnDefensaIzquierdaCentro);
+        } else if (e.getSource() == this.vista.btnDefensaDerechaCentro) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDefensores(this.vista.lblNombreDefensaIDerechaCentro, this.vista.btnDefensaDerechaCentro);
+        } else if (e.getSource() == this.vista.btnCentroCampistaDerecho) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarMediocampistas(this.vista.lblNombreCentroCampistaDerecha, this.vista.btnCentroCampistaDerecho);
+        } else if (e.getSource() == this.vista.btnCentroCampistaIzquierdo) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarMediocampistas(this.vista.lblNombreCentroCampistaIzquierdo, this.vista.btnCentroCampistaIzquierdo);
+        } else if (e.getSource() == this.vista.btnCentroCampistaDerechoCentro) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarMediocampistas(this.vista.lblNombreCentroCampistaDerechaCentro, this.vista.btnCentroCampistaDerechoCentro);
+        } else if (e.getSource() == this.vista.btnCentroCampistaIzquierdoCentro) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarMediocampistas(this.vista.lblNombreCentroCampistaIzquierdoCentro, this.vista.btnCentroCampistaIzquierdoCentro);
+        } else if (e.getSource() == this.vista.btnDelanteroDerecho) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDelanteros(this.vista.lblNombreDelanteroDerecho, this.vista.btnDelanteroDerecho);
+        } else if (e.getSource() == this.vista.btnDelanteroIzquierda) {
+            vista.panelElecion.setVisible(true);
+            disableButtons(botonesDeshabilitar);
+            cargarDelanteros(this.vista.lblNombreDelanteroIzquierdo, this.vista.btnDelanteroIzquierda);
         }
         //Copiado
         else if (e.getSource()==this.vista.btnEleccionUno) {
@@ -257,37 +259,40 @@ public class Controlador implements ActionListener,MouseListener {
             Equipo equipo=hibernate.extraEquipoJugador();
             Jugador jugador=this.jugador.get(0);
             hibernate.añadirequipo(jugador, equipo);
-            
-        
+            cargarJugadoresEquipo();
+            verificarJugadoresSeleccionados();
 	    }else if (e.getSource()==this.vista.btnEleccionDos) {
 	       	 vista.panelElecion.setVisible(false);
 	         enableButtons(botonesDeshabilitar);
 	         Equipo equipo=hibernate.extraEquipoJugador();
             Jugador jugador=this.jugador.get(1);
             hibernate.añadirequipo(jugador, equipo);
-            
-           
+            cargarJugadoresEquipo();
+            verificarJugadoresSeleccionados();
 	    }else if (e.getSource()==this.vista.btnEleccionTres) {
 	    	vista.panelElecion.setVisible(false);
 	    	enableButtons(botonesDeshabilitar); 
 	    	Equipo equipo=hibernate.extraEquipoJugador();
            Jugador jugador=this.jugador.get(2);
            hibernate.añadirequipo(jugador, equipo);
-        
+           cargarJugadoresEquipo();
+           verificarJugadoresSeleccionados();
 	    }else if (e.getSource()==this.vista.btnEleccionCuatro) {
 	    	vista.panelElecion.setVisible(false);
 	    	enableButtons(botonesDeshabilitar);  
 	    	Equipo equipo=hibernate.extraEquipoJugador();
            Jugador jugador=this.jugador.get(3);
            hibernate.añadirequipo(jugador, equipo);
-         
+           cargarJugadoresEquipo();
+           verificarJugadoresSeleccionados();
 	    }else if (e.getSource()==this.vista.btnEleccionCinco) {
 	    	vista.panelElecion.setVisible(false);
 	    	enableButtons(botonesDeshabilitar); 
 	    	Equipo equipo=hibernate.extraEquipoJugador();
            Jugador jugador=this.jugador.get(4);
            hibernate.añadirequipo(jugador,equipo);
-          
+           cargarJugadoresEquipo();
+           verificarJugadoresSeleccionados();
         }
         
         else if (isPlayerButton(e.getSource())) {
@@ -297,22 +302,23 @@ public class Controlador implements ActionListener,MouseListener {
             vista.panelElecion.setVisible(false);
             enableButtons(botonesDeshabilitar);
         }
-        //
-        /*if(e.getSource()==this.vista.lblFondoDraft) {
-        	vista.panelElecion.setVisible(false);
-        }*/
-        
+
         else if(e.getSource()==this.vista.btnJugar) {
         	if(hibernate.isEquiposCreados(1)) {
 	        	this.vista.panelMenu.setVisible(false);
+
 	        	this.vista.panelPlantilla.setVisible(true);
-	        	//cargarJugadoresEquipo();
+	        	this.vista.panelPlantilla.setVisible(true);
+	        	cargarJugadoresEquipo();
+	        	verificarJugadoresSeleccionados();
+
         	}else {
-        		
+        		verificarJugadoresSeleccionados();
         		this.vista.panelMenu.setEnabled(false);
         		this.vista.btnJugar.setEnabled(false);
         		this.vista.btnJugadores.setEnabled(false);
         		this.vista.btnClasificaciones.setEnabled(false);
+        		
         		
         		this.vista.panelNombreEquipo.setVisible(true);
         		this.vista.panelNombreEquipo.setEnabled(true);
@@ -370,8 +376,20 @@ public class Controlador implements ActionListener,MouseListener {
         	}else {
         		vista.lblErrorCreacion.setText("ERROR, introduzca un nombre para el equipo");
         	}
+
         }else if(e.getSource()==this.vista.comboBoxEquipoClasificacion) {
         	cargarPlantilla();
+
+        }else if(e.getSource()==this.vista.btnIniciarSimulacion) {
+        	String nombre_equipoLocal=vista.lblNombreLocalVista.getText();
+        	String nombre_equipoVisitanter=vista.lblNombreVisitanteVista.getText();
+        	DefaultListModel<String> listasituacion=new DefaultListModel<>();
+        	//partidoFutbol = new PartidoFutbol(nombre_equipoLocal, nombre_equipoVisitanter,vista.lblMinutos,vista.lblMarcador,listasituacion);
+        	partidoFutbol.start();
+        	vista.listSimulacion.setModel(listasituacion);
+        	this.vista.btnIniciarSimulacion.setEnabled(false);
+        	
+
         }
         
         
@@ -399,39 +417,25 @@ public class Controlador implements ActionListener,MouseListener {
             switch (i) {
                 case 0:
                     setLabelButton(vista.btnEleccionUno, mensaje);
-                   // vista.btnEleccionUno.addActionListener(e -> seleccionarPortero(portero, lblNombrePortero, btnPortero));
                     break;
                 case 1:
                     setLabelButton(vista.btnEleccionDos, mensaje);
-                    //vista.btnEleccionDos.addActionListener(e -> seleccionarPortero(portero, lblNombrePortero, btnPortero));
                     break;
                 case 2:
                     setLabelButton(vista.btnEleccionTres, mensaje);
-                    //vista.btnEleccionTres.addActionListener(e -> seleccionarPortero(portero, lblNombrePortero, btnPortero));
                     break;
                 case 3:
                     setLabelButton(vista.btnEleccionCuatro, mensaje);
-                    //vista.btnEleccionCuatro.addActionListener(e -> seleccionarPortero(portero, lblNombrePortero, btnPortero));
                     break;
                 case 4:
                     setLabelButton(vista.btnEleccionCinco, mensaje);
-                    //vista.btnEleccionCinco.addActionListener(e -> seleccionarPortero(portero, lblNombrePortero, btnPortero));
                     break;
             }
             this.jugador.add(portero);
         }
     }
 
-    private void seleccionarPortero(Jugador portero, JLabel lblNombrePortero, JButton btnPortero) {
-   
-        if (!jugadoresSeleccionados.contains(portero)) {
-            jugadoresSeleccionados.add(portero); 
-        }
-        lblNombrePortero.setText(portero.getNombre());
-        btnPortero.setVisible(false); 
-        btnPortero.setEnabled(false);  
-        btnPortero.setIcon(fotoEscalarButton(btnPortero, ""));
-    }
+ 
 
     public void cargarDefensores(JLabel lblNombreDefensor, JButton btnDefensor) {
         List<Jugador> defensores = hibernate.extraerJugadoresPorPosicion("DEF");
@@ -443,7 +447,7 @@ public class Controlador implements ActionListener,MouseListener {
         vista.btnEleccionCuatro.setText("");
         vista.btnEleccionCinco.setText("");
 
-        // Asigno los 5 defensores aleatorios a los botones
+      
         for (int i = 0; i < Math.min(5, defensores.size()); i++) {
             Jugador defensor = defensores.get(i);
             String mensaje = defensor.getNombre() + "<br>" +
@@ -455,36 +459,25 @@ public class Controlador implements ActionListener,MouseListener {
             switch (i) {
                 case 0:
                     setLabelButton(vista.btnEleccionUno, mensaje);
-                    vista.btnEleccionUno.addActionListener(e -> seleccionarDefensor(defensor, lblNombreDefensor, btnDefensor));
                     break;
                 case 1:
                     setLabelButton(vista.btnEleccionDos, mensaje);
-                    vista.btnEleccionDos.addActionListener(e -> seleccionarDefensor(defensor, lblNombreDefensor, btnDefensor));
                     break;
                 case 2:
                     setLabelButton(vista.btnEleccionTres, mensaje);
-                    vista.btnEleccionTres.addActionListener(e -> seleccionarDefensor(defensor, lblNombreDefensor, btnDefensor));
                     break;
                 case 3:
                     setLabelButton(vista.btnEleccionCuatro, mensaje);
-                    vista.btnEleccionCuatro.addActionListener(e -> seleccionarDefensor(defensor, lblNombreDefensor, btnDefensor));
                     break;
                 case 4:
                     setLabelButton(vista.btnEleccionCinco, mensaje);
-                    vista.btnEleccionCinco.addActionListener(e -> seleccionarDefensor(defensor, lblNombreDefensor, btnDefensor));
                     break;
             }
             this.jugador.add(defensor);
         }
     }
 
-    private void seleccionarDefensor(Jugador defensor, JLabel lblNombreDefensor, JButton btnDefensor) {
-        lblNombreDefensor.setText(defensor.getNombre());
-        btnDefensor.setVisible(true); 
-        btnDefensor.setEnabled(true);  
-        btnDefensor.setIcon(fotoEscalarButton(btnDefensor, ""));
-    }
-
+  
     public void cargarMediocampistas(JLabel lblNombreMediocampista, JButton btnMediocampista) {
         List<Jugador> mediocampistas = hibernate.extraerJugadoresPorPosicion("MED");
         Collections.shuffle(mediocampistas);
@@ -507,35 +500,26 @@ public class Controlador implements ActionListener,MouseListener {
             switch (i) {
                 case 0:
                     setLabelButton(vista.btnEleccionUno, mensaje);
-                    vista.btnEleccionUno.addActionListener(e -> seleccionarMediocampista(mediocampista, lblNombreMediocampista, btnMediocampista));
-                    break;
+                     break;
                 case 1:
                     setLabelButton(vista.btnEleccionDos, mensaje);
-                    vista.btnEleccionDos.addActionListener(e -> seleccionarMediocampista(mediocampista, lblNombreMediocampista, btnMediocampista));
                     break;
                 case 2:
                     setLabelButton(vista.btnEleccionTres, mensaje);
-                    vista.btnEleccionTres.addActionListener(e -> seleccionarMediocampista(mediocampista, lblNombreMediocampista, btnMediocampista));
-                    break;
+                     break;
                 case 3:
                     setLabelButton(vista.btnEleccionCuatro, mensaje);
-                    vista.btnEleccionCuatro.addActionListener(e -> seleccionarMediocampista(mediocampista, lblNombreMediocampista, btnMediocampista));
-                    break;
+                     break;
                 case 4:
                     setLabelButton(vista.btnEleccionCinco, mensaje);
-                    vista.btnEleccionCinco.addActionListener(e -> seleccionarMediocampista(mediocampista, lblNombreMediocampista, btnMediocampista));
                     break;
             }
             this.jugador.add(mediocampista);
+            
         }
     }
 
-    private void seleccionarMediocampista(Jugador mediocampista, JLabel lblNombreMediocampista, JButton btnMediocampista) {
-        lblNombreMediocampista.setText(mediocampista.getNombre());
-        btnMediocampista.setVisible(true); 
-        btnMediocampista.setEnabled(true);  
-        btnMediocampista.setIcon(fotoEscalarButton(btnMediocampista, ""));
-    }
+  
 
     public void cargarDelanteros(JLabel lblNombreDelantero, JButton btnDelantero) {
         List<Jugador> delanteros = hibernate.extraerJugadoresPorPosicion("DEL");
@@ -559,36 +543,25 @@ public class Controlador implements ActionListener,MouseListener {
             switch (i) {
                 case 0:
                     setLabelButton(vista.btnEleccionUno, mensaje);
-                    vista.btnEleccionUno.addActionListener(e -> seleccionarDelantero(delantero, lblNombreDelantero, btnDelantero));
                     break;
                 case 1:
                     setLabelButton(vista.btnEleccionDos, mensaje);
-                    vista.btnEleccionDos.addActionListener(e -> seleccionarDelantero(delantero, lblNombreDelantero, btnDelantero));
                     break;
                 case 2:
                     setLabelButton(vista.btnEleccionTres, mensaje);
-                    vista.btnEleccionTres.addActionListener(e -> seleccionarDelantero(delantero, lblNombreDelantero, btnDelantero));
                     break;
                 case 3:
                     setLabelButton(vista.btnEleccionCuatro, mensaje);
-                    vista.btnEleccionCuatro.addActionListener(e -> seleccionarDelantero(delantero, lblNombreDelantero, btnDelantero));
                     break;
                 case 4:
                     setLabelButton(vista.btnEleccionCinco, mensaje);
-                    vista.btnEleccionCinco.addActionListener(e -> seleccionarDelantero(delantero, lblNombreDelantero, btnDelantero));
                     break;
             }
             this.jugador.add(delantero);
         }
     }
 
-    private void seleccionarDelantero(Jugador delantero, JLabel lblNombreDelantero, JButton btnDelantero) {
-        lblNombreDelantero.setText(delantero.getNombre());
-        btnDelantero.setVisible(true); 
-        btnDelantero.setEnabled(true);  
-        btnDelantero.setIcon(fotoEscalarButton(btnDelantero, ""));
-    }
-
+   
     public boolean isPlayerButton(Object source) {
         return source == this.vista.btnPortero ||
                source == this.vista.btnDelanteroDerecho ||
@@ -704,7 +677,6 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFtotoVersus_1.setIcon(fotoEscalarLabel(this.vista.lblFtotoVersus_1,"imagenes/versus.png"));
         this.vista.btnIniciarSimulacion.setIcon(fotoEscalarButton(this.vista.btnIniciarSimulacion, "imagenes/boton_simular.png"));
         this.vista.lblFondo_Marcador.setIcon(fotoEscalarLabel(this.vista.lblFondo_Marcador,"imagenes/marcador.png"));
-        this.vista.lblSiguiente_Ronda.setIcon(fotoEscalarLabel(this.vista.lblSiguiente_Ronda,"imagenes/siguiete_jornada.png"));
         //panelInformacion
         this.vista.lblFondoInformacion.setIcon(fotoEscalarLabel(this.vista.lblFondoInformacion,"imagenes/fondo-principal.jpg"));
         this.vista.lblSalirMenu_Informacion.setIcon(fotoEscalarLabel(this.vista.lblSalirMenu_Informacion,"imagenes/volver.png"));
@@ -1068,63 +1040,116 @@ public class Controlador implements ActionListener,MouseListener {
 		
 		lista.setModel(modelo);
 	}
-	//Cargar Si tenemos jugadores cuando le damos al boton de jugar y nos lo pone en el label
+	
 	public void cargarJugadoresEquipo() {
 	    List<Jugador> jugadores = hibernate.obtenerJugadoresPorEquipo();
 
-	    if (jugadores.isEmpty()) {
+	    if (jugadores.size()==0) {
 	        System.out.println("El equipo no tiene jugadores.");
-	        return;
-	    }
-
-	    for (Jugador jugador : jugadores) {
-	        switch (jugador.getPosicion()) {
-	            case "POR":
-	                vista.lblNombrePortero.setText(jugador.getNombre());
-	                this.vista.btnPortero.setVisible(false);
-	                this.vista.btnPortero.setEnabled(false);
-	                break;
-	            case "DEF":
-	               vista.lblNombreDefensaIDerecha.setText(jugador.getNombre());
-	               vista.lblNombreDefensaIDerechaCentro.setText(jugador.getNombre());
-	               vista.lblNombreCentroCampistaIzquierdo.setText(jugador.getNombre());
-	               vista.lblNombreCentroCampistaIzquierdoCentro.setText(jugador.getNombre());
-	               this.vista.btnDefensaDerecha.setVisible(false);
-	               this.vista.btnDefensaDerechaCentro.setVisible(false);
-	               this.vista.btnDefensaIzquierda.setVisible(false);
-	               this.vista.btnDefensaIzquierdaCentro.setVisible(false);
-	               this.vista.btnDefensaDerecha.setEnabled(false);;
-	               this.vista.btnDefensaDerechaCentro.setEnabled(false);
-	               this.vista.btnDefensaIzquierda.setEnabled(false);
-	               this.vista.btnDefensaIzquierdaCentro.setEnabled(false);
-	                break;
-	            case "MED":
-	                vista.lblNombreCentroCampistaDerecha.setText(jugador.getNombre());
-	                vista.lblNombreCentroCampistaDerechaCentro.setText(jugador.getNombre());
-	                vista.lblNombreCentroCampistaIzquierdo.setText(jugador.getNombre());
-	                vista.lblNombreCentroCampistaIzquierdoCentro.setText(jugador.getNombre());
-		               this.vista.btnCentroCampistaDerecho.setVisible(false);
-		               this.vista.btnCentroCampistaDerechoCentro.setVisible(false);
-		               this.vista.btnCentroCampistaIzquierdo.setVisible(false);
-		               this.vista.btnCentroCampistaIzquierdoCentro.setVisible(false);
-		               this.vista.btnCentroCampistaDerecho.setEnabled(false);;
-		               this.vista.btnCentroCampistaDerechoCentro.setEnabled(false);
-		               this.vista.btnCentroCampistaIzquierdo.setEnabled(false);
-		               this.vista.btnCentroCampistaIzquierdoCentro.setEnabled(false);
-	                break;
-	            case "DEL":
-	            	vista.lblNombreDelanteroIzquierdo.setText(jugador.getNombre());
-	            	vista.lblNombreDelanteroDerecho.setText(jugador.getNombre());
-	            	this.vista.btnDelanteroIzquierda.setVisible(false);
-		            this.vista.btnDelanteroDerecho.setVisible(false);
-		            this.vista.btnDelanteroIzquierda.setEnabled(false);
-		            this.vista.btnDelanteroDerecho.setEnabled(false);
-	                break;
-	            default:
-	                break;
-	        }
+	       
+	    }else {
+	    	
+	  
+		    int contadorPorteros = 0;
+		    int contadorDefensores = 0;
+		    int contadorMediocampistas = 0;
+		    int contadorDelanteros = 0;
+	
+		    for (Jugador jugador : jugadores) {
+		        switch (jugador.getPosicion()) {
+		            case "POR":
+		                if (contadorPorteros == 0) {
+		                    vista.lblNombrePortero.setText(jugador.getNombre());
+		                    this.vista.btnPortero.setVisible(false);
+		                    this.vista.btnPortero.setEnabled(false);
+		                }
+		                contadorPorteros++;
+		                break;
+		            case "DEF":
+		            	if (contadorDefensores == 4) {
+		                    this.vista.btnDefensaDerecha.setVisible(false);
+		                    this.vista.btnDefensaDerechaCentro.setVisible(false);
+		                    this.vista.btnDefensaIzquierda.setVisible(false);
+		                    this.vista.btnDefensaIzquierdaCentro.setVisible(false);
+		                }
+		            	else if (contadorDefensores < 4) { 
+		                    if (contadorDefensores == 0) {
+		                        vista.lblNombreDefensaIDerecha.setText(jugador.getNombre());
+		                        this.vista.btnDefensaDerecha.setVisible(false);
+		                        this.vista.btnDefensaDerecha.setEnabled(false);
+		                    } else if (contadorDefensores == 1) {
+		                        vista.lblNombreDefensaIDerechaCentro.setText(jugador.getNombre());
+		                        this.vista.btnDefensaDerechaCentro.setVisible(false);
+		                        this.vista.btnDefensaDerechaCentro.setEnabled(false);
+		                    } else if (contadorDefensores == 2) {
+		                        vista.lblNombreDefensaIzquierda.setText(jugador.getNombre());
+		                        this.vista.btnDefensaIzquierda.setVisible(false);
+		                        this.vista.btnDefensaIzquierda.setEnabled(false);
+		                    } else if (contadorDefensores == 3) {
+		                        vista.lblNombreDefensaIzquierdaCentro.setText(jugador.getNombre());
+		                        this.vista.btnDefensaIzquierdaCentro.setVisible(false);
+		                        this.vista.btnDefensaIzquierdaCentro.setEnabled(false);
+		                    }
+		                    contadorDefensores++;
+		                }
+		                
+		                break;
+		            case "MED":
+		            	if (contadorMediocampistas == 4) {
+		                    this.vista.btnCentroCampistaDerecho.setVisible(false);
+		                    this.vista.btnCentroCampistaDerechoCentro.setVisible(false);
+		                    this.vista.btnCentroCampistaIzquierdo.setVisible(false);
+		                    this.vista.btnCentroCampistaIzquierdoCentro.setVisible(false);
+		                }
+		            	else if (contadorMediocampistas < 4) {
+		                    if (contadorMediocampistas == 0) {
+		                        vista.lblNombreCentroCampistaDerecha.setText(jugador.getNombre());
+		                        this.vista.btnCentroCampistaDerecho.setVisible(false);
+		                        this.vista.btnCentroCampistaDerecho.setEnabled(false);
+		                    } else if (contadorMediocampistas == 1) {
+		                        vista.lblNombreCentroCampistaDerechaCentro.setText(jugador.getNombre());
+		                        this.vista.btnCentroCampistaDerechoCentro.setVisible(false);
+		                        this.vista.btnCentroCampistaDerechoCentro.setEnabled(false);
+		                    } else if (contadorMediocampistas == 2) {
+		                        vista.lblNombreCentroCampistaIzquierdo.setText(jugador.getNombre());
+		                        this.vista.btnCentroCampistaIzquierdo.setEnabled(false);
+		                        this.vista.btnCentroCampistaIzquierdo.setVisible(false);
+		                    } else if (contadorMediocampistas == 3) {
+		                        vista.lblNombreCentroCampistaIzquierdoCentro.setText(jugador.getNombre());
+		                        this.vista.btnCentroCampistaIzquierdoCentro.setEnabled(false);
+		                        this.vista.btnCentroCampistaIzquierdoCentro.setVisible(false);
+		                    }
+		                    contadorMediocampistas++;
+		                }		               
+		                
+		                break;
+		            case "DEL":
+		            	if (contadorDelanteros == 2) {
+		                    this.vista.btnDelanteroIzquierda.setVisible(false);
+		                    this.vista.btnDelanteroDerecho.setVisible(false);
+		                }
+		            	else if (contadorDelanteros < 2) { 
+		                    if (contadorDelanteros == 0) {
+		                        vista.lblNombreDelanteroIzquierdo.setText(jugador.getNombre());
+		                        this.vista.btnDelanteroIzquierda.setVisible(false);
+		                        this.vista.btnDelanteroIzquierda.setEnabled(false);
+		                    } else if (contadorDelanteros == 1) {
+		                        vista.lblNombreDelanteroDerecho.setText(jugador.getNombre());
+		                        this.vista.btnDelanteroDerecho.setVisible(false);
+		                        this.vista.btnDelanteroDerecho.setEnabled(false);
+		                    }
+		                    contadorDelanteros++;
+		                }
+		                
+		                break;
+		            default:
+		                break;
+		        }
+		    
+		    }
 	    }
 	}
+
 	
 	public void cargarPlantilla() {
 		int selec=vista.comboBoxEquipoClasificacion.getSelectedIndex();
@@ -1172,22 +1197,18 @@ public class Controlador implements ActionListener,MouseListener {
 				
 			}
 		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
+	} 
+
+    public void verificarJugadoresSeleccionados() {
+    	List<Jugador> total = hibernate.obtenerJugadoresPorEquipo();
+    	int jugadoresEquipoLocalSeleccionados=total.size();
+    	System.out.println(jugadoresEquipoLocalSeleccionados);
+        if (jugadoresEquipoLocalSeleccionados ==11 ) {
+            vista.btnSimularPartida.setEnabled(true);
+        } else {
+            vista.btnSimularPartida.setEnabled(false);
+           
+        }
+    }
+
 }
