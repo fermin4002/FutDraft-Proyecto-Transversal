@@ -156,5 +156,8 @@ public class Equipo implements java.io.Serializable {
 		this.golesContra = golesContra;
 	}
 	
+	public void calcularPuntos() {
+		puntos= victorias*3+empates*1;
+	}
 
 }

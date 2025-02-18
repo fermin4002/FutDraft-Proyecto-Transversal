@@ -643,6 +643,167 @@ public class ControladorHibernate {
 		
 		return salida;
 	}
+	public List<Partido> extraerJornada(){
+		List<Partido> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Partido e where e.golesLocal=null order by e.jornada";
+			
+			Query query=sesion.createQuery(consulta);
+			
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	public List<Partido> extraerJornadaJugada(){
+		List<Partido> salida=null;
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="from Partido e where e.golesLocal is not null order by e.jornada";
+			
+			Query query=sesion.createQuery(consulta);
+			
+			salida=query.list();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+		return salida;
+	}
+	
+	//Reinicio
+	public void reinicio() {
+		dropPartidos();
+		resetearJugadores();
+		dropEquipos();
+	}
+	
+	public void resetJugadores() {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="update jugador set id_equipo=null";
+			
+			Query query=sesion.createSQLQuery(consulta);
+			
+			query.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+	}
+	public void dropEquipos() {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="delete from equipo";
+			
+			Query query=sesion.createSQLQuery(consulta);
+			
+			query.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+	}
+	public void dropPartidos() {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			String consulta="delete from partido";
+			
+			Query query=sesion.createSQLQuery(consulta);
+			
+			query.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+	}
+	
+	public void updatePartidos(List<Partido> partidos) {
+		Session sesion=null;
+		
+		try {
+			sesion=sessionFactory.getCurrentSession();
+			sesion.beginTransaction();
+			
+			for(Partido clave:partidos) {
+				sesion.update(clave);
+			}
+			
+			
+			
+			sesion.getTransaction().rollback();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			if(null!=sesion) {
+				sesion.getTransaction().rollback();
+			}
+			throw e;
+		}finally {
+			if(null!=sesion) {
+				sesion.close();
+			}
+		}
+	}
 	
 	
 }

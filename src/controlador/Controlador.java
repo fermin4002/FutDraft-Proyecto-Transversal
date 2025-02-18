@@ -40,6 +40,7 @@ public class Controlador implements ActionListener,MouseListener {
     private Vista vista;
     private ControladorHibernate hibernate;
     private String[] nombres;
+    List<Partido> jornada;
     private List<Jugador> jugador;
     private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
     private Jugador porteroSeleccionado;
@@ -87,7 +88,7 @@ public class Controlador implements ActionListener,MouseListener {
 
         this.vista.btnClasificaciones.addActionListener(this);
 
-        this.vista.lblSalir.addMouseListener(this);
+
         this.vista.btnSimularPartida.addActionListener(this);
         this.vista.btnJugadores.addActionListener(this);
         this.vista.lblVolverJugadores.addMouseListener(this);
@@ -304,6 +305,10 @@ public class Controlador implements ActionListener,MouseListener {
         }
 
         else if(e.getSource()==this.vista.btnJugar) {
+        	List<Partido> jornadas=hibernate.extraerJornadaJugada();
+        	if(jornadas.size()==95) {
+        		hibernate.reinicio();
+        	}
         	if(hibernate.isEquiposCreados(1)) {
 	        	this.vista.panelMenu.setVisible(false);
 
@@ -312,7 +317,7 @@ public class Controlador implements ActionListener,MouseListener {
 	        	cargarJugadoresEquipo();
 	        	verificarJugadoresSeleccionados();
 
-        	}else {
+        	}else{
         		verificarJugadoresSeleccionados();
         		this.vista.panelMenu.setEnabled(false);
         		this.vista.btnJugar.setEnabled(false);
@@ -321,7 +326,6 @@ public class Controlador implements ActionListener,MouseListener {
         		this.vista.btnJugar.setVisible(false);
         		this.vista.btnJugadores.setVisible(false);
         		this.vista.btnClasificaciones.setVisible(false);
-        		
         		
         		this.vista.panelNombreEquipo.setVisible(true);
         		this.vista.panelNombreEquipo.setEnabled(true);
@@ -384,15 +388,13 @@ public class Controlador implements ActionListener,MouseListener {
         	cargarPlantilla();
 
         }else if(e.getSource()==this.vista.btnIniciarSimulacion) {
-        	String nombre_equipoLocal=vista.lblNombreLocalVista.getText();
-        	String nombre_equipoVisitanter=vista.lblNombreVisitanteVista.getText();
-        	DefaultListModel<String> listasituacion=new DefaultListModel<>();
-        	//partidoFutbol = new PartidoFutbol(nombre_equipoLocal, nombre_equipoVisitanter,vista.lblMinutos,vista.lblMarcador,listasituacion);
-        	partidoFutbol.start();
-        	vista.listSimulacion.setModel(listasituacion);
         	this.vista.btnIniciarSimulacion.setEnabled(false);
+        	this.vista.lblVolverPlantilla_Simulacion.setVisible(false);
+        	List<Partido> jornada=simularJornada();
         	
-
+        	
+        	
+        	
         }
         
         
@@ -620,7 +622,12 @@ public class Controlador implements ActionListener,MouseListener {
         this.vista.lblFondoMenu.setIcon(fotoEscalarLabel(this.vista.lblFondoMenu, "imagenes/fondo-principal.jpg"));
         this.vista.lblLogo.setIcon(fotoEscalarLabel(this.vista.lblLogo, "imagenes/logo.png"));
         this.vista.lblLogoMenu.setIcon(fotoEscalarLabel(this.vista.lblLogoMenu, "imagenes/logo.png"));
-
+        
+        this.vista.lblFondoEleccionUno.setIcon(fotoEscalarLabel(this.vista.lblFondoEleccionUno, "imagenes/foto-carta.png"));
+        this.vista.lblFondoEleccionDos.setIcon(fotoEscalarLabel(this.vista.lblFondoEleccionDos, "imagenes/foto-carta.png"));
+        this.vista.lblFondoEleccionTres.setIcon(fotoEscalarLabel(this.vista.lblFondoEleccionTres, "imagenes/foto-carta.png"));
+        this.vista.lblFondoEleccionCuatro.setIcon(fotoEscalarLabel(this.vista.lblFondoEleccionCuatro, "imagenes/foto-carta.png"));
+        this.vista.lblFondoEleccionCinco.setIcon(fotoEscalarLabel(this.vista.lblFondoEleccionCinco, "imagenes/foto-carta.png"));
        
         //inicio
         this.vista.lblFondoPlantilla.setIcon(fotoEscalarLabel(this.vista.lblFondoPlantilla, "imagenes/cesped.png"));
@@ -664,7 +671,6 @@ public class Controlador implements ActionListener,MouseListener {
         
         this.vista.lblLogJugadores.setIcon(fotoEscalarLabel(this.vista.lblLogJugadores, "imagenes/logo.png"));
         this.vista.lblFondo_Pantalla_Jugadores.setIcon(fotoEscalarLabel(this.vista.lblFondo_Pantalla_Jugadores, "imagenes/fondo-principal.jpg"));
-        this.vista.lblSalir.setIcon(fotoEscalarLabel(this.vista.lblSalir,"imagenes/salir.png"));
         //panelVistaEquipo
         this.vista.lblVolverPlantilla_1.setIcon(fotoEscalarLabel(this.vista.lblVolverPlantilla_1,"imagenes/volver.png"));
         this.vista.lblNewLabel_EscudoEquipoLocal.setIcon(fotoEscalarLabel(this.vista.lblNewLabel_EscudoEquipoLocal,"imagenes/fotoLogoLocal.png"));
@@ -687,26 +693,7 @@ public class Controlador implements ActionListener,MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == this.vista.lblSalir) {
-            this.vista.panelElecion.setVisible(false);
-            
-          
-            JButton[] botonesHabilitar = {
-                vista.btnDelanteroDerecho,
-                vista.btnDelanteroIzquierda,
-                vista.btnCentroCampistaDerecho,
-                vista.btnCentroCampistaDerechoCentro,
-                vista.btnCentroCampistaIzquierdoCentro,
-                vista.btnCentroCampistaIzquierdo,
-                vista.btnDefensaDerecha,
-                vista.btnDefensaDerechaCentro,
-                vista.btnDefensaIzquierda,
-                vista.btnDefensaIzquierdaCentro,
-                vista.btnPortero
-            };
-
-            enableButtons(botonesHabilitar);
-        }
+        
         if(e.getSource()==this.vista.lblVolverJugadores) {
         	this.vista.panelJugadores.setVisible(false);
         	this.vista.panelMenu.setVisible(true);
@@ -727,10 +714,26 @@ public class Controlador implements ActionListener,MouseListener {
         	this.vista.panelPlantilla.setVisible(true);
         }else if(e.getSource()==this.vista.lblEmpezarSimulacion) {
         	this.vista.panelVistaEquipo.setVisible(false);
+        	this.vista.btnIniciarSimulacion.setEnabled(true);
         	this.vista.panelSimulacion.setVisible(true);
         }else if(e.getSource()==this.vista.lblVolverPlantilla_Simulacion) {
-        	this.vista.panelPlantilla.setVisible(true);
-        	this.vista.panelSimulacion.setVisible(false);
+        	List<Partido> partidos=hibernate.extraerJornadasNoJugadas();
+        	
+        	if(partidos.size()==0) {
+        		this.vista.panelPlantilla.setVisible(true);
+            	this.vista.panelSimulacion.setVisible(false);
+            	this.vista.btnSimularPartida.setEnabled(false);
+        	}else {
+        		Partido partido=hibernate.extraerJornadasNoJugadas().get(0);
+            	vista.lblNombreLocalVista.setText(partido.getEquipoByIdEquipoLocal().getNombre());
+            	vista.lblNombreVisitanteVista.setText(partido.getEquipoByIdEquipoVisitante().getNombre());
+            	
+            	cargarLista(vista.listEquipoLocal,partido.getEquipoByIdEquipoLocal().getJugadors());
+            	cargarLista(vista.listEquipoVisitante,partido.getEquipoByIdEquipoVisitante().getJugadors());
+        		this.vista.panelVistaEquipo.setVisible(true);
+            	this.vista.panelSimulacion.setVisible(false);
+        	}
+        	
         //Panel informacion
         }else if(e.getSource()==this.vista.lblInformacion) {
         	this.vista.panelMenu.setVisible(false);
@@ -883,9 +886,7 @@ public class Controlador implements ActionListener,MouseListener {
 		}
 	}
 
-	
-	
-	
+
 	public void cargarEquipos() {
 		
 		List<String> entrada=hibernate.extraerNombreEquipos();
@@ -896,9 +897,7 @@ public class Controlador implements ActionListener,MouseListener {
 		
 	}
 
-	
-	
-	
+
 	//creacion de plantillas
 	public List<Jugador> crerPlantillaMaquina() {
 	        
@@ -939,6 +938,7 @@ public class Controlador implements ActionListener,MouseListener {
 		}
 		
 	}
+	
 	public void creacionTotalEquipo(String nombre) {
 		List<Jugador> temp=crerPlantillaMaquina();
 		Equipo equipo=hibernate.crearEquipo(nombre);
@@ -1069,6 +1069,7 @@ public class Controlador implements ActionListener,MouseListener {
 		            case "POR":
 		                if (contadorPorteros == 0) {
 		                    vista.lblNombrePortero.setText(jugador.getNombre());
+		                    vista.lblNombrePortero.setVisible(true);
 		                    this.vista.btnPortero.setVisible(false);
 		                    this.vista.btnPortero.setEnabled(false);
 		                }
@@ -1077,25 +1078,29 @@ public class Controlador implements ActionListener,MouseListener {
 		            case "DEF":
 		            	if (contadorDefensores == 4) {
 		                    this.vista.btnDefensaDerecha.setVisible(false);
-		                    this.vista.btnDefensaDerechaCentro.setVisible(false);
+		                    this.vista.btnDefensaDerecha.setVisible(false);
 		                    this.vista.btnDefensaIzquierda.setVisible(false);
 		                    this.vista.btnDefensaIzquierdaCentro.setVisible(false);
 		                }
 		            	else if (contadorDefensores < 4) { 
 		                    if (contadorDefensores == 0) {
 		                        vista.lblNombreDefensaIDerecha.setText(jugador.getNombre());
+		                        vista.lblNombreDefensaIDerecha.setVisible(true);
 		                        this.vista.btnDefensaDerecha.setVisible(false);
 		                        this.vista.btnDefensaDerecha.setEnabled(false);
 		                    } else if (contadorDefensores == 1) {
 		                        vista.lblNombreDefensaIDerechaCentro.setText(jugador.getNombre());
+		                        vista.lblNombreDefensaIDerechaCentro.setVisible(true);
 		                        this.vista.btnDefensaDerechaCentro.setVisible(false);
 		                        this.vista.btnDefensaDerechaCentro.setEnabled(false);
 		                    } else if (contadorDefensores == 2) {
 		                        vista.lblNombreDefensaIzquierda.setText(jugador.getNombre());
+		                        vista.lblNombreDefensaIzquierda.setVisible(true);
 		                        this.vista.btnDefensaIzquierda.setVisible(false);
 		                        this.vista.btnDefensaIzquierda.setEnabled(false);
 		                    } else if (contadorDefensores == 3) {
 		                        vista.lblNombreDefensaIzquierdaCentro.setText(jugador.getNombre());
+		                        vista.lblNombreDefensaIzquierdaCentro.setVisible(true);
 		                        this.vista.btnDefensaIzquierdaCentro.setVisible(false);
 		                        this.vista.btnDefensaIzquierdaCentro.setEnabled(false);
 		                    }
@@ -1113,18 +1118,22 @@ public class Controlador implements ActionListener,MouseListener {
 		            	else if (contadorMediocampistas < 4) {
 		                    if (contadorMediocampistas == 0) {
 		                        vista.lblNombreCentroCampistaDerecha.setText(jugador.getNombre());
+		                        vista.lblNombreCentroCampistaDerecha.setVisible(true);
 		                        this.vista.btnCentroCampistaDerecho.setVisible(false);
 		                        this.vista.btnCentroCampistaDerecho.setEnabled(false);
 		                    } else if (contadorMediocampistas == 1) {
 		                        vista.lblNombreCentroCampistaDerechaCentro.setText(jugador.getNombre());
+		                        vista.lblNombreCentroCampistaDerechaCentro.setVisible(true);
 		                        this.vista.btnCentroCampistaDerechoCentro.setVisible(false);
 		                        this.vista.btnCentroCampistaDerechoCentro.setEnabled(false);
 		                    } else if (contadorMediocampistas == 2) {
 		                        vista.lblNombreCentroCampistaIzquierdo.setText(jugador.getNombre());
+		                        vista.lblNombreCentroCampistaIzquierdo.setVisible(true);
 		                        this.vista.btnCentroCampistaIzquierdo.setEnabled(false);
 		                        this.vista.btnCentroCampistaIzquierdo.setVisible(false);
 		                    } else if (contadorMediocampistas == 3) {
 		                        vista.lblNombreCentroCampistaIzquierdoCentro.setText(jugador.getNombre());
+		                        vista.lblNombreCentroCampistaIzquierdoCentro.setVisible(true);
 		                        this.vista.btnCentroCampistaIzquierdoCentro.setEnabled(false);
 		                        this.vista.btnCentroCampistaIzquierdoCentro.setVisible(false);
 		                    }
@@ -1140,10 +1149,12 @@ public class Controlador implements ActionListener,MouseListener {
 		            	else if (contadorDelanteros < 2) { 
 		                    if (contadorDelanteros == 0) {
 		                        vista.lblNombreDelanteroIzquierdo.setText(jugador.getNombre());
+		                        vista.lblNombreDelanteroIzquierdo.setVisible(true);
 		                        this.vista.btnDelanteroIzquierda.setVisible(false);
 		                        this.vista.btnDelanteroIzquierda.setEnabled(false);
 		                    } else if (contadorDelanteros == 1) {
 		                        vista.lblNombreDelanteroDerecho.setText(jugador.getNombre());
+		                        vista.lblNombreDelanteroDerecho.setVisible(true);
 		                        this.vista.btnDelanteroDerecho.setVisible(false);
 		                        this.vista.btnDelanteroDerecho.setEnabled(false);
 		                    }
@@ -1159,7 +1170,6 @@ public class Controlador implements ActionListener,MouseListener {
 	    }
 	}
 
-	
 	public void cargarPlantilla() {
 		int selec=vista.comboBoxEquipoClasificacion.getSelectedIndex();
 		Equipo equipo=hibernate.extraerEquiposOrdenados().get(selec);
@@ -1218,6 +1228,45 @@ public class Controlador implements ActionListener,MouseListener {
             vista.btnSimularPartida.setEnabled(false);
            
         }
+        
+    }
+   
+    public List<Partido> simularJornada() {
+    	jornada=hibernate.extraerJornada();
+    	boolean ultimaJornada=true;
+    	if(jornada.size()==10) {
+    		ultimaJornada=true;
+    	}else {
+	    	for(int i=jornada.size()-1;i>9;i--) {
+	    		jornada.remove(i);
+	    	}
+    	}
+    	PartidoFutbol hilo1=null;
+    	try {
+    		
+    	for(Partido clave:jornada) {
+    		if(clave.getEquipoByIdEquipoLocal().isEquipoJugador()) {
+    			DefaultListModel<String> modelo=new DefaultListModel<String>();
+    			this.vista.listSimulacion.setModel(modelo);
+    			hilo1=new  PartidoFutbol(clave,vista);
+    			hilo1.start();
+    		}else {
+    			PartidoFutbol hilo=new PartidoFutbol(clave);
+    			hilo.start();
+ 	
+    		}
+    		
+    	}
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    
+    	
+    	System.out.println("Fin simulacion");
+    	
+    	return jornada;
     }
  
+    
 }
