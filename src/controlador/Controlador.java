@@ -41,6 +41,7 @@ public class Controlador implements ActionListener,MouseListener {
     private ControladorHibernate hibernate;
     private String[] nombres;
     List<Partido> jornada;
+    List<PartidoFutbol> jugandose;
     private List<Jugador> jugador;
     private DefaultTableModel modeloTJugadores,modeloTCLasidicacion,modeloTJornadas;
     private Jugador porteroSeleccionado;
@@ -305,13 +306,48 @@ public class Controlador implements ActionListener,MouseListener {
         }
 
         else if(e.getSource()==this.vista.btnJugar) {
-        	List<Partido> jornadas=hibernate.extraerJornadaJugada();
-        	if(jornadas.size()==95) {
+        	List<Partido> partidos=hibernate.extraerJornadasNoJugadas();
+        	if(partidos.size()==0&&hibernate.isEquiposCreados(20)) {
         		hibernate.reinicio();
+        		this.vista.btnPortero.setVisible(true);
+        	    this.vista.btnDelanteroDerecho.setVisible(true);
+        	    this.vista.btnDelanteroIzquierda.setVisible(true); 
+        	    this.vista.btnCentroCampistaDerecho.setVisible(true); 
+        	    this.vista.btnCentroCampistaDerechoCentro.setVisible(true); 
+        	    this.vista.btnCentroCampistaIzquierdo.setVisible(true); 
+        	    this.vista.btnCentroCampistaIzquierdoCentro.setVisible(true); 
+        	    this.vista.btnDefensaDerecha.setVisible(true); 
+        	    this.vista.btnDefensaDerechaCentro.setVisible(true); 
+        	    this.vista.btnDefensaIzquierda.setVisible(true); 
+        	    this.vista.btnDefensaIzquierdaCentro.setVisible(true);
+        	    
+        	    this.vista.btnPortero.setEnabled(true);
+        	    this.vista.btnDelanteroDerecho.setEnabled(true);
+        	    this.vista.btnDelanteroIzquierda.setEnabled(true); 
+        	    this.vista.btnCentroCampistaDerecho.setEnabled(true); 
+        	    this.vista.btnCentroCampistaDerechoCentro.setEnabled(true); 
+        	    this.vista.btnCentroCampistaIzquierdo.setEnabled(true); 
+        	    this.vista.btnCentroCampistaIzquierdoCentro.setEnabled(true); 
+        	    this.vista.btnDefensaDerecha.setEnabled(true); 
+        	    this.vista.btnDefensaDerechaCentro.setEnabled(true); 
+        	    this.vista.btnDefensaIzquierda.setEnabled(true); 
+        	    this.vista.btnDefensaIzquierdaCentro.setEnabled(true);
+        	    
+        	    this.vista.lblNombrePortero.setVisible(false);
+        	    this.vista.lblNombreDelanteroDerecho.setVisible(false);
+        	    this.vista.lblNombreDelanteroIzquierdo.setVisible(false); 
+        	    this.vista.lblNombreCentroCampistaDerecha.setVisible(false); 
+        	    this.vista.lblNombreCentroCampistaDerechaCentro.setVisible(false); 
+        	    this.vista.lblNombreCentroCampistaIzquierdo.setVisible(false); 
+        	    this.vista.lblNombreCentroCampistaIzquierdoCentro.setVisible(false); 
+        	    this.vista.lblNombreDefensaIDerecha.setVisible(false); 
+        	    this.vista.lblNombreDefensaIDerechaCentro.setVisible(false); 
+        	    this.vista.lblNombreDefensaIzquierda.setVisible(false); 
+        	    this.vista.lblNombreDefensaIzquierdaCentro.setVisible(false);
         	}
-        	if(hibernate.isEquiposCreados(1)) {
+        	if(hibernate.isEquiposCreados(1)||hibernate.isEquiposCreados(20)) {
 	        	this.vista.panelMenu.setVisible(false);
-
+	        	
 	        	this.vista.panelPlantilla.setVisible(true);
 	        	this.vista.panelPlantilla.setVisible(true);
 	        	cargarJugadoresEquipo();
@@ -1233,6 +1269,8 @@ public class Controlador implements ActionListener,MouseListener {
    
     public List<Partido> simularJornada() {
     	jornada=hibernate.extraerJornada();
+    	jugandose=new ArrayList<PartidoFutbol>();
+    	
     	boolean ultimaJornada=true;
     	if(jornada.size()==10) {
     		ultimaJornada=true;
@@ -1249,9 +1287,11 @@ public class Controlador implements ActionListener,MouseListener {
     			DefaultListModel<String> modelo=new DefaultListModel<String>();
     			this.vista.listSimulacion.setModel(modelo);
     			hilo1=new  PartidoFutbol(clave,vista);
+    			jugandose.add(hilo1);
     			hilo1.start();
     		}else {
     			PartidoFutbol hilo=new PartidoFutbol(clave);
+    			jugandose.add(hilo);
     			hilo.start();
  	
     		}

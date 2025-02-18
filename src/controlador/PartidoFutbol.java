@@ -61,6 +61,16 @@ class PartidoFutbol extends Thread {
     	
     	partido.setGolesLocal(0);
     	partido.setGolesVisitante(0);
+    	
+    	int contador=0;      
+        int num;
+        while(contador<12) {
+        	num=(int)(1+Math.random()*90);
+        	if(!jugadas.contains(num)) {
+        		jugadas.add(num);
+        		contador++;
+        	}
+        }
     }
 
     /**
@@ -70,6 +80,7 @@ class PartidoFutbol extends Thread {
     public void run() {
     	boolean gol=false;
     	if(mostrar) {
+    		listModel.addElement("Jornada "+partido.getJornada());
 	    	listModel.addElement("Comienza el partido y");
 	    	listModel.addElement("arranca a rodar el esferico");
 	    	listModel.addElement("en este partido "+equipoLocal+"-"+equipoVisitante);
@@ -100,18 +111,20 @@ class PartidoFutbol extends Thread {
             			}
             		}
             	}
-            	
-                if(minuto == 45 && mostrar) {
-                	listModel.addElement("DESCANSO");
-                	listModel.addElement("----------------");
-                	vista.listSimulacion.setModel(listModel);
-                	Thread.sleep(5000);              
-                }else if(minuto==90 && mostrar) {
-                	 listModel.addElement("FINAL DEL PARTIDO");
-                	 vista.listSimulacion.setModel(listModel);
-                }else if(mostrar){
-                    Thread.sleep(1000);
-                }
+            	//No entra
+            	if(mostrar) {
+	                if(minuto == 45 ) {
+	                	listModel.addElement("DESCANSO");
+	                	listModel.addElement("----------------");
+	                	vista.listSimulacion.setModel(listModel);
+	                	Thread.sleep(5000);              
+	                }else if(minuto==90 ) {
+	                	 listModel.addElement("FINAL DEL PARTIDO");
+	                	 vista.listSimulacion.setModel(listModel);
+	                }else {
+	                    Thread.sleep(1000);
+	                }
+            	}
                 
             }catch(InterruptedException e) {
                 e.printStackTrace();
@@ -120,10 +133,10 @@ class PartidoFutbol extends Thread {
         calcularPuntos();
         calculo();
         guardarPartido();
-        if(mostrar) {
-        	vista.lblVolverPlantilla_Simulacion.setVisible(true);
+        
+        vista.lblVolverPlantilla_Simulacion.setVisible(true);
             
-        }
+        
         
     }
 
@@ -140,7 +153,7 @@ class PartidoFutbol extends Thread {
                 eventoTexto = "Min:"+minuto+" La ocasión ha sido despejada por la defensa";
                 break;
             case 3:
-                eventoTexto ="Min:"+minuto+ nombre+" se encontraba en fuera de juego";
+                eventoTexto ="Min:"+minuto+" "+ nombre+" se encontraba en fuera de juego";
                 break;
             case 4:
                 eventoTexto ="Min:"+minuto+ " El VAR ha anulado el gol.";
@@ -158,7 +171,7 @@ class PartidoFutbol extends Thread {
         
         	switch (numeroprobrabilidad) {
             case 1:
-                eventoTexto = "Min:"+minuto+ "Golazo por la escuadra derecha de "+nombre;
+                eventoTexto = "Min:"+minuto+ " Golazo por la escuadra derecha de "+nombre;
                 break;
             case 2:
             	
@@ -168,7 +181,7 @@ class PartidoFutbol extends Thread {
                 eventoTexto ="Min:"+minuto+  " Que barbaridad "+nombre +", que manera de hacerlo ver facil";
                 break;
             case 4:
-                eventoTexto ="Min:"+minuto+  "Penalti convertido por "+nombre;
+                eventoTexto ="Min:"+minuto+  " Penalti convertido por "+nombre;
                 break;
            
         	}

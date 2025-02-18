@@ -146,30 +146,7 @@ public class ControladorHibernate {
 		return salida;
 	}
 	
-	public void resetearJugadores() {
-		Session sesion=null;
-		try {
-			sesion=sessionFactory.getCurrentSession();
-			sesion.beginTransaction();
-			
-			Query query=sesion.createQuery("update from jugador "
-										+ "set equipo=null ");
-			
-			query.executeUpdate();
-			System.out.println("fgd");
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			if(null!=sesion) {
-				sesion.getTransaction().rollback();
-			}
-		}finally {
-			if(null!=sesion) {
-				sesion.close();
-			}
-			
-		}
-	}
+	
 	public List<Jugador> extraerJugadoresPorPosicion(String posicion) {
 		List<Jugador> jugadores=null;
 		Session sesion=null;
@@ -372,7 +349,7 @@ public class ControladorHibernate {
 			Query query=sesion.createQuery(consulta);
 			List<Equipo> temp=null;
 			temp=query.list();
-			if(temp.size()>=cantidad) {
+			if(temp.size()==cantidad) {
 				salida=true;
 			}
 			
@@ -504,7 +481,7 @@ public class ControladorHibernate {
 			sesion=sessionFactory.getCurrentSession();
 			sesion.beginTransaction();
 			
-			String consulta="from Equipo e order by e.puntos desc";
+			String consulta="from Equipo e order by e.puntos desc,(e.golesFavor-e.golesContra) desc";
 			
 			Query query=sesion.createQuery(consulta);
 			salida=query.list();
@@ -700,7 +677,7 @@ public class ControladorHibernate {
 	//Reinicio
 	public void reinicio() {
 		dropPartidos();
-		resetearJugadores();
+		resetJugadores();
 		dropEquipos();
 	}
 	
@@ -711,9 +688,9 @@ public class ControladorHibernate {
 			sesion=sessionFactory.getCurrentSession();
 			sesion.beginTransaction();
 			
-			String consulta="update jugador set id_equipo=null";
+			String consulta="update Jugador j set j.equipo=null";
 			
-			Query query=sesion.createSQLQuery(consulta);
+			Query query=sesion.createQuery(consulta);
 			
 			query.executeUpdate();
 			
@@ -735,9 +712,9 @@ public class ControladorHibernate {
 			sesion=sessionFactory.getCurrentSession();
 			sesion.beginTransaction();
 			
-			String consulta="delete from equipo";
+			String consulta="delete from Equipo";
 			
-			Query query=sesion.createSQLQuery(consulta);
+			Query query=sesion.createQuery(consulta);
 			
 			query.executeUpdate();
 			
@@ -759,9 +736,9 @@ public class ControladorHibernate {
 			sesion=sessionFactory.getCurrentSession();
 			sesion.beginTransaction();
 			
-			String consulta="delete from partido";
+			String consulta="delete from persistencias.Partido";
 			
-			Query query=sesion.createSQLQuery(consulta);
+			Query query=sesion.createQuery(consulta);
 			
 			query.executeUpdate();
 			
